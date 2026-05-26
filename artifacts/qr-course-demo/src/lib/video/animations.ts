@@ -132,22 +132,22 @@ export const elementAnimations = {
   fadeUp: {
     initial: { opacity: 0, y: 20 },
     animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.5, ease: 'circOut' },
+    transition: { duration: 0.5, ease: 'circOut' as const },
   },
   fadeDown: {
     initial: { opacity: 0, y: -20 },
     animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.5, ease: 'circOut' },
+    transition: { duration: 0.5, ease: 'circOut' as const },
   },
   slideInLeft: {
     initial: { opacity: 0, x: -30 },
     animate: { opacity: 1, x: 0 },
-    transition: { duration: 0.5, ease: 'circOut' },
+    transition: { duration: 0.5, ease: 'circOut' as const },
   },
   slideInRight: {
     initial: { opacity: 0, x: 30 },
     animate: { opacity: 1, x: 0 },
-    transition: { duration: 0.5, ease: 'circOut' },
+    transition: { duration: 0.5, ease: 'circOut' as const },
   },
   blurIn: {
     initial: { opacity: 0, filter: 'blur(20px)' },
@@ -205,7 +205,7 @@ export const staggerConfigs = {
   reverse: { staggerChildren: 0.1, staggerDirection: -1 },
   charFast: { staggerChildren: 0.02, delayChildren: 0 },
   charMedium: { staggerChildren: 0.04, delayChildren: 0.1 },
-} as const;
+};
 
 // Common variants
 export const containerVariants: Variants = {
@@ -221,7 +221,7 @@ export const itemVariants: Variants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.5, ease: 'circOut' },
+    transition: { duration: 0.5, ease: 'circOut' as const },
   },
 };
 
