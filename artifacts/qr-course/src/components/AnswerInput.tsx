@@ -1,15 +1,17 @@
 import React, { useRef, useState, useEffect, useCallback } from "react";
 import { KeystrokeTrace } from "@workspace/api-client-react";
 import { MathKeyboard } from "@/components/MathKeyboard";
+import { QuickPickBar } from "@/components/QuickPickBar";
 
 interface AnswerInputProps {
   value: string;
   onChange: (val: string, trace: KeystrokeTrace) => void;
   placeholder?: string;
   disabled?: boolean;
+  promptSource?: string;
 }
 
-export function AnswerInput({ value, onChange, placeholder, disabled }: AnswerInputProps) {
+export function AnswerInput({ value, onChange, placeholder, disabled, promptSource }: AnswerInputProps) {
   const [sessionValue, setSessionValue] = useState(value);
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
 
@@ -149,6 +151,9 @@ export function AnswerInput({ value, onChange, placeholder, disabled }: AnswerIn
 
   return (
     <div className="flex flex-col gap-2 w-full">
+      {promptSource && !disabled && (
+        <QuickPickBar source={promptSource} onInsert={insertAtCursor} />
+      )}
       <textarea
         ref={textareaRef}
         value={sessionValue}
@@ -158,7 +163,7 @@ export function AnswerInput({ value, onChange, placeholder, disabled }: AnswerIn
         onDrop={handleDrop}
         placeholder={placeholder || "Type your answer here..."}
         disabled={disabled}
-        className="w-full min-h-[120px] p-4 bg-card border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-primary font-mono text-sm resize-y"
+        className="w-full min-h-[180px] p-5 bg-card border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-primary font-mono text-2xl leading-relaxed resize-y"
       />
       <span className="text-xs text-muted-foreground px-1">Pasting is disabled.</span>
       {!disabled && (

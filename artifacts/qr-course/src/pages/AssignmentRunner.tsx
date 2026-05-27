@@ -168,6 +168,7 @@ export default function AssignmentRunner() {
               <AnswerInput 
                 value={answers[currentProblem.id] || ""}
                 onChange={(val, trace) => handleAnswerChange(currentProblem.id, val, trace)}
+                promptSource={currentProblem.prompt}
               />
             </div>
 

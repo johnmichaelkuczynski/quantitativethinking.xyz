@@ -229,6 +229,7 @@ export default function TopicPractice() {
               setTrace(t);
             }}
             disabled={!!grade || !problem}
+            promptSource={problem?.prompt}
           />
         </div>
 
