@@ -58,10 +58,10 @@ export function Scene3({ setCursorPos, setIsClicking }: { setCursorPos: (pos: {x
       {/* Left Pane (Static from previous) */}
       <div className="w-1/2 h-full border-r border-border p-12 overflow-hidden flex flex-col relative opacity-50">
         <div className="text-xs font-bold tracking-widest text-muted-foreground mb-4">WEEK 1</div>
-        <h1 className="text-3xl font-serif text-primary mb-8">1.1 What critical thinking is and why it matters</h1>
+        <h1 className="text-3xl font-serif text-primary mb-8">1.1 What quantitative reasoning is and why it matters</h1>
         <div className="prose prose-sm max-w-none text-foreground/80 space-y-6">
-          <h2 className="font-serif text-2xl text-primary">What critical thinking is</h2>
-          <p>Critical thinking is the disciplined practice of evaluating reasoning — your own and others' — to decide what is reasonable to believe or do. It is not about being negative or clever; it is about being fair, careful, and honest with evidence.</p>
+          <h2 className="font-serif text-2xl text-primary">What quantitative reasoning is</h2>
+          <p>Quantitative reasoning is the disciplined use of numbers, quantities, and basic mathematics to understand the world and evaluate claims. It is not about advanced math; it is about judgment — being careful, honest, and skeptical with figures.</p>
         </div>
       </div>
 
@@ -79,7 +79,7 @@ export function Scene3({ setCursorPos, setIsClicking }: { setCursorPos: (pos: {x
               <motion.div exit={{ opacity: 0, y: -20 }} className="mt-auto">
                 <div className="mb-4 text-xs font-semibold text-muted-foreground uppercase tracking-widest">Starter questions for this section</div>
                 <div className="flex flex-wrap gap-2 mb-6">
-                  <div className="px-3 py-1.5 rounded-full border border-border text-sm text-primary bg-muted/30">How is an argument different from an explanation?</div>
+                  <div className="px-3 py-1.5 rounded-full border border-border text-sm text-primary bg-muted/30">What's the difference between absolute and relative size?</div>
                 </div>
               </motion.div>
             )}
@@ -90,7 +90,7 @@ export function Scene3({ setCursorPos, setIsClicking }: { setCursorPos: (pos: {x
                 animate={{ opacity: 1, y: 0, scale: 1 }} 
                 className="self-end max-w-[85%] bg-primary text-white p-4 rounded-2xl rounded-tr-sm shadow-sm mt-auto"
               >
-                How is an argument different from an explanation?
+                What's the difference between absolute and relative size?
               </motion.div>
             )}
 
@@ -110,7 +110,7 @@ export function Scene3({ setCursorPos, setIsClicking }: { setCursorPos: (pos: {x
                 animate={{ opacity: 1, y: 0 }} 
                 className="self-start w-[85%] bg-muted/30 border border-border p-5 rounded-2xl rounded-tl-sm text-[15px] leading-relaxed shadow-sm"
               >
-                <StreamingText text="Great question. An argument tries to convince you that a claim is true by offering reasons for it. An explanation assumes you already accept the claim and tells you why it happened. Same grammar, different jobs — check whether the conclusion is actually in doubt." delay={0} />
+                <StreamingText text="Great question. Absolute size is the raw amount — $10 off a price. Relative size compares it to a base — $10 off a $12 shirt is huge, but $10 off a $30,000 car is trivial. Always ask 'compared to what?' before reacting to a number." delay={0} />
               </motion.div>
             )}
           </div>
@@ -118,8 +118,8 @@ export function Scene3({ setCursorPos, setIsClicking }: { setCursorPos: (pos: {x
           <div className="mt-6 w-full min-h-24 border border-border rounded-xl bg-background p-3 flex items-end shadow-inner relative z-10">
             <div className="w-full flex justify-between items-center pr-2">
               <div className="text-foreground text-[15px] font-medium pl-2 relative w-full h-full flex items-center">
-                {phase === 1 && <TypewriterText text="How is an argument different from an explanation?" speed={25} />}
-                {phase >= 2 && phase < 4 && <span className="text-muted-foreground font-normal">Ask a question about critical thinking...</span>}
+                {phase === 1 && <TypewriterText text="What's the difference between absolute and relative size?" speed={25} />}
+                {phase >= 2 && phase < 4 && <span className="text-muted-foreground font-normal">Ask a question about quantitative reasoning...</span>}
                 {phase >= 4 && <TypewriterText text="Can you give an example?" speed={20} />}
                 {((phase >= 1 && phase < 2) || phase >= 4) && (
                   <motion.div className="w-0.5 h-5 bg-primary ml-1" animate={{ opacity: [1, 0] }} transition={{ repeat: Infinity, duration: 0.8 }} />

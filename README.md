@@ -1,22 +1,22 @@
 # 🎓 ClearThink
 
-**The Critical Thinking Studio — Executable College Coursework**
+**The Quantitative Reasoning Studio — Executable College Coursework**
 
 ---
 
 ## 🧩 Overview
 
-ClearThink is a full-service self-paced learning platform that delivers a complete four-week college-freshman Critical Thinking course — taught, tutored, drilled, graded, and integrity-checked entirely by AI.
+ClearThink is a full-service self-paced learning platform that delivers a complete four-week college-freshman Quantitative Reasoning course — taught, tutored, drilled, graded, and integrity-checked entirely by AI.
 
 It performs end-to-end coursework: depth-adjustable lectures, section-scoped Socratic tutoring, adaptive problem generation, and rubric-faithful AI grading — from a 90-second concept skim all the way to a full midterm and final with per-problem rationales.
 
-Designed for **students, instructors evaluating AI-taught coursework, and academic-integrity researchers**, it merges a real 29-topic critical-thinking syllabus with two layers of AI-authorship detection — producing a course that students can trust to be fair and that instructors can trust to be honest.
+Designed for **students, instructors evaluating AI-taught coursework, and academic-integrity researchers**, it merges a real 29-topic quantitative-reasoning syllabus with two layers of AI-authorship detection — producing a course that students can trust to be fair and that instructors can trust to be honest.
 
 ---
 
 ## 🧠 What It Does
 
-- **Four-Week Structured Curriculum** — A complete critical-thinking syllabus across 29 topics: claims and arguments, premises and conclusions, deductive and inductive reasoning, informal fallacies, cognitive biases, evidence and source evaluation, probability and causation, and rhetoric and persuasion. Each week ships with lectures, homework, and a test; week four adds a midterm and a final.
+- **Four-Week Structured Curriculum** — A complete quantitative-reasoning syllabus across 29 topics: magnitude and estimation, units and proportional reasoning, percentages and base rates, ratios and rates, descriptive statistics, probability and conditional probability, correlation versus causation, exponential growth, and reading data and visualizations critically. Each week ships with lectures, homework, and a test; week four adds a midterm and a final.
 - **Three-Depth Lectures** — Every lecture is available at **Short / Medium / Long** length, AI-rewritten while preserving the same worked examples and learning objectives. Skim the concept, expand it on demand, or read the textbook-style deep cut.
 - **Section-Scoped AI Tutor** — Ask a question about the paragraph you're reading and the answer streams back token-by-token, grounded in that exact lecture section. Suggested starter questions are pre-generated per lecture.
 - **Adaptive Topic Practice** — Generated problem sets that move difficulty up after a streak and down after a miss, with worked explanations on every answer. Per-session difficulty persists, so each drill picks up where the last one left off.
@@ -42,7 +42,7 @@ Designed for **students, instructors evaluating AI-taught coursework, and academ
 
 ## 🎓 Designed For
 
-- **College Freshmen & Self-Learners:** A complete one-month critical-thinking course delivered with on-demand tutoring and adaptive practice — no instructor required.
+- **College Freshmen & Self-Learners:** A complete one-month quantitative-reasoning course delivered with on-demand tutoring and adaptive practice — no instructor required.
 - **Instructors & Curriculum Designers:** A working reference for what AI-taught, AI-graded, AI-detection-screened coursework actually looks like end-to-end.
 - **Academic-Integrity Researchers:** A live testbed for layered AI-authorship detection that combines text-based classification with behavioral keystroke evidence.
 - **Product & Engineering Teams:** A reference implementation of contract-first full-stack architecture, streaming AI UX, and self-diagnostic operator tooling in a pnpm monorepo.

@@ -94,7 +94,7 @@ export function Scene6({ setCursorPos, setIsClicking }: { setCursorPos: (pos: {x
               >
                 <div>
                   <div className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest mb-1">Homework</div>
-                  <h4 className="font-serif text-lg text-primary mb-1">Homework 1.1 — Claims and arguments</h4>
+                  <h4 className="font-serif text-lg text-primary mb-1">Homework 1.1 — Numbers, magnitude, and estimation</h4>
                   <div className="text-sm text-muted-foreground">3 problems</div>
                 </div>
                 <div className="flex items-center space-x-6">
@@ -117,7 +117,7 @@ export function Scene6({ setCursorPos, setIsClicking }: { setCursorPos: (pos: {x
               >
                 <div>
                   <div className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest mb-1">Homework</div>
-                  <h4 className="font-serif text-lg text-primary mb-1">Homework 1.2 — Structure of arguments</h4>
+                  <h4 className="font-serif text-lg text-primary mb-1">Homework 1.2 — Units, ratios, and percentages</h4>
                   <div className="text-sm text-muted-foreground">4 problems</div>
                 </div>
                 <div className="flex items-center space-x-6">
@@ -174,11 +174,11 @@ export function Scene6({ setCursorPos, setIsClicking }: { setCursorPos: (pos: {x
             <div className="bg-white border border-border rounded-xl shadow-sm p-8 mb-6 relative overflow-hidden">
               <div className="absolute top-0 right-0 bg-emerald-100 text-emerald-700 px-4 py-1.5 text-xs font-bold tracking-widest rounded-bl-xl border-b border-l border-emerald-200">GRADED</div>
               
-              <h3 className="font-medium text-lg mb-6 max-w-2xl text-foreground">Q1. A sentence that is either true or false is called a ___.</h3>
+              <h3 className="font-medium text-lg mb-6 max-w-2xl text-foreground">Q1. A price rises from $80 to $100. What is the percentage increase?</h3>
               
               <div className="w-fit mb-6">
                 <div className="text-xs text-muted-foreground mb-2">Your answer:</div>
-                <div className="px-6 py-3 bg-muted/30 border border-border rounded-lg text-lg font-mono">claim</div>
+                <div className="px-6 py-3 bg-muted/30 border border-border rounded-lg text-lg font-mono">25%</div>
               </div>
 
               <AnimatePresence>
@@ -193,7 +193,7 @@ export function Scene6({ setCursorPos, setIsClicking }: { setCursorPos: (pos: {x
                       <span>AI Tutor Feedback</span>
                     </div>
                     <div className="text-sm text-blue-900 leading-relaxed">
-                      <StreamingText text="Correct. A claim (also called a statement or proposition) is a sentence that is either true or false — the building block of every argument." delay={0} />
+                      <StreamingText text="Correct. Percentage change is (new − old) ÷ old = (100 − 80) ÷ 80 = 20 ÷ 80 = 25%. Always divide the change by the original value, not the new one." delay={0} />
                     </div>
                   </motion.div>
                 )}
@@ -219,7 +219,7 @@ export function Scene6({ setCursorPos, setIsClicking }: { setCursorPos: (pos: {x
             </div>
             
             <div className="bg-white border border-border rounded-xl shadow-sm p-8 opacity-50">
-              <h3 className="font-medium text-lg mb-6 max-w-2xl text-foreground">Q2. In "All dogs are mammals, so Rex is a mammal," the word "so" signals the...</h3>
+              <h3 className="font-medium text-lg mb-6 max-w-2xl text-foreground">Q2. A car travels 150 miles in 2.5 hours. What is its average speed, in mph?</h3>
               <div className="text-sm text-muted-foreground">Problem content hidden...</div>
             </div>
           </motion.div>

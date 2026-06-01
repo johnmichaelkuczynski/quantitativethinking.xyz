@@ -155,7 +155,7 @@ router.post("/practice/sessions/:sessionId/next", async (req, res): Promise<void
       correctAnswer: string;
       explanation: string;
     }>(
-      `You generate a single critical-thinking practice problem for a college freshman. The problem MUST be on the topic "${topic.title}" and at difficulty "${difficultyLabel}" (${difficulty.toFixed(
+      `You generate a single quantitative-reasoning practice problem for a college freshman. The problem MUST be on the topic "${topic.title}" and at difficulty "${difficultyLabel}" (${difficulty.toFixed(
         1,
       )}/5). The answer must be a short string (a single word, short phrase, or letter choice) — never multi-paragraph. Respond as strict JSON: {"prompt": string, "correctAnswer": string, "explanation": string}. Avoid these recent prompts: ${JSON.stringify(
         lastProblems.map((p) => p.prompt),
@@ -164,10 +164,10 @@ router.post("/practice/sessions/:sessionId/next", async (req, res): Promise<void
     );
   } catch {
     generated = {
-      prompt: `Practice (${topic.title}): In the argument "We should trust the report because the experts wrote it, and the experts wrote it because we should trust the report," what reasoning error is being committed?`,
-      correctAnswer: "Circular reasoning",
+      prompt: `Practice (${topic.title}): A store raises a $40 item by 50%, then puts the new price on sale for 50% off. What is the final price, in dollars?`,
+      correctAnswer: "30",
       explanation:
-        "The conclusion is used to support the premise that is supposed to support the conclusion, so the argument begs the question.",
+        "$40 × 1.5 = $60, then $60 × 0.5 = $30. Percentage increases and decreases are not symmetric because the base changes.",
     };
   }
 
@@ -256,7 +256,7 @@ router.post("/practice/sessions/:sessionId/grade", async (req, res): Promise<voi
     try {
       tutorTip = (
         await chatJson<{ tip: string }>(
-          "You are a kind, concise critical-thinking tutor. Given a problem, the correct answer, and the student's wrong attempt, give ONE focused next-step tip (2 sentences max). Respond as strict JSON: {\"tip\": string}.",
+          "You are a kind, concise quantitative-reasoning tutor. Given a problem, the correct answer, and the student's wrong attempt, give ONE focused next-step tip (2 sentences max). Respond as strict JSON: {\"tip\": string}.",
           JSON.stringify({
             prompt: problem.prompt,
             correctAnswer: problem.correctAnswer,

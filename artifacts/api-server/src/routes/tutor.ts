@@ -23,7 +23,7 @@ router.get("/tutor/suggestions/:lectureId", async (req, res): Promise<void> => {
 
   try {
     const out = await chatJson<{ questions: string[] }>(
-      'You are an encouraging college critical-thinking tutor. Reply as strict JSON of the form {"questions": string[]} with NO other keys.',
+      'You are an encouraging college quantitative-reasoning tutor. Reply as strict JSON of the form {"questions": string[]} with NO other keys.',
       `From the lecture below, generate 6 short, concrete starter questions a student might want to ask after reading it. Cover every major idea in the reading (not just the first one). Each question must be one sentence, under ~18 words, in the student's voice (e.g. "Why does ...?", "Can you show me ...?", "What's the difference between ...?").\n\nLECTURE TITLE: ${lecture.title}\n\nLECTURE BODY:\n"""\n${lecture.body}\n"""`,
       FAST_MODEL,
     );
@@ -45,7 +45,7 @@ router.post("/tutor/ask", async (req, res): Promise<void> => {
   const { message, selectedLectureText } = parsed.data;
 
   const sys =
-    "You are an encouraging college critical-thinking tutor. Explain step by step, use concrete examples, and name the relevant concepts (premises, conclusions, fallacies, biases) where helpful. Keep replies short (3-6 sentences) unless the student asks for more detail. Never just give the answer — guide them.";
+    "You are an encouraging college quantitative-reasoning tutor. Explain step by step, use concrete numbers and worked examples, and name the relevant concepts (units, ratios, percentages, base rates, probability, correlation vs. causation) where helpful. Keep replies short (3-6 sentences) unless the student asks for more detail. Never just give the answer — guide them.";
   const user = selectedLectureText
     ? `Context from the lecture the student is reading:\n"""\n${selectedLectureText}\n"""\n\nStudent question: ${message}`
     : message;

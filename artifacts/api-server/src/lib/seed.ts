@@ -18,804 +18,890 @@ type SeedTopic = {
 };
 
 const TOPICS: SeedTopic[] = [
-  // Week 1 — Foundations of critical thinking
+  // Week 1 — Foundations of quantitative reasoning
   {
-    slug: "what-is-critical-thinking",
-    title: "What critical thinking is and why it matters",
+    slug: "what-is-quantitative-reasoning",
+    title: "What quantitative reasoning is and why it matters",
     weekNumber: 1,
-    blurb: "Evaluating reasoning fairly; what it is, what it is not.",
-    lectureTitle: "1.1 What critical thinking is and why it matters",
-    body: `# What critical thinking is and why it matters
+    blurb: "Using numbers and quantities to reason carefully about the real world.",
+    lectureTitle: "1.1 What quantitative reasoning is and why it matters",
+    body: `# What quantitative reasoning is and why it matters
 
-Critical thinking is the disciplined practice of *evaluating reasoning* — your own and others' — to decide what is reasonable to believe or do. It is not about being negative or clever; it is about being **fair, careful, and honest** with evidence and argument.
+**Quantitative reasoning (QR)** is the disciplined use of numbers, quantities, and basic mathematics to *understand the world and evaluate claims*. It is critical thinking aimed at anything with a number in it — prices, risks, statistics, polls, charts, and forecasts.
 
 ## What it is not
 
-- It is **not** simply disagreeing or finding fault.
-- It is **not** raw intelligence or knowing many facts.
-- It is **not** winning arguments by any means available.
+- It is **not** advanced mathematics. The hard part is judgment, not algebra.
+- It is **not** raw calculation. A correct number answering the wrong question is useless.
+- It is **not** memorizing formulas. It is knowing *which* simple tool a situation calls for.
 
 ## The core moves
 
-A critical thinker habitually asks four questions:
+A quantitative reasoner habitually:
 
-1. **What exactly is being claimed?**
-2. **What reasons are offered?**
-3. **Are those reasons true, and do they actually support the claim?**
-4. **What's being assumed, and what's been left out?**
+1. **Translates** between words and numbers — "most" into a rough percentage, a claim into a quantity.
+2. **Attaches units** to every number, so it means something.
+3. **Checks plausibility** — is this number even possible? Compared to what?
+4. **Finds the baseline** — a number is only meaningful next to a reference point.
 
 ## Why it matters
 
-We are flooded with claims — ads, headlines, posts, statistics, expert testimony. Critical thinking is the skill that separates what is worth believing from what merely sounds convincing. It protects you from manipulation by others and from your own biases.
+We are flooded with numbers chosen to persuade: "40% more," "millions affected," "studies show." Quantitative reasoning is the skill that separates a number that *informs* from one that merely *impresses*. It protects you from being misled — by others and by your own innumeracy.
 
-## Metacognition
+## Numeracy
 
-Critical thinking is partly **metacognition** — thinking about your own thinking. The strongest reasoners notice when they are confused, when they *want* something to be true, and when they have reasoned past the evidence.`,
+QR is to numbers what literacy is to words. An innumerate person is as easily manipulated by a statistic as an illiterate person is by a forged document. The goal of this course is **fluent numeracy**: the reflex to ask, of any number, *how big, compared to what, and how do we know?*`,
   },
   {
-    slug: "claims-beliefs-truth",
-    title: "Claims, beliefs, and truth",
+    slug: "numbers-magnitude-number-line",
+    title: "Numbers, magnitude, and the number line",
     weekNumber: 1,
-    blurb: "The statement as the atom of reasoning; belief vs. truth.",
-    lectureTitle: "1.2 Claims, beliefs, and truth",
-    body: `# Claims, beliefs, and truth
+    blurb: "Size, scale, and where a number sits relative to others.",
+    lectureTitle: "1.2 Numbers, magnitude, and the number line",
+    body: `# Numbers, magnitude, and the number line
 
-The atom of reasoning is the **claim** (also called a *statement* or *proposition*): a sentence that is either true or false.
+Every number has a **magnitude** — its size or scale. Quantitative reasoning starts with a feel for how big numbers are and how they compare.
 
-## Claims vs. non-claims
+## The number line
 
-- "The Earth orbits the Sun." — a claim (and true).
-- "Close the door." — a command, **not** a claim.
-- "What time is it?" — a question, **not** a claim.
-- "Ouch!" — an exclamation, **not** a claim.
+Picture every number as a point on a line: negatives to the left, zero in the middle, positives to the right. Two facts the line makes obvious:
 
-Only claims can serve as premises or conclusions, because only claims can be true or false.
+- **Order:** $-5 < -2 < 0 < 3 < 100$.
+- **Distance:** the gap between numbers is itself a quantity (from $3$ to $100$ is $97$).
 
-## Belief vs. truth
+## Absolute vs. relative size
 
-A **belief** is a claim you accept. **Truth** is whether the claim matches reality. These two come apart: you can believe something false, and something can be true that you do not believe. Critical thinking is the work of bringing your beliefs closer to the truth.
+- **Absolute size:** the raw magnitude — a \\$10 difference.
+- **Relative size:** size compared to a base — \\$10 off a \\$12 shirt (huge) vs. \\$10 off a \\$30,000 car (trivial).
 
-## Facts vs. opinions
+Confusing the two is one of the most common quantitative errors.
 
-The fact/opinion split is rougher than people think. "Chocolate is tasty" reports a preference. But "Vaccines cause autism" is sometimes *called* an opinion when it is really a **false factual claim**. Ask: is this about a *preference*, or about *how the world is*?`,
+## Big and small numbers
+
+- A **thousand** is $10^3$, a **million** $10^6$, a **billion** $10^9$, a **trillion** $10^{12}$.
+- Each step is **1,000 times** the last. A million seconds is about 12 days; a billion seconds is about 32 *years*.
+
+## Scientific notation
+
+For very large or very small numbers, write the magnitude as a power of ten: the speed of light is $3 \\times 10^8$ m/s; a virus is about $1 \\times 10^{-7}$ m wide. The exponent *is* the magnitude — read it first.`,
   },
   {
-    slug: "arguments-vs-nonarguments",
-    title: "Arguments vs. non-arguments",
+    slug: "estimation-order-of-magnitude",
+    title: "Estimation and order-of-magnitude thinking",
     weekNumber: 1,
-    blurb: "An argument supports a claim; descriptions and explanations do not.",
-    lectureTitle: "1.3 Arguments vs. non-arguments",
-    body: `# Arguments vs. non-arguments
+    blurb: "Fast ballpark answers, and reasoning in powers of ten.",
+    lectureTitle: "1.3 Estimation and order-of-magnitude thinking",
+    body: `# Estimation and order-of-magnitude thinking
 
-In critical thinking, an **argument** is not a quarrel. It is a set of claims in which some (the *premises*) are offered as reasons to accept another (the *conclusion*).
+A good **estimate** — a deliberate, rough approximation — is often more useful than a precise figure you cannot get. Estimation is the workhorse of quantitative reasoning.
 
-## The test for an argument
+## Order of magnitude
 
-Ask: **is something being supported by something else?** If yes, it is an argument. If the passage merely reports, describes, explains, or illustrates without trying to *prove* a point, it is a non-argument.
+An **order of magnitude** is a factor of ten. Two quantities are "the same order of magnitude" if one is within about 10× of the other. Asking *which power of ten* is the right first question:
 
-## Common non-arguments
+- Is a city's population in the thousands, the millions, or the billions?
+- Is a fix going to cost hundreds or hundreds of thousands?
 
-- **Description:** "The room was cold and dark."
-- **Explanation:** "The bridge collapsed because the steel had rusted." (tells *why*, not *that*)
-- **Report:** "Officials announced the new policy yesterday."
-- **Illustration:** "Many metals conduct electricity; copper, for example."
+Getting the order of magnitude right matters far more than getting the last digit right.
 
-## Argument vs. explanation
+## How to estimate
 
-This is the hardest distinction. An **argument** tries to convince you *that* something is true. An **explanation** assumes you already accept it and tells you *why* it happened. Same grammar, different job — look at whether the conclusion is genuinely in doubt.`,
+1. **Round aggressively** — keep one significant figure ($317 \\to 300$).
+2. **Break the problem into pieces** you can each guess.
+3. **Combine**, then ask whether the result is plausible.
+
+> About how many heartbeats in a lifetime? Roughly $70$ beats/min $\\times 60 \\times 24 \\times 365 \\times 80 \\approx 3 \\times 10^9$ — a few billion.
+
+## Precision vs. accuracy
+
+**False precision** — "the project will cost \\$48,217" — signals confidence the data cannot support. A reasoner who says "about \\$50,000, give or take ten" is being *more* honest. Match the precision of your answer to the precision of your inputs.`,
   },
   {
-    slug: "premises-and-conclusions",
-    title: "Premises and conclusions",
+    slug: "units-dimensions-sanity-checks",
+    title: "Units, dimensions, and sanity checks",
     weekNumber: 1,
-    blurb: "The two parts of every argument and the words that flag them.",
-    lectureTitle: "1.4 Premises and conclusions",
-    body: `# Premises and conclusions
+    blurb: "Numbers without units are meaningless; units catch errors.",
+    lectureTitle: "1.4 Units, dimensions, and sanity checks",
+    body: `# Units, dimensions, and sanity checks
 
-Every argument has two parts: **premises** (the reasons) and a **conclusion** (the claim the reasons support).
+A bare number is almost meaningless. "It's 30" — degrees? dollars? miles? The **unit** carries the meaning, and tracking units is one of the most powerful error-catching tools you have.
 
-## Indicator words
+## Dimensional analysis
 
-Certain words flag each part:
+Treat units as algebra you can cancel and multiply. To convert, multiply by a fraction equal to **1**:
 
-- **Conclusion indicators:** *therefore, so, thus, hence, consequently, it follows that.*
-- **Premise indicators:** *because, since, for, given that, as, on the grounds that.*
+> $90 \\text{ km} \\times \\dfrac{1 \\text{ mi}}{1.6 \\text{ km}} \\approx 56 \\text{ mi}$
 
-"**Since** the streets are wet, it must have rained." — "since" flags the premise (streets are wet); the conclusion is "it rained."
+The km cancel, leaving miles. If the units don't come out right, the calculation is wrong.
 
-## Watch the order
+## Compound units
 
-Conclusions can come first, last, or in the middle: "We should leave now, because the storm is coming." Here the conclusion ("we should leave now") is stated first.
+Rates combine units: speed is **miles per hour** (mi/hr), a price is **dollars per kilogram** (\\$/kg), a flow is **liters per second**. The word "per" is a division sign. Reading the units tells you what to multiply or divide.
 
-## No indicators?
+## Sanity checks
 
-Many arguments use no indicator words at all. Then you ask the key question: **which claim is the author trying to get me to accept, and which claims are doing the supporting?**`,
+Before trusting a number, ask: *is this even possible?*
+
+- A claim that a person drank "8 liters of water an hour" fails a sanity check.
+- An answer of "the bridge is 4 cm long" means a unit slipped.
+
+A famous \\$125-million spacecraft, the Mars Climate Orbiter, was lost because one team used pounds-force and another newtons. Units are not bookkeeping — they are correctness.`,
   },
   {
-    slug: "identifying-reconstructing-arguments",
-    title: "Identifying and reconstructing arguments",
+    slug: "ratios-rates-proportional-reasoning",
+    title: "Ratios, rates, and proportional reasoning",
     weekNumber: 1,
-    blurb: "Pulling a clean argument out of messy prose; implicit premises.",
-    lectureTitle: "1.5 Identifying and reconstructing arguments",
-    body: `# Identifying and reconstructing arguments
+    blurb: "Comparing quantities and scaling them up or down.",
+    lectureTitle: "1.5 Ratios, rates, and proportional reasoning",
+    body: `# Ratios, rates, and proportional reasoning
 
-Real arguments are messy — buried in prose, padded with repetition, missing pieces. **Reconstructing** an argument means restating it clearly as premises and a conclusion.
+A **ratio** compares two quantities by division: 3 cups flour to 1 cup sugar is the ratio $3:1$. A **rate** is a ratio of *different* units — 60 miles per 1 hour.
 
-## Steps
+## Unit rates
 
-1. Find the **conclusion** (the main point).
-2. Find the stated **premises**.
-3. Strip out noise — repetition, asides, rhetorical questions.
-4. Supply any **implicit (unstated) premise** the argument needs.
+A **unit rate** expresses "per one": \\$2.50 per pound, 25 miles per gallon. Unit rates make comparisons fair — to compare a 12 oz can at \\$0.90 with an 18 oz can at \\$1.26, reduce both to price *per ounce* (\\$0.075 vs. \\$0.07).
 
-## Implicit premises
+## Proportions
 
-Most everyday arguments leave assumptions unstated. "Socrates is a man, so Socrates is mortal" relies on the missing premise **"All men are mortal."** An argument with a suppressed premise is called an *enthymeme*. Surfacing the hidden premise is often where the real evaluation begins — because the hidden premise is frequently the weak one.
+A **proportion** is the statement that two ratios are equal:
 
-## Be accurate first
+> $\\dfrac{3 \\text{ flour}}{1 \\text{ sugar}} = \\dfrac{x}{4 \\text{ sugar}}$
 
-Reconstruct what the author *actually* argued before you judge it. Adding a premise to make the argument work is fair; adding one to make it look foolish is not.`,
+Cross-multiply to solve: $x = 12$ cups of flour. This is **proportional reasoning** — scaling a relationship up or down while keeping the ratio fixed.
+
+## Direct proportion
+
+Two quantities are **directly proportional** when one is always a constant multiple of the other: $y = kx$. Double the recipe, double every ingredient.
+
+## Per-capita reasoning
+
+Comparing raw totals across groups of different sizes is misleading. Country A has more total emissions than Country B, but if A has ten times the population, its **per-capita** (per person) emissions may be far lower. Always ask whether a total should be turned into a rate.`,
   },
   {
-    slug: "diagramming-arguments",
-    title: "Diagramming argument structure",
+    slug: "percentages-change-base-rates",
+    title: "Percentages, percentage change, and base rates",
     weekNumber: 1,
-    blurb: "Mapping how premises combine: linked, convergent, and serial.",
-    lectureTitle: "1.6 Diagramming argument structure",
-    body: `# Diagramming argument structure
+    blurb: "Percent of what? Change relative to what? The base is everything.",
+    lectureTitle: "1.6 Percentages, percentage change, and base rates",
+    body: `# Percentages, percentage change, and base rates
 
-Once an argument has several premises, a **diagram** shows how they fit together. Number each claim, then map the support with arrows pointing to what each claim supports.
+A **percent** is just a fraction out of 100: $25\\% = \\frac{25}{100} = 0.25$. The crucial question is always *percent of what* — the **base**.
 
-## Linked premises
+## Percentage change
 
-Premises are **linked** when they work only *together* — remove one and the support collapses.
+$$\\text{percent change} = \\dfrac{\\text{new} - \\text{old}}{\\text{old}} \\times 100$$
 
-> (1) All mammals are warm-blooded. (2) Whales are mammals. Therefore (3) whales are warm-blooded.
+A price rising from \\$40 to \\$50 is a $\\frac{10}{40} = 25\\%$ increase. Note the base is the *old* value.
 
-Neither (1) nor (2) alone supports (3); they are linked: (1)+(2) → (3).
+## Increases and decreases are not symmetric
 
-## Convergent premises
+A 50% rise followed by a 50% fall does **not** return you to the start: \\$100 → \\$150 → \\$75. Going up then down by the same percent leaves you lower, because the base changed.
 
-Premises are **convergent** when each independently supports the conclusion.
+## Percentage points vs. percent
 
-> (1) The restaurant is cheap. (2) It is close by. Therefore (3) we should eat there.
+If support rises from 40% to 44%, that is **4 percentage points** but a **10 percent** relative increase ($\\frac{4}{40}$). Reports blur these on purpose — watch which is meant.
 
-Either reason stands on its own: (1) → (3) and (2) → (3).
+## Base rates
 
-## Serial structure
-
-A claim can be the conclusion of one step and a premise of the next: (1) → (2) → (3). Diagrams make these chains — and any gaps in them — visible.`,
+The **base rate** is how common something is to begin with. "Cases doubled!" is alarming only if you know the base: 1 case to 2 is not 50 to 100. Relative claims ("twice as likely") are empty without the **absolute** base rate behind them.`,
   },
   {
-    slug: "standardizing-charity",
-    title: "Standardizing and charitable interpretation",
+    slug: "reading-reconstructing-quantitative-claims",
+    title: "Reading and reconstructing quantitative claims",
     weekNumber: 1,
-    blurb: "Writing arguments in standard form; the principle of charity.",
-    lectureTitle: "1.7 Standardizing and charitable interpretation",
-    body: `# Standardizing and charitable interpretation
+    blurb: "Pulling the real quantity, unit, base, and source out of a claim.",
+    lectureTitle: "1.7 Reading and reconstructing quantitative claims",
+    body: `# Reading and reconstructing quantitative claims
 
-**Standardizing** is rewriting an argument as a clean, numbered list of premises followed by the conclusion — the canonical form for analysis.
+A **quantitative claim** asserts something using a number. Most claims in the wild are stated loosely; **reconstructing** one means stating clearly what is actually being measured.
 
-## Standard form
+## The four questions
 
-> P1. If it is raining, the game is canceled.
-> P2. It is raining.
-> C. Therefore, the game is canceled.
+For any number you meet, ask:
 
-Every premise on its own line; the conclusion marked clearly. Standard form removes ambiguity about what supports what.
+1. **What is the quantity?** What exactly was counted or measured?
+2. **What is the unit?** Dollars, percent, per capita, per year?
+3. **What is the base or comparison?** Bigger, cheaper, faster — *than what?*
+4. **What is the source?** Who produced this number, and how?
 
-## The principle of charity
+## The missing denominator
 
-When an argument is unclear or could be read several ways, interpret it in its **strongest reasonable form**. Do not defeat a weak version the author never intended.
+"10,000 people were harmed" sounds huge — but out of how many? Ten thousand out of ten thousand is a catastrophe; ten thousand out of a billion is rounding error. A numerator without its **denominator** is an unfinished claim.
 
-## The straw man warning
+## Watch the framing
 
-Violating charity produces the **straw man**: attacking a distorted, weaker version of someone's position. Charity is both an intellectual virtue and a practical safeguard — if you refute the strongest version, your conclusion is secure; if you only beat a straw man, you have proven nothing.`,
+The same fact can be dressed many ways: "90% fat-free" and "10% fat" are identical; "doubled the risk" and "rose from 1-in-a-million to 2-in-a-million" are identical. Reconstruct the claim in plain, neutral terms before you react to it.
+
+## Standard form for a number
+
+State it fully: *quantity, unit, base, time period, source.* "Unemployment is 4%" becomes "4% of the U.S. labor force was actively seeking work last month, per the Bureau of Labor Statistics." Now you can actually evaluate it.`,
   },
 
-  // Week 2 — Logic and reasoning
+  // Week 2 — Quantitative inference and modeling
   {
-    slug: "deductive-vs-inductive",
-    title: "Deductive vs. inductive reasoning",
+    slug: "quantitative-arguments-vs-noise",
+    title: "Quantitative arguments vs. quantitative noise",
     weekNumber: 2,
-    blurb: "Certainty vs. probability: the two great families of argument.",
-    lectureTitle: "2.1 Deductive vs. inductive reasoning",
-    body: `# Deductive vs. inductive reasoning
+    blurb: "When a number is real evidence, and when it is just decoration.",
+    lectureTitle: "2.1 Quantitative arguments vs. quantitative noise",
+    body: `# Quantitative arguments vs. quantitative noise
 
-Arguments come in two great families, distinguished by **how much support** the premises are meant to give the conclusion.
+A **quantitative argument** uses a number as genuine *evidence* for a conclusion. **Quantitative noise** is numbers that look like evidence but do no logical work.
 
-## Deductive
+## The test
 
-A **deductive** argument aims for *certainty*: if the premises are true, the conclusion **must** be true. The support is all-or-nothing.
+Ask: **does this number actually bear on the conclusion?** If removing the number leaves the argument just as strong (or just as weak), the number was decoration.
 
-> All humans are mortal. Socrates is human. Therefore Socrates is mortal.
+## Forms of noise
 
-## Inductive
+- **Irrelevant precision:** "Our method is 37.6% more effective" — more effective at what, measured how?
+- **Vague big numbers:** "Millions of people trust us" — millions out of how many, and trust meaning what?
+- **Number as ornament:** a statistic dropped in to *sound* rigorous while supporting nothing.
+- **Non-sequitur stats:** a true number that simply does not connect to the claim.
 
-An **inductive** argument aims for *probability*: if the premises are true, the conclusion is **likely**, but not guaranteed.
+## A real quantitative argument
 
-> Every swan observed so far has been white. So the next swan will be white.
+> "This intersection had 3 crashes per year before the new light and 0.4 per year after, over five years each — so the light reduced crashes."
 
-Strong inductive arguments can still have true premises and a false conclusion — as the discovery of black swans showed.
-
-## Telling them apart
-
-Ask: **does the arguer intend the conclusion to follow necessarily, or only probably?** That intention — not the topic — decides which standards (validity vs. strength) you apply.`,
-  },
-  {
-    slug: "validity-and-soundness",
-    title: "Validity and soundness",
-    weekNumber: 2,
-    blurb: "Form vs. truth: the two terms students confuse most.",
-    lectureTitle: "2.2 Validity and soundness",
-    body: `# Validity and soundness
-
-These two terms apply to **deductive** arguments and are constantly confused.
-
-## Validity
-
-An argument is **valid** when its *form* guarantees the conclusion: *if* the premises were true, the conclusion *could not* be false. Validity is about structure, not facts.
-
-> All cats are reptiles. Socrates is a cat. Therefore Socrates is a reptile.
-
-This is **valid** — and has false premises. Validity ignores whether the premises are actually true.
-
-## Soundness
-
-An argument is **sound** when it is **valid AND all its premises are true**. Only sound arguments establish their conclusions.
-
-## The combinations
-
-- Valid + all true premises = **sound**; conclusion guaranteed true.
-- Valid + a false premise = unsound; conclusion may be true or false.
-- Invalid = unsound regardless of the premises.
-
-A valid argument can have a false conclusion (when a premise is false). A *sound* one cannot.`,
-  },
-  {
-    slug: "categorical-logic-syllogism",
-    title: "Categorical logic and the syllogism",
-    weekNumber: 2,
-    blurb: "Reasoning about classes with All / No / Some statements.",
-    lectureTitle: "2.3 Categorical logic and the syllogism",
-    body: `# Categorical logic and the syllogism
-
-**Categorical logic** reasons about classes of things using four statement forms:
-
-- **A:** All S are P.
-- **E:** No S are P.
-- **I:** Some S are P.
-- **O:** Some S are not P.
-
-## The categorical syllogism
-
-A **syllogism** draws a conclusion from two categorical premises that share a middle term.
-
-> All mammals are animals. All dogs are mammals. Therefore all dogs are animals. (**valid**)
-
-## Validity by form
-
-Validity depends only on the arrangement of terms. This form is invalid:
-
-> All cats are animals. All dogs are animals. Therefore all dogs are cats.
-
-Both premises are true and the conclusion false — so the *form* itself is broken.
-
-## Venn diagrams
-
-Three overlapping circles let you test any syllogism: diagram the premises, then check whether the conclusion is already forced. If you must add anything to make it true, the syllogism is invalid.`,
-  },
-  {
-    slug: "propositional-logic-truth-tables",
-    title: "Propositional logic and truth tables",
-    weekNumber: 2,
-    blurb: "Connectives, the conditional, and the formal fallacies.",
-    lectureTitle: "2.4 Propositional logic and truth tables",
-    body: `# Propositional logic and truth tables
-
-**Propositional logic** combines whole statements with connectives:
-
-- $\\neg P$ — not $P$
-- $P \\wedge Q$ — $P$ and $Q$
-- $P \\vee Q$ — $P$ or $Q$
-- $P \\to Q$ — if $P$ then $Q$
-
-## The conditional
-
-$P \\to Q$ is **false only when $P$ is true and $Q$ is false.** "If you mow the lawn, I'll pay you" is broken only if you mow *and* I do not pay.
-
-## Valid forms
-
-- **Modus ponens:** $P \\to Q$, $P$, therefore $Q$. ✓
-- **Modus tollens:** $P \\to Q$, $\\neg Q$, therefore $\\neg P$. ✓
-
-## Formal fallacies
-
-- **Affirming the consequent:** $P \\to Q$, $Q$, therefore $P$. ✗
-- **Denying the antecedent:** $P \\to Q$, $\\neg P$, therefore $\\neg Q$. ✗
-
-A **truth table** lists every combination of truth values and settles validity mechanically: an argument is valid if no row makes the premises true while the conclusion is false.`,
-  },
-  {
-    slug: "inductive-strength-generalization",
-    title: "Inductive strength and generalization",
-    weekNumber: 2,
-    blurb: "What makes a sample-to-population inference strong or weak.",
-    lectureTitle: "2.5 Inductive strength and generalization",
-    body: `# Inductive strength and generalization
-
-Inductive arguments are not valid or invalid — they are **strong** or **weak**, by degree.
-
-## Inductive generalization
-
-The most common inductive move infers a claim about a whole population from a sample:
-
-> 800 of 1,000 surveyed voters favor the measure, so about 80% of all voters do.
-
-## What makes it strong
-
-- **Sample size:** larger samples support firmer conclusions.
-- **Representativeness:** the sample must mirror the population.
-- **Random selection:** guards against hidden bias.
-
-## Hasty generalization
-
-Drawing a sweeping conclusion from a sample that is **too small or unrepresentative** is the *hasty generalization*. "My two friends who smoke are healthy, so smoking is harmless" generalizes from a tiny, biased sample.
-
-## Biased samples
-
-A poll hosted on a finance website over-represents the wealthy. Even a huge sample is worthless if it is systematically skewed.`,
-  },
-  {
-    slug: "analogical-reasoning",
-    title: "Analogical reasoning",
-    weekNumber: 2,
-    blurb: "Arguing from similarity — and when the analogy breaks down.",
-    lectureTitle: "2.6 Analogical reasoning",
-    body: `# Analogical reasoning
-
-An **argument from analogy** concludes that because two things are alike in some respects, they are probably alike in another.
-
-> A new drug cured the disease in mice; mice and humans are physiologically similar; so it may cure the disease in humans.
-
-## Evaluating an analogy
-
-The argument is stronger when:
-
-- The cases share **many** similarities.
-- The similarities are **relevant** to the conclusion.
-- There are **few relevant differences (disanalogies)**.
-- The conclusion is **modest** relative to the similarities.
-
-## Relevance is key
-
-Surface similarities do not help. Mice and humans sharing a *hairless* trait is irrelevant to drug response; shared *metabolism* is highly relevant.
-
-## False analogy
-
-A **false analogy** rests on similarities that are superficial or irrelevant, or it ignores a crucial difference. "Running a country is just like running a business" breaks down because citizens are not customers and governments do not seek profit.`,
-  },
-  {
-    slug: "causal-reasoning-mills-methods",
-    title: "Causal reasoning and Mill's methods",
-    weekNumber: 2,
-    blurb: "Inferring causes, and why correlation is not causation.",
-    lectureTitle: "2.7 Causal reasoning and Mill's methods",
-    body: `# Causal reasoning and Mill's methods
-
-Establishing that A **causes** B is among the hardest reasoning tasks. John Stuart Mill described systematic methods for inferring causes.
-
-## Mill's methods
-
-- **Method of Agreement:** if every case of the effect shares one prior factor, that factor is a likely cause.
-- **Method of Difference:** if two cases differ in only one factor and only one shows the effect, that factor is the likely cause.
-- **Joint Method:** combine agreement and difference.
-- **Method of Concomitant Variation:** when the candidate cause varies, the effect varies in step.
-
-## Correlation is not causation
-
-Two things moving together may share a **common cause** (ice-cream sales and drownings both rise with summer heat) or be pure coincidence.
-
-## Confounding
-
-A **confounder** is a hidden third variable that influences both. The remedy is a **controlled experiment**: change one factor, hold everything else fixed, and watch the effect.`,
-  },
-
-  // Week 3 — Fallacies, bias, and rhetoric
-  {
-    slug: "fallacies-of-relevance",
-    title: "Informal fallacies of relevance",
-    weekNumber: 3,
-    blurb: "Premises that persuade but are logically beside the point.",
-    lectureTitle: "3.1 Informal fallacies of relevance",
-    body: `# Informal fallacies of relevance
-
-A **fallacy of relevance** offers premises that are psychologically persuasive but logically beside the point.
-
-## Common types
-
-- **Ad hominem:** attacking the person rather than their argument. "Don't trust her climate data — she drives an SUV."
-- **Straw man:** distorting an opponent's view to attack it more easily.
-- **Appeal to force (ad baculum):** backing a claim with a threat.
-- **Appeal to pity (ad misericordiam):** substituting sympathy for evidence.
-- **Red herring:** changing the subject to a distracting but irrelevant issue.
-- **Appeal to the people (ad populum):** "everyone believes it, so it must be true."
-
-## Why they work
-
-Each swaps a real reason for an emotional or social pressure. The test is always the same: **does this premise actually bear on whether the conclusion is true?** If it only bears on how we *feel*, it is a fallacy of relevance.`,
-  },
-  {
-    slug: "fallacies-weak-induction",
-    title: "Fallacies of weak induction",
-    weekNumber: 3,
-    blurb: "Relevant premises that are simply too weak to support the claim.",
-    lectureTitle: "3.2 Fallacies of weak induction",
-    body: `# Fallacies of weak induction
-
-Here the premises *are* relevant, but they are **too weak** to support the conclusion.
-
-## Common types
-
-- **Hasty generalization:** a conclusion drawn from too small or biased a sample.
-- **Post hoc ergo propter hoc:** "A happened before B, so A caused B."
-- **Slippery slope:** claiming one small step inevitably leads to an extreme outcome, with no support for each link.
-- **Weak analogy:** an analogy resting on irrelevant similarities.
-- **Appeal to ignorance (ad ignorantiam):** "No one has proven it false, so it is true."
-- **Appeal to unqualified authority:** citing a celebrity or non-expert.
-
-## The common thread
-
-The reasoning *points* in the right direction but does not travel far enough. Post hoc, for example, mistakes mere sequence for causation — the rooster crows before sunrise, but does not cause it.`,
-  },
-  {
-    slug: "fallacies-presumption-ambiguity",
-    title: "Fallacies of presumption and ambiguity",
-    weekNumber: 3,
-    blurb: "Smuggled assumptions and slippery, shifting language.",
-    lectureTitle: "3.3 Fallacies of presumption and ambiguity",
-    body: `# Fallacies of presumption and ambiguity
-
-These fallacies smuggle in an unwarranted assumption or exploit slippery language.
-
-## Fallacies of presumption
-
-- **Begging the question (circular reasoning):** the conclusion is hidden among the premises. "The Bible is true because it is the word of God, which we know because the Bible says so."
-- **Complex (loaded) question:** a question presupposing something unproven. "Have you stopped cheating on tests?"
-- **False dilemma:** presenting only two options when more exist. "Either we ban it entirely or we have chaos."
-- **Suppressed evidence:** ignoring relevant facts that undercut the conclusion.
-
-## Fallacies of ambiguity
-
-- **Equivocation:** shifting a key word's meaning mid-argument. "Nothing is better than happiness; a cheese sandwich is better than nothing; so a sandwich is better than happiness."
-- **Amphiboly:** ambiguity arising from grammar or sentence structure.
-
-The cure for ambiguity is **defining your terms** and holding their meaning fixed throughout.`,
-  },
-  {
-    slug: "rhetoric-persuasion-spin",
-    title: "Rhetoric, persuasion, and spin",
-    weekNumber: 3,
-    blurb: "Persuasive force vs. logical force, and how spin exploits the gap.",
-    lectureTitle: "3.4 Rhetoric, persuasion, and spin",
-    body: `# Rhetoric, persuasion, and spin
-
-**Rhetoric** is the art of persuasion. It is not inherently bad — but persuasive force and logical force are different things, and **spin** exploits the gap between them.
-
-## Rhetorical devices
-
-- **Euphemism / dysphemism:** softening ("collateral damage") or harshening ("baby-killing") language to steer feeling.
-- **Loaded (emotive) language:** word choices that carry judgment — "freedom fighter" vs. "terrorist."
-- **Weasel words:** vague qualifiers — "studies suggest," "up to," "may help."
-- **Innuendo:** implying a claim without actually stating it.
-
-## Spin
-
-**Spin** presents facts selectively to create a misleading impression while remaining technically accurate.
-
-## The defense
-
-Separate the **content** of a claim from its **packaging**. Restate the claim in plain, neutral words and ask whether the *evidence* still supports it. If the persuasive power vanishes once the loaded language is gone, it was rhetoric, not reason.`,
-  },
-  {
-    slug: "cognitive-biases-motivated-reasoning",
-    title: "Cognitive biases and motivated reasoning",
-    weekNumber: 3,
-    blurb: "Systematic mental errors and reasoning driven by what we want.",
-    lectureTitle: "3.5 Cognitive biases and motivated reasoning",
-    body: `# Cognitive biases and motivated reasoning
-
-Even careful reasoners are pushed off course by **cognitive biases** — systematic errors in how the mind processes information.
-
-## Common biases
-
-- **Confirmation bias:** seeking and favoring evidence that supports what you already believe.
-- **Anchoring:** over-relying on the first number or fact you encounter.
-- **Availability heuristic:** judging probability by how easily examples come to mind (plane crashes feel common because they are vivid).
-- **Sunk cost fallacy:** continuing something because of past investment.
-- **Dunning–Kruger effect:** the least skilled overestimating their competence.
-
-## Motivated reasoning
-
-**Motivated reasoning** is biased thinking driven by what we *want* to be true. We apply harsh scrutiny to unwelcome claims and wave the welcome ones through.
-
-## Defenses
-
-Actively seek **disconfirming** evidence, consider the opposite, separate your identity from your beliefs, and welcome being shown wrong. The first bias to watch for is the conviction that *you* are unbiased.`,
-  },
-  {
-    slug: "language-definition-vagueness",
-    title: "Language, definition, and vagueness",
-    weekNumber: 3,
-    blurb: "Ambiguity vs. vagueness; kinds of definitions; verbal disputes.",
-    lectureTitle: "3.6 Language, definition, and vagueness",
-    body: `# Language, definition, and vagueness
-
-Clear reasoning needs clear language. Two failures recur: **ambiguity** and **vagueness**.
-
-## Ambiguity vs. vagueness
-
-- **Ambiguous:** a term has *multiple distinct meanings*. "bank" (riverside or financial).
-- **Vague:** a term has *fuzzy borders*. "tall," "rich," "soon" — there is no sharp line.
-
-## Kinds of definition
-
-- **Lexical:** reports standard usage (a dictionary definition).
-- **Stipulative:** assigns a meaning for the discussion at hand.
-- **Précising:** sharpens a vague term for a purpose ("adult = 18 or older").
-- **Persuasive:** slips an evaluation into a definition ("abortion is the murder of an innocent").
+The numbers are relevant, comparable, and measured over a meaningful span. That is signal.
 
 ## Why it matters
 
-Many disputes are **merely verbal** — people using the same word for different things, or arguing over where to draw a vague line. Before debating whether a hot dog is a sandwich, agree on what "sandwich" means.`,
+Numbers carry an aura of authority. The first job in evaluating any data-backed claim is to decide whether the data is *load-bearing* or merely **rhetorical**. Strip the number out and see if the argument survives.`,
   },
   {
-    slug: "credibility-sources-testimony",
-    title: "Credibility, sources, and testimony",
+    slug: "validity-error-numerical-inference",
+    title: "Validity and error in numerical inference",
+    weekNumber: 2,
+    blurb: "Sound numerical reasoning, and why every number carries error.",
+    lectureTitle: "2.2 Validity and error in numerical inference",
+    body: `# Validity and error in numerical inference
+
+A **numerical inference** draws a quantitative conclusion from quantitative premises. Like any reasoning, it can be valid or invalid — and the numbers themselves are never perfectly exact.
+
+## Valid vs. invalid steps
+
+A step is **invalid** when the conclusion does not follow:
+
+- Averaging averages without weighting by group size.
+- Adding percentages of different bases.
+- Concluding a trend from two data points.
+
+## Accuracy vs. precision
+
+- **Accuracy:** how close a measurement is to the true value.
+- **Precision:** how finely it is reported / how repeatable it is.
+
+A scale that always reads 2 kg high is *precise but inaccurate*. The two are independent.
+
+## Error propagates
+
+Every measurement has error, and error **flows through** a calculation. If a room is "about 4 m by 5 m, give or take 0.2 m," its area is *not* a clean $20\\text{ m}^2$ — the uncertainty grows. A result can never be more precise than the least precise input.
+
+## Significant figures
+
+Significant figures track how much you actually know. Multiplying $4.2$ (two figures) by $3.17$ should give $13$, not $13.314$ — the extra digits are fiction. **False precision** is claiming certainty your data cannot back. Round your conclusion to honesty.`,
+  },
+  {
+    slug: "linear-vs-nonlinear-thinking",
+    title: "Linear vs. nonlinear thinking",
+    weekNumber: 2,
+    blurb: "Constant-rate intuition, and the many places it breaks down.",
+    lectureTitle: "2.3 Linear vs. nonlinear thinking",
+    body: `# Linear vs. nonlinear thinking
+
+A relationship is **linear** when one quantity changes at a *constant rate* with another: $y = mx + b$, a straight line. Add one more, get the same fixed amount more. Human intuition defaults to linear — and the world often is not.
+
+## Linear relationships
+
+- Buying apples at \\$2 each: total cost is linear in count.
+- Driving at a steady speed: distance is linear in time.
+
+The slope $m$ is the constant rate of change; the line never bends.
+
+## Nonlinear relationships
+
+In **nonlinear** relationships the rate of change itself changes:
+
+- **Area and volume:** double a square's side and area grows $4\\times$; double a cube's side and volume grows $8\\times$ (the square–cube law).
+- **Compounding:** money or populations grow by a percentage, so the increase gets bigger each step.
+- **Diminishing returns:** the tenth hour of study adds far less than the first.
+
+## Why it misleads
+
+Linear intuition badly underestimates nonlinear processes. "If 1 machine makes 100 parts/hour, 10 machines make 1,000" may be linear — but "if a pond's lily pads double daily and cover it in 30 days, when are they half-covered?" trips everyone (day 29, not day 15). **Ask whether the rate is constant before you extrapolate.**`,
+  },
+  {
+    slug: "exponential-growth-decay",
+    title: "Exponential growth and decay",
+    weekNumber: 2,
+    blurb: "Growth by a constant percentage: doubling, half-life, and surprise.",
+    lectureTitle: "2.4 Exponential growth and decay",
+    body: `# Exponential growth and decay
+
+**Exponential** change multiplies by a constant factor each period — growth or decay by a fixed *percentage*, not a fixed amount.
+
+$$y = a\\,(1 + r)^t$$
+
+where $a$ is the start, $r$ the rate per period, $t$ the number of periods.
+
+## Doubling time and the Rule of 70
+
+A quantity growing at $r\\%$ per period doubles in about $\\frac{70}{r}$ periods. At 7% annual growth, money doubles in roughly 10 years; at 10%, in about 7.
+
+## Why exponentials shock us
+
+Exponential growth looks slow, then erupts. Grains of rice doubled on each of a chessboard's 64 squares total over $10^{19}$ grains — more than all the rice ever grown. Our linear intuition is hopeless here; that is exactly why compound interest, viral spread, and population growth surprise people.
+
+## Exponential decay
+
+The mirror image: a quantity falls by a constant percentage each period, $y = a(1-r)^t$. Its **half-life** is the time to halve. Radioactive material, drug concentration in the blood, and a depreciating car all decay exponentially — fast at first, then a long tail.
+
+## The lesson
+
+Whenever change is *by a percentage of the current amount*, reach for exponentials, not lines — and expect the future to arrive faster than it feels.`,
+  },
+  {
+    slug: "counting-combinatorics-possibility-spaces",
+    title: "Counting, combinatorics, and possibility spaces",
+    weekNumber: 2,
+    blurb: "How fast possibilities multiply, and why we underestimate it.",
+    lectureTitle: "2.5 Counting, combinatorics, and possibility spaces",
+    body: `# Counting, combinatorics, and possibility spaces
+
+Many quantitative questions reduce to **counting**: how many ways, how many possibilities? The size of the **possibility space** drives probability, security, and risk.
+
+## The multiplication principle
+
+If one choice has $m$ options and an independent next choice has $n$, together they have $m \\times n$ outcomes. A 4-digit PIN has $10 \\times 10 \\times 10 \\times 10 = 10{,}000$ possibilities.
+
+## Permutations vs. combinations
+
+- **Permutation** — order matters. Arrangements of 3 of 5 books: $5 \\times 4 \\times 3 = 60$.
+- **Combination** — order does not matter. Choosing 3 of 5 books: $\\frac{60}{3!} = 10$.
+
+The factorial $n! = n\\times(n-1)\\times\\cdots\\times 1$ counts full orderings.
+
+## Combinatorial explosion
+
+Possibilities multiply with terrifying speed. Just 10 binary on/off switches give $2^{10} = 1{,}024$ states; 20 give over a million. This is why brute-forcing a long password is hopeless — and why our gut badly *under*estimates how many configurations exist.
+
+## Why it matters for reasoning
+
+Probability is often "favorable outcomes ÷ total outcomes," so you cannot reason about chance without counting. And recognizing a huge possibility space explains coincidences: with millions of people buying lottery tickets, *someone* winning is near-certain even though *you* winning is not.`,
+  },
+  {
+    slug: "modeling-with-functions",
+    title: "Modeling with functions",
+    weekNumber: 2,
+    blurb: "Turning a real situation into a function — and knowing its limits.",
+    lectureTitle: "2.6 Modeling with functions",
+    body: `# Modeling with functions
+
+A **model** is a simplified description that maps inputs to outputs. A **function** — a rule giving one output per input — is the basic building block of quantitative models.
+
+## Common model shapes
+
+- **Linear** $y = mx + b$: constant rate (a flat fee plus a per-unit charge).
+- **Quadratic** $y = ax^2$: area-like growth, or a thrown object's height.
+- **Exponential** $y = a(1+r)^t$: percentage growth or decay.
+
+Choosing the right *shape* is the heart of modeling: does the quantity grow by a fixed amount, or a fixed percentage, or with the square of something?
+
+## Every model has assumptions
+
+A model includes some factors and ignores others. "Cost = \\$5 × items" assumes no bulk discount, no shipping, no tax. Knowing what a model *leaves out* tells you when to trust it.
+
+## "All models are wrong, some are useful"
+
+A model is a map, not the territory. The test is not whether it is perfectly true — none is — but whether it is *useful* for the question at hand.
+
+## Interpolation vs. extrapolation
+
+Using a model *within* the data range (**interpolation**) is fairly safe. Pushing it far *beyond* the data (**extrapolation**) is dangerous: a child growing 6 cm/year does not reach 12 m tall by age 200. Models break outside the conditions they were built for.`,
+  },
+  {
+    slug: "fermi-estimation",
+    title: "Estimating the unknown (Fermi problems)",
+    weekNumber: 2,
+    blurb: "Decompose an impossible question into estimable pieces.",
+    lectureTitle: "2.7 Estimating the unknown (Fermi problems)",
+    body: `# Estimating the unknown (Fermi problems)
+
+A **Fermi problem** asks you to estimate a quantity that seems impossible to know, using only common-sense facts and arithmetic. Named for physicist Enrico Fermi, who could ballpark almost anything.
+
+## The method
+
+1. **Decompose** the unknown into a chain of pieces you *can* guess.
+2. **Estimate** each piece to one significant figure.
+3. **Multiply** them together.
+4. **Sanity-check** the order of magnitude.
+
+## The classic example
+
+*How many piano tuners are in Chicago?*
+
+- ~3,000,000 people, ~2 per household → ~1,500,000 households.
+- Maybe 1 in 20 owns a piano → ~75,000 pianos.
+- Tuned once a year; a tuner does ~4/day × ~250 days ≈ 1,000/year.
+- So about $75{,}000 / 1{,}000 \\approx 75$ tuners.
+
+The true figure is in that ballpark — remarkable for a problem with no data.
+
+## Why errors cancel
+
+Each guess is too high or too low, roughly at random, so over-and under-estimates **partly cancel** when multiplied. A Fermi estimate rarely nails the number, but it reliably lands the *order of magnitude* — which is usually what you need to make a decision.`,
+  },
+
+  // Week 3 — Statistics, probability, and data
+  {
+    slug: "descriptive-statistics-what-they-hide",
+    title: "Descriptive statistics and what they hide",
     weekNumber: 3,
-    blurb: "Judging the people and sources we rely on for what we know.",
-    lectureTitle: "3.7 Credibility, sources, and testimony",
-    body: `# Credibility, sources, and testimony
+    blurb: "Summaries compress data — and quietly discard information.",
+    lectureTitle: "3.1 Descriptive statistics and what they hide",
+    body: `# Descriptive statistics and what they hide
 
-Most of what we know comes from **testimony** — other people's claims. Evaluating sources is a core critical-thinking skill.
+**Descriptive statistics** summarize a pile of data with a few numbers — a mean, a median, a percentage. They are indispensable, but every summary *throws information away*.
 
-## Judging a source
+## Measures of center
 
-- **Expertise:** is the source genuinely qualified *in this field*?
-- **Bias / conflict of interest:** does the source gain from your belief?
-- **Track record:** has the source been reliable before?
-- **Corroboration:** do independent sources agree?
-- **Primary vs. secondary:** is this firsthand, or a report of a report?
+- **Mean:** the arithmetic average — sum divided by count.
+- **Median:** the middle value when sorted.
+- **Mode:** the most frequent value.
 
-## Appeal to authority — good and bad
+These collapse a whole dataset into one number; by design they cannot show the spread, the shape, or the exceptions.
 
-Trusting a **qualified** expert within their field is reasonable. The fallacy is the **appeal to inappropriate authority**: citing a celebrity, a non-expert, or an expert speaking outside their specialty.
+## Counts vs. rates
 
-## Lateral reading
+A raw **count** ("500 accidents") and a **rate** ("500 per million trips") tell different stories. A summary that reports one while you need the other can completely reverse the conclusion.
 
-Do not evaluate a source by staring at the source itself. **Read laterally:** open new tabs and check what *other* independent, credible sources say about it. This is how professional fact-checkers work.`,
-  },
+## What a single number hides
 
-  // Week 4 — Applied reasoning and capstone
-  {
-    slug: "probability-statistical-reasoning",
-    title: "Probability and statistical reasoning",
-    weekNumber: 4,
-    blurb: "Thinking in degrees; base rates; how statistics mislead.",
-    lectureTitle: "4.1 Probability and statistical reasoning",
-    body: `# Probability and statistical reasoning
-
-Good critical thinking is **probabilistic** — most claims are matters of degree, not certainty.
-
-## Basic rules
-
-- A probability is a number in $[0, 1]$.
-- $P(\\text{not } A) = 1 - P(A)$.
-- For independent events, $P(A \\text{ and } B) = P(A) \\cdot P(B)$.
-
-## The base rate
-
-The **base rate** is how common something is to begin with. Ignoring it is the **base rate fallacy**: a test that is "99% accurate" for a disease only 1 in 10,000 people have will still flag mostly *healthy* people, because the healthy vastly outnumber the sick.
-
-## How statistics mislead
-
-- **Misleading averages:** a mean dragged by outliers; ask for the median.
-- **Cherry-picked baselines:** "up 40% since [a conveniently chosen low point]."
-- **Relative vs. absolute risk:** "doubles your risk" — from 1 in a million to 2 in a million.
-
-Always ask: *out of how many, and compared to what?*`,
-  },
-  {
-    slug: "evaluating-evidence-science",
-    title: "Evaluating evidence and scientific claims",
-    weekNumber: 4,
-    blurb: "Falsifiability, the evidence hierarchy, and pseudoscience red flags.",
-    lectureTitle: "4.2 Evaluating evidence and scientific claims",
-    body: `# Evaluating evidence and scientific claims
-
-Science is our most reliable method for testing claims about the world — once its standards are understood.
-
-## Hallmarks of good evidence
-
-- **Falsifiability:** a genuine claim rules something out; an *unfalsifiable* claim ("an invisible, undetectable dragon") predicts nothing.
-- **Controlled comparison:** experiments isolate the variable of interest.
-- **Replication:** results that cannot be reproduced are provisional.
-- **Peer review:** scrutiny by other experts — helpful, though not a guarantee.
-
-## The hierarchy of evidence
-
-Anecdotes < case studies < observational studies < randomized controlled trials < systematic reviews. A single dramatic story is the weakest evidence, however compelling.
-
-## Red flags of pseudoscience
-
-Unfalsifiable claims, reliance on testimonials, conspiracy framing ("they don't want you to know"), no peer review, and immunity to any disconfirming evidence. Extraordinary claims require extraordinary evidence.`,
-  },
-  {
-    slug: "decision-making-uncertainty",
-    title: "Decision-making under uncertainty",
-    weekNumber: 4,
-    blurb: "Expected value, risk, and the traps that derail good choices.",
-    lectureTitle: "4.3 Decision-making under uncertainty",
-    body: `# Decision-making under uncertainty
-
-Reasoning is not only about what is *true* — it is about what to *do* when outcomes are uncertain.
-
-## Expected value
-
-The **expected value** of an option is each outcome's value weighted by its probability, then summed.
-
-> A \\$1 lottery ticket pays \\$1,000,000 with probability 1 in 10,000,000. Expected value $= \\frac{1{,}000{,}000}{10{,}000{,}000} = \\$0.10$ — far less than the \\$1 cost.
-
-## Rational choice
-
-Compare options by expected value, but also weigh your **risk tolerance**: a guaranteed \\$50 may beat a coin-flip for \\$110 if you cannot afford to lose.
-
-## Common traps
-
-- **Sunk cost:** basing choices on unrecoverable past costs.
-- **Loss aversion:** weighting losses more heavily than equal gains.
-- **Neglecting opportunity cost:** ignoring what you give up by choosing.
-
-A decision should be judged by the **quality of reasoning given what you knew**, not only by how it happened to turn out.`,
-  },
-  {
-    slug: "moral-value-reasoning",
-    title: "Moral and value reasoning",
-    weekNumber: 4,
-    blurb: "The is–ought gap and the structure of moral arguments.",
-    lectureTitle: "4.4 Moral and value reasoning",
-    body: `# Moral and value reasoning
-
-Not all reasoning is about facts. **Value reasoning** concerns what is good, right, or ought to be done.
-
-## Is vs. ought
-
-- A **descriptive (factual)** claim says how the world *is*: "Capital punishment does not reduce crime."
-- A **normative (value)** claim says how it *ought* to be: "Capital punishment is wrong."
-
-You cannot derive an *ought* from an *is* alone — this is the **is–ought gap**. A moral argument needs at least one value premise.
-
-## Structure of moral arguments
-
-> P1. (Value) Causing unnecessary suffering is wrong.
-> P2. (Fact) This practice causes unnecessary suffering.
-> C. Therefore this practice is wrong.
-
-Evaluate both kinds of premise: are the facts right, *and* is the value principle defensible?
-
-## Tools
-
-Test value claims with **consistency** (would you accept it applied to you?), **counterexamples**, and **thought experiments**. Moral reasoning can be rigorous even without mathematical certainty.`,
-  },
-  {
-    slug: "reasoning-in-writing",
-    title: "Reasoning in writing and argumentative essays",
-    weekNumber: 4,
-    blurb: "Thesis, structure, counterarguments, and signposting.",
-    lectureTitle: "4.5 Reasoning in writing and argumentative essays",
-    body: `# Reasoning in writing and argumentative essays
-
-Writing is reasoning made visible. An **argumentative essay** defends a claim with structured support.
-
-## The thesis
-
-The **thesis** is the single main claim the whole essay defends. It should be specific, contestable, and clear. "Social media harms teen mental health and should be age-restricted" is a thesis; "Social media is interesting" is not.
-
-## Structure
-
-1. **Introduction** that states the thesis.
-2. **Body paragraphs**, each a premise: claim, evidence, reasoning.
-3. **Counterarguments** acknowledged and answered.
-4. **Conclusion** that the body has earned.
-
-## Addressing objections
-
-A strong essay states the **strongest opposing view** (charitably) and responds to it. Ignoring obvious objections signals weak reasoning.
-
-## Signposting
-
-Use premise and conclusion indicators — *because, therefore, however, nevertheless* — so the reader can follow the logical skeleton. If you cannot outline your essay as premises and a conclusion, the argument is not finished.`,
-  },
-  {
-    slug: "detecting-misinformation",
-    title: "Detecting misinformation and manipulation",
-    weekNumber: 4,
-    blurb: "Warning signs and verification techniques for the online world.",
-    lectureTitle: "4.6 Detecting misinformation and manipulation",
-    body: `# Detecting misinformation and manipulation
-
-Misinformation is false or misleading content; **disinformation** is misinformation spread deliberately. Both thrive online.
-
-## Warning signs
-
-- **Emotional bait:** content engineered to provoke outrage or fear.
-- **Missing or vague sourcing:** "experts say," with no link and no name.
-- **Manipulated context:** a real photo or quote ripped from its setting.
-- **Too good (or bad) to be true:** it confirms your side perfectly.
-
-## Techniques
-
-- **Lateral reading:** leave the page and check independent sources.
-- **Check the original:** trace a claim back to its primary source.
-- **Reverse image search:** verify when and where an image really came from.
-- **Consider the incentive:** who benefits if you believe and share this?
-
-## Defenses
-
-Slow down before sharing — virality exploits speed. Distinguish a **headline** from the **evidence**. And apply the same scrutiny to content you *agree* with, because that is exactly where your guard is lowest.`,
-  },
-  {
-    slug: "critical-thinking-across-domains",
-    title: "Applying critical thinking across domains",
-    weekNumber: 4,
-    blurb: "How reasoning takes a different shape in each field — and transfers.",
-    lectureTitle: "4.7 Applying critical thinking across domains",
-    body: `# Applying critical thinking across domains
-
-Critical thinking is a **general** skill, but it takes a different shape in each domain.
-
-## Domain by domain
-
-- **Health:** weigh relative vs. absolute risk; separate correlation from causation in studies.
-- **Politics:** watch for loaded language, false dilemmas, and tribal motivated reasoning.
-- **Personal finance:** beware sunk costs, base-rate neglect, and "get rich quick" appeals.
-- **Science news:** a single study is not settled science; check for replication.
-- **Everyday life:** notice when a salesperson frames a false dilemma or anchors a price.
-
-## Transfer
-
-The hard part is **transfer** — using a skill learned in one context in a new one. It does not happen automatically; you build it by deliberately asking the core questions everywhere: *What is the claim? What is the evidence? What is assumed? What is left out?*
+Two classes can have the *same* average score while one is uniformly mediocre and the other is half brilliant, half failing. The mean hides that completely. Famous data sets exist with identical means, medians, and correlations but wildly different shapes — visible only when you actually plot them.
 
 ## The habit
 
-Expertise in a field does not immunize anyone against fallacies. The goal is to make critical questioning a reflex, not a special occasion.`,
+Whenever you are handed a summary statistic, ask **what it conceals**: the distribution, the outliers, the sample size, the denominator. The number that was *not* reported is often the one that matters.`,
+  },
+  {
+    slug: "distributions-averages-outliers",
+    title: "Distributions, averages, and outliers",
+    weekNumber: 3,
+    blurb: "The shape of the data, and which average to trust.",
+    lectureTitle: "3.2 Distributions, averages, and outliers",
+    body: `# Distributions, averages, and outliers
+
+A **distribution** describes how the values in a dataset are spread out — how often each value (or range) occurs. The shape of the distribution decides which summary is honest.
+
+## Shape
+
+- **Symmetric:** values balanced around the center (a bell curve).
+- **Skewed:** a long tail on one side (incomes, house prices — a few very large values stretch the right tail).
+- **Bimodal:** two distinct peaks (often two groups mixed together).
+
+## Mean vs. median under skew
+
+The **mean** is pulled toward the long tail; the **median** resists it. In a town where most earn \\$40k but one resident earns \\$50 million, the *mean* income is in the millions while the *median* stays near \\$40k. For skewed data, the **median** is usually the fairer "typical" value.
+
+## Outliers
+
+An **outlier** is a value far from the rest. It may be a data-entry error, or the single most important point in the set (a fraud, a breakthrough, a failure). Never silently delete outliers — investigate them. They distort the mean and can dominate a conclusion.
+
+## The takeaway
+
+Before quoting an "average," picture the distribution. *Which* average, and whether it is being dragged by skew or outliers, often matters more than the value itself.`,
+  },
+  {
+    slug: "variation-spread-danger-of-mean",
+    title: "Variation, spread, and the danger of the mean",
+    weekNumber: 3,
+    blurb: "Why the average alone can be dangerously misleading.",
+    lectureTitle: "3.3 Variation, spread, and the danger of the mean",
+    body: `# Variation, spread, and the danger of the mean
+
+Two datasets can share an identical mean yet behave completely differently. The missing piece is **spread** — how much the values vary.
+
+## Measures of spread
+
+- **Range:** largest minus smallest value (simple, but sensitive to outliers).
+- **Variance:** the average squared distance from the mean.
+- **Standard deviation:** the square root of the variance — spread in the original units.
+
+A small standard deviation means values cluster near the mean; a large one means they scatter widely.
+
+## The flaw of averages
+
+Planning on the average alone can be disastrous. A statistician reportedly drowned crossing a river "4 feet deep on average" — it was 1 foot at the banks and 10 feet in the middle. The mean was true and useless.
+
+## Why spread matters for decisions
+
+- An investment averaging 8% with low variability is very different from one averaging 8% that swings between +40% and −30%.
+- A delivery that "averages 3 days" but ranges from 1 to 20 is unreliable even with a fine average.
+
+## The habit
+
+Never accept a mean without asking about the **variation** around it. The average tells you the center; the spread tells you the risk. A number without its spread is half a story.`,
+  },
+  {
+    slug: "probability-quantifying-uncertainty",
+    title: "Probability and quantifying uncertainty",
+    weekNumber: 3,
+    blurb: "Putting numbers on chance, and the rules they obey.",
+    lectureTitle: "3.4 Probability and quantifying uncertainty",
+    body: `# Probability and quantifying uncertainty
+
+**Probability** measures how likely an event is, as a number from 0 (impossible) to 1 (certain). It is how we quantify uncertainty.
+
+## Basic rules
+
+- A probability is always in $[0, 1]$.
+- **Complement:** $P(\\text{not } A) = 1 - P(A)$.
+- **Independent events** (one doesn't affect the other): $P(A \\text{ and } B) = P(A)\\cdot P(B)$.
+- **Mutually exclusive events** (can't both happen): $P(A \\text{ or } B) = P(A) + P(B)$.
+
+## Probability as long-run frequency
+
+A fair coin has $P(\\text{heads}) = 0.5$ — meaning that over many flips, about half land heads. It does **not** promise exactly 5 heads in 10 flips.
+
+## The gambler's fallacy
+
+After five heads in a row, the next flip is still $0.5$. The coin has no memory; "it's due for tails" is the **gambler's fallacy**. Independent events do not balance themselves out in the short run.
+
+## Combining small probabilities
+
+Independent risks multiply. If each part of a system fails with probability $0.1$, two such parts both holding is $0.9 \\times 0.9 = 0.81$. Reasoning about compound chance is just careful multiplication — and it routinely defeats intuition.`,
+  },
+  {
+    slug: "conditional-probability-base-rate-neglect",
+    title: "Conditional probability and base-rate neglect",
+    weekNumber: 3,
+    blurb: "Probability given evidence, and the famous test-result trap.",
+    lectureTitle: "3.5 Conditional probability and base-rate neglect",
+    body: `# Conditional probability and base-rate neglect
+
+**Conditional probability**, written $P(A \\mid B)$, is the probability of $A$ *given that* $B$ has occurred. Updating probabilities on new evidence is one of the most error-prone moves in reasoning.
+
+## The confusion of the inverse
+
+$P(A \\mid B)$ is **not** the same as $P(B \\mid A)$. The probability of a rash *given* measles is high; the probability of measles *given* a rash is low, because most rashes aren't measles. Swapping these two is a classic blunder.
+
+## Base-rate neglect
+
+When we judge a conditional probability, we tend to ignore the **base rate** — how common the condition is to begin with.
+
+> A disease affects **1 in 1,000** people. A test is **99% accurate**. You test positive. Your chance of having the disease is *not* 99%.
+
+Out of 100,000 people: ~100 are sick (≈99 test positive), but ~1% of the 99,900 healthy — about **999** — also test positive. So among ~1,098 positives, only ~99 are truly sick: roughly **9%**, not 99%.
+
+## The false-positive paradox
+
+When a condition is rare, even an accurate test produces *mostly false positives*, because the huge healthy group swamps the tiny sick one. The base rate is decisive — and the instinct to ignore it is exactly what makes medical, legal, and security statistics so widely misread.`,
+  },
+  {
+    slug: "correlation-causation-confounding",
+    title: "Correlation, causation, and confounding",
+    weekNumber: 3,
+    blurb: "Why things moving together need not be cause and effect.",
+    lectureTitle: "3.6 Correlation, causation, and confounding",
+    body: `# Correlation, causation, and confounding
+
+Two quantities are **correlated** when they tend to move together. The cardinal rule of quantitative reasoning: **correlation does not imply causation.**
+
+## What correlation measures
+
+A correlation coefficient runs from $-1$ to $+1$: near $+1$ they rise together, near $-1$ one rises as the other falls, near $0$ no linear relationship. It measures *association*, nothing more.
+
+## Why correlation ≠ causation
+
+If A and B are correlated, several stories are possible:
+
+- A causes B.
+- B causes A (**reverse causation**).
+- A third factor C causes both (a **confounder**).
+- It is coincidence (**spurious correlation**).
+
+Ice-cream sales correlate with drownings — not because ice cream drowns people, but because *summer heat* (the confounder) drives both.
+
+## Spurious correlations
+
+With enough variables, some will line up by pure chance. The number of films an actor appears in and yearly cheese consumption can correlate over a decade and mean absolutely nothing.
+
+## Establishing causation
+
+To show causation you need to rule out confounders — ideally a **randomized controlled trial**, where you change one factor, hold the rest fixed, and compare. Until then, "linked to" is *not* "causes."`,
+  },
+  {
+    slug: "sampling-bias-law-of-small-numbers",
+    title: "Sampling, bias, and the law of small numbers",
+    weekNumber: 3,
+    blurb: "When a sample misrepresents the whole, and small samples mislead.",
+    lectureTitle: "3.7 Sampling, bias, and the law of small numbers",
+    body: `# Sampling, bias, and the law of small numbers
+
+We almost never measure a whole **population**, so we study a **sample** and generalize. The sample is trustworthy only if it truly represents the whole.
+
+## Random sampling
+
+A **random sample** gives every member an equal chance of selection, which guards against hidden skew. Without randomness, the sample can systematically miss part of the population.
+
+## Kinds of bias
+
+- **Selection bias:** the sampling method favors some group (a phone poll at noon misses workers).
+- **Response/non-response bias:** the people who answer differ from those who don't (angry customers review more).
+- **Survivorship bias:** you see only the survivors — studying only successful companies hides the failures that did the same things.
+
+## Margin of error
+
+A poll result of "52% ± 3%" means the true value is plausibly 49–55%. A reported number without its margin of error pretends to a precision it does not have.
+
+## The law of small numbers
+
+Small samples are **volatile**: flip a coin 4 times and all-heads is common; flip 1,000 times and it never happens. People wrongly expect tiny samples to mirror the population, which fuels false patterns — "this small school tops the rankings" usually reflects small-sample luck, soon erased by **regression to the mean**.`,
+  },
+
+  // Week 4 — Applied quantitative reasoning and capstone
+  {
+    slug: "misleading-graphs-visualization",
+    title: "Misleading graphs and data visualization",
+    weekNumber: 4,
+    blurb: "How charts distort the truth, and how to read them critically.",
+    lectureTitle: "4.1 Misleading graphs and data visualization",
+    body: `# Misleading graphs and data visualization
+
+A graph should make data *clearer*. A misleading graph makes a weak claim *look* strong by exploiting how our eyes read pictures.
+
+## Common tricks
+
+- **Truncated axis:** a y-axis starting at 90 instead of 0 turns a tiny change into a cliff.
+- **Inverted or dual axes:** two y-axes scaled to manufacture a "relationship."
+- **Cherry-picked range:** zooming to the window that shows the desired trend.
+- **3-D and perspective:** depth that distorts which bar looks bigger.
+- **Area for length:** doubling an icon's height *and* width quadruples its area, exaggerating a 2× change.
+
+## Read the chart, not the picture
+
+1. **Check the axes** — where do they start, what are the units, is the scale linear?
+2. **Check the range** — what time span or subset is shown, and what is left off?
+3. **Find the baseline** — change relative to what?
+4. **Compare to the numbers** — does the visual impression match the actual figures?
+
+## The lesson
+
+A picture can lie while every number on it is technically true. Treat a graph as a *claim* to be reconstructed — axes, scale, and range first — before you let its shape persuade you.`,
+  },
+  {
+    slug: "statistical-fallacies-number-abuse",
+    title: "Statistical fallacies and number abuse",
+    weekNumber: 4,
+    blurb: "The recurring tricks people use to abuse statistics.",
+    lectureTitle: "4.2 Statistical fallacies and number abuse",
+    body: `# Statistical fallacies and number abuse
+
+Statistics can be abused in a handful of recurring ways. Learn the patterns and you'll spot them everywhere.
+
+## The usual suspects
+
+- **Cherry-picking:** reporting only the data that fits, ignoring the rest.
+- **Misleading average:** quoting the mean of skewed data to inflate a "typical" value.
+- **Base-rate fallacy:** ignoring how common something is when reading a probability.
+- **False precision:** "63.4% of users" from a survey of 30 people.
+- **Percentage abuse:** mixing up percent and percentage points, or hiding the base.
+
+## Simpson's paradox
+
+A trend can appear in every subgroup yet **reverse** when the groups are combined (or vice versa), depending on group sizes. A treatment can look better for men *and* for women separately, but worse overall — because the groups had very different baseline rates. Always ask whether pooling or splitting the data changes the story.
+
+## p-hacking
+
+Test enough hypotheses and some will look "significant" by chance alone. Running 20 comparisons and reporting only the one that "worked" manufactures a result out of noise.
+
+## The defense
+
+For any statistic, ask the standard questions: *Compared to what? Out of how many? Selected how? What was left out?* Most number abuse collapses the moment you demand the denominator and the full data.`,
+  },
+  {
+    slug: "risk-expected-value-decisions",
+    title: "Risk, expected value, and decision-making",
+    weekNumber: 4,
+    blurb: "Weighing outcomes by their probability to choose well.",
+    lectureTitle: "4.3 Risk, expected value, and decision-making",
+    body: `# Risk, expected value, and decision-making
+
+Quantitative reasoning is not only about what is true, but about what to *do* under uncertainty. The key tool is **expected value**.
+
+## Expected value
+
+The **expected value** (EV) of a choice is each outcome's value weighted by its probability, then summed:
+
+$$\\text{EV} = \\sum (\\text{value} \\times \\text{probability})$$
+
+> A \\$1 ticket pays \\$1,000,000 with probability $\\frac{1}{10{,}000{,}000}$. Its EV is $\\frac{1{,}000{,}000}{10{,}000{,}000} = \\$0.10$ — far below the \\$1 price.
+
+Lotteries and most gambles have negative expected value; insurance has negative EV for you *on average* but buys protection against ruin.
+
+## Relative vs. absolute risk
+
+"This drug doubles your risk" is meaningless without the base: from 1-in-a-million to 2-in-a-million is a doubling no one should fear. Always convert **relative risk** back to **absolute** numbers.
+
+## Beyond the average
+
+EV assumes you can repeat the bet many times. For one-shot, high-stakes decisions, **risk tolerance** matters: a guaranteed \\$50 can rightly beat a coin-flip for \\$110 if losing would be catastrophic.
+
+## Judge the decision, not the outcome
+
+A good decision is one with the best EV *given what you knew* — even if luck made it turn out badly. Don't confuse a bad result with a bad choice.`,
+  },
+  {
+    slug: "evaluating-studies-polls-claims",
+    title: "Evaluating studies, polls, and claims",
+    weekNumber: 4,
+    blurb: "The questions that separate solid evidence from spin.",
+    lectureTitle: "4.4 Evaluating studies, polls, and claims",
+    body: `# Evaluating studies, polls, and claims
+
+Headlines distill studies into a sentence and lose everything that matters. Evaluating the quantitative claim behind the headline is a core applied skill.
+
+## Questions for any study
+
+- **Sample size:** how many subjects? Tiny studies are unreliable.
+- **Sampling method:** random and representative, or self-selected?
+- **Control group:** was there a comparison, or just before/after?
+- **Effect size:** is the difference large, or merely "statistically significant"?
+- **Funding and conflicts:** who paid, and do they gain from the result?
+
+## Observational vs. experimental
+
+An **experiment** (especially a randomized controlled trial) can support causation. An **observational study** can only find correlation — so "people who do X live longer" may be confounded by everything else those people do.
+
+## Polls
+
+For a poll, check the **margin of error**, the **sample size**, *who* was asked, and *how the question was worded*. "Do you support common-sense reform?" and "Do you support this costly mandate?" poll the same policy very differently.
+
+## Statistical vs. practical significance
+
+A result can be statistically significant yet trivial in size — a real but 0.1% effect. Ask not only "is it real?" but "is it **big enough to matter**?" The story and the statistic are rarely the same; reconstruct the claim before believing it.`,
+  },
+  {
+    slug: "financial-economic-reasoning",
+    title: "Financial and economic quantitative reasoning",
+    weekNumber: 4,
+    blurb: "Interest, inflation, and the money math that trips people up.",
+    lectureTitle: "4.5 Financial and economic quantitative reasoning",
+    body: `# Financial and economic quantitative reasoning
+
+Money is where quantitative reasoning pays off most directly. A few ideas explain most personal-finance mistakes.
+
+## Compound interest
+
+Interest earns interest, so balances grow **exponentially**: $A = P(1+r)^t$. By the Rule of 70, money at 7% doubles in about a decade. The same math runs in reverse on debt — credit-card balances compound *against* you.
+
+## APR vs. APY
+
+The **APR** is the stated annual rate; the **APY** folds in compounding within the year. A "1% monthly" card is not 12% but about $(1.01)^{12}-1 \\approx 12.7\\%$ APY. Compare loans by the compounded figure.
+
+## Real vs. nominal
+
+A **nominal** amount ignores inflation; a **real** amount adjusts for it. A 3% raise during 4% inflation is a real *pay cut*. "Highest ever" dollar figures (box-office records, salaries) are usually meaningless until adjusted for inflation.
+
+## Opportunity cost and present value
+
+Every dollar spent or tied up has an **opportunity cost** — the return it could have earned elsewhere. And money later is worth less than money now (**present value**), because today's dollar can be invested. Sound financial reasoning compares options on the same time-adjusted footing.
+
+## The habit
+
+When a financial claim appears, restate it in **compounded, inflation-adjusted, per-period** terms. Most "too good to be true" offers fail that translation instantly.`,
+  },
+  {
+    slug: "detecting-quantitative-misinformation",
+    title: "Detecting quantitative misinformation",
+    weekNumber: 4,
+    blurb: "Red flags that a number is fabricated, abused, or out of context.",
+    lectureTitle: "4.6 Detecting quantitative misinformation",
+    body: `# Detecting quantitative misinformation
+
+Numbers lend instant credibility, which makes them a favorite tool of misinformation. Detecting abused statistics is now a survival skill.
+
+## Red flags
+
+- **No source:** a precise statistic with no traceable origin ("studies show 73%...").
+- **No denominator:** a scary numerator with no "out of how many."
+- **Suspicious precision:** "exactly 47.3% of people" when no one could measure that.
+- **Impossible or round-trip numbers:** figures that fail a basic sanity check, or percentages that exceed 100.
+- **Big number, no context:** a giant total with no per-capita or per-year framing.
+- **Mismatched comparison:** relative risk with the absolute base hidden.
+
+## Verification techniques
+
+1. **Trace the number** back to its original source, not the post quoting it.
+2. **Check the denominator** and the base rate.
+3. **Run a sanity check** — estimate it yourself and see if the orders of magnitude agree.
+4. **Read laterally** — see what independent sources report.
+
+## Consider the incentive
+
+Ask who benefits if you believe and share the number. And apply the *same* scrutiny to statistics that flatter your own side — that is exactly where your guard drops and a fabricated figure slips through.`,
+  },
+  {
+    slug: "quantitative-reasoning-across-domains",
+    title: "Applying quantitative reasoning across domains",
+    weekNumber: 4,
+    blurb: "How the same QR habits transfer to health, news, money, and policy.",
+    lectureTitle: "4.7 Applying quantitative reasoning across domains",
+    body: `# Applying quantitative reasoning across domains
+
+Quantitative reasoning is a **general** skill, but it shows up differently in each field. The power comes from carrying the same habits everywhere.
+
+## Domain by domain
+
+- **Health:** convert relative risk to absolute; separate correlation from causation in studies; watch tiny samples.
+- **News:** check the denominator, the base rate, and the chart's axes before reacting to a statistic.
+- **Personal finance:** think in compounded, inflation-adjusted terms; weigh opportunity cost; ignore "highest ever" without adjustment.
+- **Policy:** ask about per-capita figures, confounders, and what a model leaves out.
+- **Everyday life:** estimate, sanity-check, and compare unit rates at the store.
+
+## The transfer problem
+
+The hard part is **transfer** — using a skill learned in one context in a brand-new one. It does not happen automatically. You build it by deliberately asking the same core questions in every domain.
+
+## The four reflexes
+
+Whatever the field, drill these until they are automatic:
+
+1. **How big** is this — what order of magnitude?
+2. **Compared to what** — what is the base or baseline?
+3. **How do we know** — what is the source and method?
+4. **Does it pass a sanity check** — is this number even possible?
+
+Make those four a reflex and you reason quantitatively anywhere.`,
   },
   {
     slug: "capstone-synthesis",
     title: "Capstone synthesis",
     weekNumber: 4,
-    blurb: "Putting the whole toolkit to work on a real-world claim.",
+    blurb: "Putting the whole quantitative toolkit to work on a real claim.",
     lectureTitle: "4.8 Capstone synthesis",
     body: `# Capstone synthesis
 
-The capstone ties the whole course together: take a real claim from the wild and evaluate it end to end.
+The capstone ties the course together: take a real quantitative claim from the wild and evaluate it end to end.
 
-## A worked example
+## The claim
 
-> "A new study shows students who use our app score 20% higher. Don't let your child fall behind — the data doesn't lie."
+> "A new study shows students who use our app score **20% higher**. Over **1 million** students can't be wrong — don't let your child fall behind."
 
-Apply the toolkit:
+## Apply the toolkit
 
-1. **Identify the argument** — conclusion: buy the app; premises: the study and the appeal.
-2. **Classify the reasoning** — inductive, from a study to a recommendation.
-3. **Check the evidence** — sample size? control group? who funded it? 20% relative to what?
-4. **Spot fallacies and rhetoric** — appeal to fear ("fall behind"), the "data doesn't lie" thought-stopper, post hoc risk.
-5. **Consider bias** — the seller's conflict of interest; your own hope that it works.
-6. **Reach a verdict** — proportion your belief to the strength of the evidence.
+1. **Reconstruct the claim** — 20% higher *than whom*, on *what test*, over *what period*? (Topic 1.7)
+2. **Pin the base and units** — 20% of what score? Percentage points or relative percent? (Topic 1.6)
+3. **Sanity-check the magnitudes** — is a 20% jump even plausible; what does "1 million users" prove about *effectiveness*? (Topics 1.3, 2.1)
+4. **Interrogate the study** — sample size, control group, who funded it, observational or experimental? (Topics 3.7, 4.4)
+5. **Separate correlation from causation** — maybe motivated families both buy the app *and* study more (a confounder). (Topic 3.6)
+6. **Spot the number abuse and framing** — "1 million can't be wrong" is irrelevant; "fall behind" is fear, not data. (Topics 4.2, 4.6)
+7. **Weigh the decision** — expected value and cost vs. the real, absolute effect. (Topic 4.3)
 
 ## The standard
 
-A claim is worth believing when the **premises are true** and the **reasoning is valid or strong**. That single test — applied honestly, to friend and foe alike — is critical thinking.`,
+A quantitative claim is worth believing when the **numbers are real, the comparison is fair, the method is sound, and the magnitude actually matters**. That single test — applied honestly to claims you like and dislike alike — is quantitative reasoning.`,
   },
 ];
 
@@ -839,29 +925,29 @@ const ASSIGNMENTS: SeedAssignment[] = [
   // Week 1
   {
     kind: "homework",
-    title: "Homework 1.1 — Claims and arguments",
+    title: "Homework 1.1 — Numbers, magnitude, and estimation",
     weekNumber: 1,
     isTimed: false,
     timeLimitMinutes: null,
     instructions: "Untimed practice. Explain your reasoning in the answer box.",
     problems: [
-      { topicSlug: "what-is-critical-thinking", prompt: "True or false: critical thinking means criticizing or rejecting other people's views.", correctAnswer: "false", explanation: "Critical thinking is fair evaluation of reasoning, not mere fault-finding." },
-      { topicSlug: "claims-beliefs-truth", prompt: "A sentence that is either true or false (it has a truth value) is called a ____. One word.", correctAnswer: "claim", explanation: "A claim (statement/proposition) is the bearer of truth or falsity." },
-      { topicSlug: "arguments-vs-nonarguments", prompt: "'You should exercise because it lowers your risk of heart disease.' Is this an argument or a non-argument?", correctAnswer: "argument", explanation: "A reason ('because...') is offered to support a conclusion, so it is an argument." },
+      { topicSlug: "what-is-quantitative-reasoning", prompt: "True or false: quantitative reasoning is mainly about doing advanced mathematics.", correctAnswer: "false", explanation: "QR is the careful use of basic math and judgment to evaluate real claims — not advanced math." },
+      { topicSlug: "numbers-magnitude-number-line", prompt: "A billion is how many times larger than a million? (A number.)", correctAnswer: "1000", explanation: "A billion is 10^9 and a million is 10^6, so it is 10^3 = 1,000 times larger." },
+      { topicSlug: "estimation-order-of-magnitude", prompt: "Two quantities are the 'same order of magnitude' if one is within about what factor of the other? (A number.)", correctAnswer: "10", explanation: "An order of magnitude is a factor of ten." },
     ],
   },
   {
     kind: "homework",
-    title: "Homework 1.2 — Structure of arguments",
+    title: "Homework 1.2 — Units, ratios, and percentages",
     weekNumber: 1,
     isTimed: false,
     timeLimitMinutes: null,
     instructions: "Untimed practice.",
     problems: [
-      { topicSlug: "premises-and-conclusions", prompt: "In 'All dogs are mammals, so Rex is a mammal,' the word 'so' signals the ____.", correctAnswer: "conclusion", explanation: "'So' is a conclusion indicator." },
-      { topicSlug: "identifying-reconstructing-arguments", prompt: "An unstated assumption an argument needs in order to work is called a missing or ____ premise. One word.", correctAnswer: "implicit", explanation: "Also called an unstated or suppressed premise; such an argument is an enthymeme." },
-      { topicSlug: "diagramming-arguments", prompt: "When two premises support a conclusion only by working together (neither suffices alone), the support is called ____.", correctAnswer: "linked", explanation: "Linked premises depend on each other; remove one and the support collapses." },
-      { topicSlug: "standardizing-charity", prompt: "Interpreting an argument in its strongest, most reasonable form is called the principle of ____.", correctAnswer: "charity", explanation: "The principle of charity guards against the straw man." },
+      { topicSlug: "units-dimensions-sanity-checks", prompt: "To convert a quantity from one unit to another, you multiply it by a fraction equal to what number?", correctAnswer: "1", explanation: "Conversion factors equal 1, so multiplying by them changes units without changing the value." },
+      { topicSlug: "ratios-rates-proportional-reasoning", prompt: "A rate that expresses a quantity 'per one' unit (like miles per gallon) is called a ____ rate.", correctAnswer: "unit", explanation: "A unit rate is expressed per single unit and makes comparisons fair." },
+      { topicSlug: "percentages-change-base-rates", prompt: "If a price rises from $40 to $50, what is the percentage increase? (Include the % sign or the number.)", correctAnswer: "25", explanation: "(50 − 40)/40 × 100 = 25%. The base is the old value, 40." },
+      { topicSlug: "percentages-change-base-rates", prompt: "Support rises from 40% to 44%. That is a rise of how many percentage points? (A number.)", correctAnswer: "4", explanation: "44 − 40 = 4 percentage points (though a 10% relative increase)." },
     ],
   },
   {
@@ -872,41 +958,41 @@ const ASSIGNMENTS: SeedAssignment[] = [
     timeLimitMinutes: 30,
     instructions: "Timed. 30 minutes. Pasting is disabled.",
     problems: [
-      { topicSlug: "claims-beliefs-truth", prompt: "'Close the door.' Does this sentence express a claim (a true/false bearer)? Answer yes or no.", correctAnswer: "no", explanation: "It is a command, which is neither true nor false." },
-      { topicSlug: "arguments-vs-nonarguments", prompt: "A passage that merely tells you WHY an accepted fact happened, without trying to prove it, is an argument or an explanation?", correctAnswer: "explanation", explanation: "An explanation assumes the fact and gives its cause; it does not argue that it is true." },
-      { topicSlug: "premises-and-conclusions", prompt: "In 'The streets are wet, so it rained,' which clause is the conclusion? Two words.", correctAnswer: "it rained", explanation: "'So' marks 'it rained' as the conclusion." },
-      { topicSlug: "premises-and-conclusions", prompt: "Name one common conclusion-indicator word.", correctAnswer: "therefore", explanation: "Therefore, so, thus, hence, and consequently all indicate conclusions." },
-      { topicSlug: "diagramming-arguments", prompt: "When several independent premises each separately support the same conclusion, the structure is called ____.", correctAnswer: "convergent", explanation: "Each convergent premise supports the conclusion on its own." },
-      { topicSlug: "what-is-critical-thinking", prompt: "Thinking about and monitoring your own thinking is called ____ (one word beginning 'meta').", correctAnswer: "metacognition", explanation: "Metacognition is awareness and regulation of one's own reasoning." },
+      { topicSlug: "numbers-magnitude-number-line", prompt: "$10 off a $12 shirt vs. $10 off a $30,000 car — is the $10 the same in absolute or in relative size?", correctAnswer: "absolute", explanation: "The absolute difference is identical ($10); the relative size differs enormously." },
+      { topicSlug: "estimation-order-of-magnitude", prompt: "Reporting a project cost as 'exactly $48,217' when the data is rough is an example of false ____.", correctAnswer: "precision", explanation: "False precision claims more exactness than the inputs support." },
+      { topicSlug: "units-dimensions-sanity-checks", prompt: "An answer that says a bridge is '4 cm long' should be rejected by what kind of check?", correctAnswer: "sanity check", explanation: "A sanity check asks whether the number is even possible." },
+      { topicSlug: "ratios-rates-proportional-reasoning", prompt: "Comparing countries' total emissions is misleading; you should instead compare ____ emissions (two words, 'per ___').", correctAnswer: "per capita", explanation: "Per-capita rates account for differing population sizes." },
+      { topicSlug: "percentages-change-base-rates", prompt: "A 50% increase followed by a 50% decrease leaves you above, below, or at the original value?", correctAnswer: "below", explanation: "$100 → $150 → $75: the base changes, so it is not symmetric." },
+      { topicSlug: "reading-reconstructing-quantitative-claims", prompt: "'10,000 people were harmed' is incomplete without which missing quantity?", correctAnswer: "denominator", explanation: "A numerator needs its denominator (out of how many) to be meaningful." },
     ],
   },
 
   // Week 2
   {
     kind: "homework",
-    title: "Homework 2.1 — Deduction and validity",
+    title: "Homework 2.1 — Arguments, inference, and growth",
     weekNumber: 2,
     isTimed: false,
     timeLimitMinutes: null,
     instructions: "Untimed practice.",
     problems: [
-      { topicSlug: "deductive-vs-inductive", prompt: "Reasoning that aims to guarantee its conclusion (if the premises are true, the conclusion must be true) is called ____.", correctAnswer: "deductive", explanation: "Deductive arguments aim for necessity." },
-      { topicSlug: "deductive-vs-inductive", prompt: "'Every swan I have seen is white, so all swans are white.' Is this deductive or inductive?", correctAnswer: "inductive", explanation: "It generalizes from observations to a probable conclusion." },
-      { topicSlug: "validity-and-soundness", prompt: "An argument that is valid AND has all true premises is called ____.", correctAnswer: "sound", explanation: "Soundness = validity + all true premises." },
+      { topicSlug: "quantitative-arguments-vs-noise", prompt: "If removing a number from an argument leaves it just as strong, that number was evidence or noise?", correctAnswer: "noise", explanation: "A load-bearing number changes the argument; decoration does not." },
+      { topicSlug: "validity-error-numerical-inference", prompt: "A scale that always reads 2 kg too high is precise but not ____.", correctAnswer: "accurate", explanation: "Accuracy is closeness to the true value; precision is repeatability." },
+      { topicSlug: "exponential-growth-decay", prompt: "By the Rule of 70, money growing at 7% per year doubles in about how many years? (A number.)", correctAnswer: "10", explanation: "70 ÷ 7 = 10 years to double." },
     ],
   },
   {
     kind: "homework",
-    title: "Homework 2.2 — Logical forms",
+    title: "Homework 2.2 — Modeling, counting, and estimation",
     weekNumber: 2,
     isTimed: false,
     timeLimitMinutes: null,
     instructions: "Untimed practice.",
     problems: [
-      { topicSlug: "validity-and-soundness", prompt: "Can a valid argument have a false conclusion? Answer yes or no.", correctAnswer: "yes", explanation: "Yes — if one of its premises is false. Only sound arguments guarantee a true conclusion." },
-      { topicSlug: "categorical-logic-syllogism", prompt: "'All A are B. All B are C. Therefore all A are C.' Is this valid or invalid?", correctAnswer: "valid", explanation: "This is a valid categorical syllogism (Barbara)." },
-      { topicSlug: "propositional-logic-truth-tables", prompt: "'If P then Q' is false only when P is ____ and Q is false. One word.", correctAnswer: "true", explanation: "A conditional fails only when the antecedent is true and the consequent false." },
-      { topicSlug: "propositional-logic-truth-tables", prompt: "From 'If P then Q' and 'not Q', what can you validly conclude? (This valid form is modus tollens.)", correctAnswer: "not P", explanation: "Modus tollens: P→Q, ¬Q, therefore ¬P." },
+      { topicSlug: "linear-vs-nonlinear-thinking", prompt: "If lily pads double daily and cover a pond on day 30, on what day is it half covered? (A number.)", correctAnswer: "29", explanation: "Doubling means it was half-covered the day before — day 29 (nonlinear thinking)." },
+      { topicSlug: "counting-combinatorics-possibility-spaces", prompt: "How many possible 4-digit PINs are there using digits 0–9? (A number.)", correctAnswer: "10000", explanation: "10 × 10 × 10 × 10 = 10,000 by the multiplication principle." },
+      { topicSlug: "modeling-with-functions", prompt: "Pushing a model far beyond the range of its data is called ____.", correctAnswer: "extrapolation", explanation: "Extrapolation beyond the data is risky; interpolation within it is safer." },
+      { topicSlug: "fermi-estimation", prompt: "A problem solved by decomposing an unknown into estimable pieces and multiplying is a ____ problem.", correctAnswer: "fermi", explanation: "Fermi problems estimate the unknown from common-sense pieces." },
     ],
   },
   {
@@ -917,43 +1003,43 @@ const ASSIGNMENTS: SeedAssignment[] = [
     timeLimitMinutes: 60,
     instructions: "Cumulative midterm. 60 minutes. Pasting disabled.",
     problems: [
-      { topicSlug: "arguments-vs-nonarguments", prompt: "'The room was cold and dark.' Is this an argument or a non-argument?", correctAnswer: "non-argument", explanation: "It is a description; nothing is being supported." },
-      { topicSlug: "premises-and-conclusions", prompt: "Name one common premise-indicator word.", correctAnswer: "because", explanation: "Because, since, for, and given that all indicate premises." },
-      { topicSlug: "deductive-vs-inductive", prompt: "An argument whose premises are meant to make the conclusion probable but not certain is ____.", correctAnswer: "inductive", explanation: "Inductive support is a matter of degree." },
-      { topicSlug: "validity-and-soundness", prompt: "Affirming the consequent (P→Q, Q, therefore P) is valid or invalid?", correctAnswer: "invalid", explanation: "It is a formal fallacy; Q can hold for other reasons." },
-      { topicSlug: "categorical-logic-syllogism", prompt: "'All cats are animals. All dogs are animals. Therefore all dogs are cats.' Valid or invalid?", correctAnswer: "invalid", explanation: "True premises, false conclusion — the form is broken." },
-      { topicSlug: "propositional-logic-truth-tables", prompt: "From 'If P then Q' and 'P', what follows? (modus ponens)", correctAnswer: "Q", explanation: "Modus ponens: P→Q, P, therefore Q." },
-      { topicSlug: "inductive-strength-generalization", prompt: "Drawing a sweeping conclusion from too small a sample is the ____ generalization.", correctAnswer: "hasty", explanation: "Hasty generalization relies on an inadequate sample." },
-      { topicSlug: "analogical-reasoning", prompt: "An argument from analogy is stronger when the two things share more ____ similarities.", correctAnswer: "relevant", explanation: "Relevant similarities (not surface ones) strengthen an analogy." },
+      { topicSlug: "numbers-magnitude-number-line", prompt: "Write the speed of light, 300,000,000 m/s, in scientific notation as 3 × 10^? (Give the exponent as a number.)", correctAnswer: "8", explanation: "300,000,000 = 3 × 10^8." },
+      { topicSlug: "estimation-order-of-magnitude", prompt: "When estimating, you should round each quantity to how many significant figures? (A number.)", correctAnswer: "1", explanation: "Keeping one significant figure is the norm for quick estimates." },
+      { topicSlug: "units-dimensions-sanity-checks", prompt: "Treating units as algebra you cancel and multiply is called dimensional ____.", correctAnswer: "analysis", explanation: "Dimensional analysis tracks units to catch errors." },
+      { topicSlug: "ratios-rates-proportional-reasoning", prompt: "If 3 cups flour go with 1 cup sugar, how many cups of flour go with 4 cups of sugar? (A number.)", correctAnswer: "12", explanation: "Proportional reasoning: 3/1 = x/4, so x = 12." },
+      { topicSlug: "quantitative-arguments-vs-noise", prompt: "'Our method is 37.6% more effective' with no measure of 'effective' is an example of irrelevant ____.", correctAnswer: "precision", explanation: "Irrelevant precision dresses up noise as evidence." },
+      { topicSlug: "linear-vs-nonlinear-thinking", prompt: "Doubling a cube's side multiplies its volume by what factor? (A number.)", correctAnswer: "8", explanation: "Volume scales with the cube of length: 2^3 = 8 (the square–cube law)." },
+      { topicSlug: "exponential-growth-decay", prompt: "Growth by a constant percentage each period is called ____ growth.", correctAnswer: "exponential", explanation: "Exponential growth multiplies by a fixed factor each period." },
+      { topicSlug: "counting-combinatorics-possibility-spaces", prompt: "When order does NOT matter, a selection of items is called a ____ (not a permutation).", correctAnswer: "combination", explanation: "Combinations ignore order; permutations count order." },
     ],
   },
 
   // Week 3
   {
     kind: "homework",
-    title: "Homework 3.1 — Fallacies",
+    title: "Homework 3.1 — Statistics and distributions",
     weekNumber: 3,
     isTimed: false,
     timeLimitMinutes: null,
     instructions: "Untimed practice.",
     problems: [
-      { topicSlug: "fallacies-of-relevance", prompt: "Attacking the person instead of their argument is the ____ fallacy. (Latin term.)", correctAnswer: "ad hominem", explanation: "Ad hominem targets the arguer rather than the argument." },
-      { topicSlug: "fallacies-weak-induction", prompt: "Concluding A caused B just because A came before B is the ____ fallacy. (Latin, two words.)", correctAnswer: "post hoc", explanation: "Post hoc ergo propter hoc confuses sequence with causation." },
-      { topicSlug: "fallacies-presumption-ambiguity", prompt: "A question that presupposes something unproven, like 'Have you stopped lying?', is a ____ question.", correctAnswer: "loaded", explanation: "Also called a complex question; it smuggles in an assumption." },
+      { topicSlug: "descriptive-statistics-what-they-hide", prompt: "The mean, median, and mode are all measures of a distribution's ____.", correctAnswer: "center", explanation: "They are measures of central tendency (center)." },
+      { topicSlug: "distributions-averages-outliers", prompt: "For income data skewed by a few huge values, which average is the fairer 'typical' value — mean or median?", correctAnswer: "median", explanation: "The median resists the pull of the long tail; the mean is dragged upward." },
+      { topicSlug: "variation-spread-danger-of-mean", prompt: "The square root of the variance, giving spread in the original units, is the standard ____.", correctAnswer: "deviation", explanation: "Standard deviation measures spread in the data's own units." },
     ],
   },
   {
     kind: "homework",
-    title: "Homework 3.2 — Bias, language, and sources",
+    title: "Homework 3.2 — Probability and correlation",
     weekNumber: 3,
     isTimed: false,
     timeLimitMinutes: null,
     instructions: "Untimed practice.",
     problems: [
-      { topicSlug: "rhetoric-persuasion-spin", prompt: "Word choices that carry judgment, like 'freedom fighter' vs. 'terrorist', are called ____ language.", correctAnswer: "loaded", explanation: "Loaded (emotive) language steers feeling rather than supplying evidence." },
-      { topicSlug: "cognitive-biases-motivated-reasoning", prompt: "Seeking out only evidence that supports what you already believe is ____ bias.", correctAnswer: "confirmation", explanation: "Confirmation bias favors belief-consistent evidence." },
-      { topicSlug: "language-definition-vagueness", prompt: "A term with multiple distinct meanings (like 'bank') is ____.", correctAnswer: "ambiguous", explanation: "Ambiguity = multiple meanings; vagueness = fuzzy borders." },
-      { topicSlug: "credibility-sources-testimony", prompt: "Trusting a claim because a celebrity (not an expert) endorsed it is an appeal to inappropriate ____.", correctAnswer: "authority", explanation: "Appeal to inappropriate authority cites an unqualified source." },
+      { topicSlug: "probability-quantifying-uncertainty", prompt: "After 5 heads in a row, the probability the next fair flip is heads is still what? (A decimal.)", correctAnswer: "0.5", explanation: "Coins have no memory; expecting tails is the gambler's fallacy." },
+      { topicSlug: "conditional-probability-base-rate-neglect", prompt: "Ignoring how common a condition is when reading a positive test result is base-rate ____.", correctAnswer: "neglect", explanation: "Base-rate neglect ignores prior prevalence, inflating the perceived risk." },
+      { topicSlug: "correlation-causation-confounding", prompt: "A hidden third variable that influences both correlated quantities is called a ____.", correctAnswer: "confounder", explanation: "A confounder (like summer heat for ice cream and drownings) drives both." },
+      { topicSlug: "sampling-bias-law-of-small-numbers", prompt: "Studying only successful companies and ignoring the failures is ____ bias.", correctAnswer: "survivorship", explanation: "Survivorship bias looks only at the survivors." },
     ],
   },
   {
@@ -964,40 +1050,40 @@ const ASSIGNMENTS: SeedAssignment[] = [
     timeLimitMinutes: 40,
     instructions: "Timed. 40 minutes. Pasting disabled.",
     problems: [
-      { topicSlug: "fallacies-of-relevance", prompt: "Distorting someone's view into a weaker version to attack it is the ____ ____ fallacy. Two words.", correctAnswer: "straw man", explanation: "The straw man refutes a misrepresentation, not the real view." },
-      { topicSlug: "fallacies-weak-induction", prompt: "Arguing that one small step will inevitably lead to disaster, with no support for the links, is the ____ ____ fallacy. Two words.", correctAnswer: "slippery slope", explanation: "The slippery slope assumes an unsupported chain of consequences." },
-      { topicSlug: "fallacies-presumption-ambiguity", prompt: "Assuming the very thing you are trying to prove is ____ reasoning (also called begging the question).", correctAnswer: "circular", explanation: "Circular reasoning hides the conclusion among the premises." },
-      { topicSlug: "cognitive-biases-motivated-reasoning", prompt: "Relying too heavily on the first piece of information you receive is ____ bias.", correctAnswer: "anchoring", explanation: "Anchoring lets an initial value skew later judgments." },
-      { topicSlug: "credibility-sources-testimony", prompt: "Checking a claim by leaving the page to consult other independent sources is called ____ reading.", correctAnswer: "lateral", explanation: "Lateral reading is how professional fact-checkers verify sources." },
+      { topicSlug: "descriptive-statistics-what-they-hide", prompt: "A numerator like '500 accidents' becomes far more meaningful when expressed as a ____ (e.g., per million trips).", correctAnswer: "rate", explanation: "A rate supplies the denominator a raw count omits." },
+      { topicSlug: "variation-spread-danger-of-mean", prompt: "Drowning in a river that is '4 feet deep on average' illustrates the flaw of ____.", correctAnswer: "averages", explanation: "The flaw of averages ignores variation around the mean." },
+      { topicSlug: "probability-quantifying-uncertainty", prompt: "For two independent events you find the probability that BOTH happen by ____ their probabilities.", correctAnswer: "multiplying", explanation: "P(A and B) = P(A) × P(B) for independent events." },
+      { topicSlug: "conditional-probability-base-rate-neglect", prompt: "When a condition is rare, even an accurate test yields mostly ____ positives.", correctAnswer: "false", explanation: "The large healthy group produces many false positives — the false-positive paradox." },
+      { topicSlug: "correlation-causation-confounding", prompt: "Correlation does not imply ____.", correctAnswer: "causation", explanation: "Association is not the same as cause and effect." },
     ],
   },
 
   // Week 4
   {
     kind: "homework",
-    title: "Homework 4.1 — Probability, evidence, decisions",
+    title: "Homework 4.1 — Graphs, fallacies, and risk",
     weekNumber: 4,
     isTimed: false,
     timeLimitMinutes: null,
     instructions: "Untimed practice.",
     problems: [
-      { topicSlug: "probability-statistical-reasoning", prompt: "Ignoring how common a condition is when judging a positive test result is the base rate ____.", correctAnswer: "fallacy", explanation: "The base rate fallacy (neglect) ignores prior prevalence." },
-      { topicSlug: "evaluating-evidence-science", prompt: "A claim that cannot in principle be shown false is said to be ____.", correctAnswer: "unfalsifiable", explanation: "Unfalsifiable claims make no testable prediction." },
-      { topicSlug: "decision-making-uncertainty", prompt: "An outcome's value weighted by its probability is called its ____ value.", correctAnswer: "expected", explanation: "Expected value weights each outcome by its probability." },
+      { topicSlug: "misleading-graphs-visualization", prompt: "A bar chart whose y-axis starts at 90 instead of 0 exaggerates change by using a ____ axis.", correctAnswer: "truncated", explanation: "A truncated axis magnifies small differences." },
+      { topicSlug: "statistical-fallacies-number-abuse", prompt: "A trend that holds in every subgroup but reverses when groups are combined is ____'s paradox.", correctAnswer: "simpson", explanation: "Simpson's paradox arises from differing group sizes/baselines." },
+      { topicSlug: "risk-expected-value-decisions", prompt: "Each outcome's value weighted by its probability, then summed, is the ____ value.", correctAnswer: "expected", explanation: "Expected value combines magnitude and probability." },
     ],
   },
   {
     kind: "homework",
-    title: "Homework 4.2 — Values, writing, and misinformation",
+    title: "Homework 4.2 — Studies, money, and misinformation",
     weekNumber: 4,
     isTimed: false,
     timeLimitMinutes: null,
     instructions: "Untimed practice.",
     problems: [
-      { topicSlug: "moral-value-reasoning", prompt: "A claim about what OUGHT to be the case (rather than what is) is a ____ claim.", correctAnswer: "normative", explanation: "Normative (value) claims concern what ought to be; they cannot be derived from facts alone." },
-      { topicSlug: "reasoning-in-writing", prompt: "The single main claim an argumentative essay defends is called its ____.", correctAnswer: "thesis", explanation: "The thesis is the conclusion the whole essay supports." },
-      { topicSlug: "detecting-misinformation", prompt: "Misinformation spread deliberately to deceive is specifically called ____.", correctAnswer: "disinformation", explanation: "Disinformation is intentional; misinformation may be unintentional." },
-      { topicSlug: "critical-thinking-across-domains", prompt: "Using a reasoning skill learned in one area in a brand-new area is called ____.", correctAnswer: "transfer", explanation: "Transfer is using a skill in a new context; it must be built deliberately." },
+      { topicSlug: "evaluating-studies-polls-claims", prompt: "A study that can support causation (not just correlation) randomly assigns subjects and is called a randomized controlled ____.", correctAnswer: "trial", explanation: "Randomized controlled trials can establish causation." },
+      { topicSlug: "financial-economic-reasoning", prompt: "A 3% raise during 4% inflation is, in real terms, a pay ____.", correctAnswer: "cut", explanation: "Real value falls because inflation outpaces the nominal raise." },
+      { topicSlug: "detecting-quantitative-misinformation", prompt: "A scary statistic given with no traceable origin is missing what? (One word.)", correctAnswer: "source", explanation: "No traceable source is a top red flag for misinformation." },
+      { topicSlug: "quantitative-reasoning-across-domains", prompt: "Using a reasoning skill learned in one area in a brand-new area is called ____.", correctAnswer: "transfer", explanation: "Transfer must be built deliberately by asking the same core questions everywhere." },
     ],
   },
   {
@@ -1008,16 +1094,16 @@ const ASSIGNMENTS: SeedAssignment[] = [
     timeLimitMinutes: 90,
     instructions: "Cumulative final. 90 minutes. Pasting disabled.",
     problems: [
-      { topicSlug: "arguments-vs-nonarguments", prompt: "'We should leave now, because the storm is coming.' Argument or non-argument?", correctAnswer: "argument", explanation: "A reason supports a conclusion, so it is an argument." },
-      { topicSlug: "premises-and-conclusions", prompt: "In 'Since taxes rose, prices increased,' which word is the premise indicator?", correctAnswer: "since", explanation: "'Since' flags the premise 'taxes rose'." },
-      { topicSlug: "validity-and-soundness", prompt: "An argument that is valid and has all true premises is ____.", correctAnswer: "sound", explanation: "Validity plus true premises equals soundness." },
-      { topicSlug: "deductive-vs-inductive", prompt: "Reasoning from a representative sample to a claim about the whole population is deductive or inductive?", correctAnswer: "inductive", explanation: "Generalization from a sample is inductive." },
-      { topicSlug: "propositional-logic-truth-tables", prompt: "Denying the antecedent (P→Q, not P, therefore not Q) is valid or invalid?", correctAnswer: "invalid", explanation: "It is a formal fallacy; Q may still hold for other reasons." },
-      { topicSlug: "fallacies-of-relevance", prompt: "Dismissing a study because of who funded it, rather than its evidence, is which fallacy? (Latin.)", correctAnswer: "ad hominem", explanation: "Attacking the source instead of the argument is ad hominem (circumstantial)." },
-      { topicSlug: "fallacies-weak-induction", prompt: "'I took the supplement and my cold went away, so it cured me.' Which fallacy? (Latin, two words.)", correctAnswer: "post hoc", explanation: "Post hoc mistakes sequence for causation." },
-      { topicSlug: "cognitive-biases-motivated-reasoning", prompt: "Favoring evidence that confirms what you already believe is ____ bias.", correctAnswer: "confirmation", explanation: "Confirmation bias is the tendency to seek belief-consistent evidence." },
-      { topicSlug: "probability-statistical-reasoning", prompt: "An outcome's value times its probability gives its ____ value.", correctAnswer: "expected", explanation: "Expected value combines magnitude and probability." },
-      { topicSlug: "capstone-synthesis", prompt: "A claim is worth believing when its premises are true AND its reasoning is valid or ____.", correctAnswer: "strong", explanation: "Deductive reasoning must be valid; inductive reasoning must be strong." },
+      { topicSlug: "reading-reconstructing-quantitative-claims", prompt: "For any number you meet, the missing piece that turns a numerator into a real claim is the ____.", correctAnswer: "denominator", explanation: "A numerator without its denominator is an unfinished claim." },
+      { topicSlug: "percentages-change-base-rates", prompt: "In the percentage-change formula, the base you divide by is the new value or the old value?", correctAnswer: "old", explanation: "Percent change = (new − old)/old; the base is the old value." },
+      { topicSlug: "exponential-growth-decay", prompt: "The time for an exponentially decaying quantity to fall to half its value is its ____.", correctAnswer: "half-life", explanation: "Half-life is the time to halve under exponential decay." },
+      { topicSlug: "fermi-estimation", prompt: "Fermi estimates land the right order of magnitude because over- and under-estimates tend to ____.", correctAnswer: "cancel", explanation: "Roughly random over/under guesses partly cancel when multiplied." },
+      { topicSlug: "distributions-averages-outliers", prompt: "A value far from the rest of the data, which can distort the mean, is an ____.", correctAnswer: "outlier", explanation: "Outliers pull the mean and must be investigated, not ignored." },
+      { topicSlug: "conditional-probability-base-rate-neglect", prompt: "P(A given B) is generally NOT equal to P(B given A); confusing them is the confusion of the ____.", correctAnswer: "inverse", explanation: "The confusion of the inverse swaps a conditional probability for its reverse." },
+      { topicSlug: "correlation-causation-confounding", prompt: "Ice-cream sales and drownings both rise in summer because of a shared confounder — name it (one word).", correctAnswer: "heat", explanation: "Summer heat drives both; neither causes the other." },
+      { topicSlug: "statistical-fallacies-number-abuse", prompt: "Running many tests and reporting only the one that looks significant is called p-____.", correctAnswer: "hacking", explanation: "p-hacking manufactures significance out of noise." },
+      { topicSlug: "risk-expected-value-decisions", prompt: "'This drug doubles your risk' is meaningless without converting relative risk to ____ risk.", correctAnswer: "absolute", explanation: "Relative risk needs the absolute base rate to be informative." },
+      { topicSlug: "capstone-synthesis", prompt: "A quantitative claim is worth believing when the numbers are real, the comparison is fair, the method is sound, and the magnitude actually ____.", correctAnswer: "matters", explanation: "Statistical significance is not enough; the effect must be large enough to matter." },
     ],
   },
 ];

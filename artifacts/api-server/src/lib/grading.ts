@@ -49,7 +49,7 @@ export async function gradeAnswer(opts: {
 
   try {
     const out = await chatJson<{ correct: boolean; explanation: string }>(
-      "You grade short critical-thinking answers. Decide if the student's answer is equivalent in meaning to the correct answer (accept synonyms, paraphrases, different word forms, minor spelling differences, and answers with or without surrounding explanation, as long as the key concept matches). Output strict JSON {\"correct\": boolean, \"explanation\": string} where explanation is 1-3 short sentences and includes the correct answer.",
+      "You grade short quantitative-reasoning answers. Decide if the student's answer is equivalent in meaning to the correct answer (accept synonyms, paraphrases, different word forms, minor spelling differences, and answers with or without surrounding explanation, as long as the key concept matches). Output strict JSON {\"correct\": boolean, \"explanation\": string} where explanation is 1-3 short sentences and includes the correct answer.",
       JSON.stringify({
         prompt: opts.prompt,
         correct_answer: correct,

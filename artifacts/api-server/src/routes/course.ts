@@ -18,24 +18,24 @@ const router: IRouter = Router();
 
 const WEEK_TITLES: Record<number, { title: string; summary: string }> = {
   1: {
-    title: "Week 1 — Foundations of critical thinking",
+    title: "Week 1 — Foundations of quantitative reasoning",
     summary:
-      "Claims and truth, arguments vs. non-arguments, premises and conclusions, reconstructing, diagramming, and charitable interpretation.",
+      "Magnitude and the number line, estimation and orders of magnitude, units and sanity checks, ratios and rates, percentages and base rates, and reading quantitative claims.",
   },
   2: {
-    title: "Week 2 — Logic and reasoning",
+    title: "Week 2 — Quantitative inference and modeling",
     summary:
-      "Deductive vs. inductive, validity and soundness, categorical and propositional logic, induction, analogy, and causal reasoning.",
+      "Quantitative arguments vs. noise, validity and error, linear vs. nonlinear thinking, exponential growth, counting and combinatorics, modeling with functions, and Fermi estimation.",
   },
   3: {
-    title: "Week 3 — Fallacies, bias, and rhetoric",
+    title: "Week 3 — Statistics, probability, and data",
     summary:
-      "Informal fallacies, rhetoric and spin, cognitive biases, language and definition, and judging sources.",
+      "Descriptive statistics, distributions and outliers, variation and spread, probability, conditional probability and base rates, correlation vs. causation, and sampling and bias.",
   },
   4: {
-    title: "Week 4 — Applied reasoning and capstone",
+    title: "Week 4 — Applied quantitative reasoning and capstone",
     summary:
-      "Probability, evaluating evidence, decisions under uncertainty, moral reasoning, argumentative writing, misinformation, and the capstone.",
+      "Misleading graphs, statistical fallacies, risk and expected value, evaluating studies and polls, financial reasoning, detecting quantitative misinformation, transfer across domains, and the capstone.",
   },
 };
 
@@ -124,7 +124,7 @@ router.get("/course/overview", async (_req, res) => {
 
   res.json(
     GetCourseOverviewResponse.parse({
-      title: "Critical Thinking",
+      title: "Quantitative Reasoning",
       weeks,
       totals: { assignmentsCompleted, assignmentsTotal, practiceCount },
     }),

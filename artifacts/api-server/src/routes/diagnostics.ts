@@ -317,7 +317,7 @@ router.post("/diagnostics/synthetic-run", async (_req, res) => {
           correctAnswer: string;
           explanation: string;
         }>(
-          `You generate a single critical-thinking practice problem on "${topic.title}" at easy difficulty. Respond as strict JSON: {"prompt": string, "correctAnswer": string, "explanation": string}.`,
+          `You generate a single quantitative-reasoning practice problem on "${topic.title}" at easy difficulty. Respond as strict JSON: {"prompt": string, "correctAnswer": string, "explanation": string}.`,
           `New problem on ${topic.title}.`,
         );
         const [stored] = await db
@@ -366,7 +366,7 @@ router.post("/diagnostics/synthetic-run", async (_req, res) => {
   steps.push(
     await run("AI detection scan (pasted-style text should flag)", async () => {
       const r = await detect(
-        "In conclusion, the multifaceted tapestry of critical thinking is paramount to navigating the landscape of modern academic discourse.",
+        "In conclusion, the multifaceted tapestry of quantitative reasoning is paramount to navigating the landscape of modern statistical discourse.",
         {
           keystrokeCount: 8,
           eraseCount: 0,
@@ -456,11 +456,11 @@ router.post("/diagnostics/expand-lectures", async (req, res) => {
       : "Noticeably more explanation: clarify each definition, motivate each rule, and add a short 'why this works' note where useful.";
 
   const sys =
-    `You are a college critical-thinking lecturer producing the ${level.toUpperCase()} version of a lecture. ` +
+    `You are a college quantitative-reasoning lecturer producing the ${level.toUpperCase()} version of a lecture. ` +
     "You are given the SHORT version of the lecture. Rewrite it as a longer teaching version. RULES, no exceptions:\n" +
     "1. KEEP every heading and every concept from the SHORT version, in the same order, with the same names. You may add new sub-sections only when needed to introduce additional examples — but no new top-level topics.\n" +
     `2. ${moreExplanation}\n` +
-    `3. ${moreExamples} Use \`## Example\` / \`### Example 1\`, \`### Example 2\` headings, with numbered steps that walk through analyzing the argument or reasoning.\n` +
+    `3. ${moreExamples} Use \`## Example\` / \`### Example 1\`, \`### Example 2\` headings, with numbered steps that walk through the reasoning or computation.\n` +
     `4. Length target: ${ratio}.\n` +
     "5. Friendly, plain English. No filler, no hedging, no 'in conclusion'. Examples carry the load.\n" +
     "6. Return ONLY the rewritten Markdown lecture body. No preface, no commentary, no code fences around the whole thing.";

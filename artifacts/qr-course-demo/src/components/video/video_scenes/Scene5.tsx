@@ -8,12 +8,12 @@ export function Scene5({ setCursorPos, setIsClicking }: { setCursorPos: (pos: {x
 
   useEffect(() => {
     // 0-2.0s: Settles, streams problem 1.
-    // 2.0-3.5s: Cursor to textarea, types "straw man".
+    // 2.0-3.5s: Cursor to textarea, types "$45".
     // 3.5-4.5s: Cursor to Submit, clicks, loading.
     // 4.5-6.0s: Red pill streams explanation. Score 0/1.
     // 6.0-7.0s: Toast down.
     // 7.0-8.5s: Problem 2 streams.
-    // 8.5-10.5s: Cursor types "bandwagon" via keyboard.
+    // 8.5-10.5s: Cursor types "$30" via keyboard.
     // 10.5-11.5s: Cursor clicks Submit.
     // 11.5-14s: Green pill, toast up.
 
@@ -26,7 +26,7 @@ export function Scene5({ setCursorPos, setIsClicking }: { setCursorPos: (pos: {x
     }, 2000);
 
     const t3 = setTimeout(() => {
-      setTypedAnswer("straw man");
+      setTypedAnswer("$45");
     }, 3000);
 
     const t4 = setTimeout(() => {
@@ -50,11 +50,11 @@ export function Scene5({ setCursorPos, setIsClicking }: { setCursorPos: (pos: {x
 
     const t9 = setTimeout(() => {
       setCursorPos({ x: '35vw', y: '82vh' }); // move to keyboard
-      setTypedAnswer("b");
+      setTypedAnswer("$");
     }, 8500);
-    const t10 = setTimeout(() => setTypedAnswer("ban"), 9000);
-    const t11 = setTimeout(() => setTypedAnswer("bandw"), 9500);
-    const t12 = setTimeout(() => setTypedAnswer("bandwagon"), 10000);
+    const t10 = setTimeout(() => setTypedAnswer("$3"), 9000);
+    const t11 = setTimeout(() => setTypedAnswer("$30"), 9500);
+    const t12 = setTimeout(() => setTypedAnswer("$30"), 10000);
 
     const t13 = setTimeout(() => {
       setCursorPos({ x: '70vw', y: '60vh' }); // Move to Submit
@@ -110,8 +110,8 @@ export function Scene5({ setCursorPos, setIsClicking }: { setCursorPos: (pos: {x
         <div className="text-xs font-bold text-muted-foreground tracking-widest uppercase mb-4">Topic Practice</div>
         <div className="flex justify-between items-end mb-8">
           <div>
-            <h1 className="text-4xl font-serif text-primary mb-2">Informal fallacies</h1>
-            <div className="text-sm text-muted-foreground">Week 3 · 1 prior attempt · 1% accuracy · <span className="text-emerald-600 font-semibold">STRONG</span></div>
+            <h1 className="text-4xl font-serif text-primary mb-2">Percentages and base rates</h1>
+            <div className="text-sm text-muted-foreground">Week 1 · 1 prior attempt · 1% accuracy · <span className="text-emerald-600 font-semibold">STRONG</span></div>
           </div>
           <div className="text-sm font-medium border border-border px-3 py-1 rounded-md bg-white">
             Session score: {phase < 2 ? '0/0' : phase < 5 ? '0/1' : '1/2'}
@@ -126,10 +126,10 @@ export function Scene5({ setCursorPos, setIsClicking }: { setCursorPos: (pos: {x
         <div className="bg-white border border-border rounded-xl shadow-sm overflow-hidden flex flex-col min-h-[400px]">
           <div className="p-8 flex-1 border-b border-border text-lg text-primary font-medium leading-relaxed">
             {phase >= 1 && phase < 4 && (
-              <StreamingText text="&quot;You can't trust his economic plan — he's been divorced twice.&quot; Which informal fallacy does this commit?" delay={0} />
+              <StreamingText text="A $50 jacket is marked up 20%, then discounted 25% off the new price. What is the final price, in dollars?" delay={0} />
             )}
             {phase >= 4 && (
-              <StreamingText text="&quot;Everyone is switching to this app, so it must be the best one.&quot; Which fallacy is this?" delay={0} />
+              <StreamingText text="A $40 item is raised 50%, then put on sale for 50% off. What is the final price, in dollars?" delay={0} />
             )}
           </div>
           
@@ -159,7 +159,7 @@ export function Scene5({ setCursorPos, setIsClicking }: { setCursorPos: (pos: {x
                     <span>Not quite</span>
                   </div>
                   <div className="text-sm text-red-900 leading-relaxed">
-                    <StreamingText text="This attacks the person, not the argument — that's an ad hominem. His marital history has no bearing on whether his economic plan is sound." delay={0} />
+                    <StreamingText text="Close, but percentages compound on different bases. $50 × 1.20 = $60, then $60 × 0.75 = $45. The markup and discount don't cancel because each acts on a different amount." delay={0} />
                   </div>
                 </motion.div>
               )}
@@ -174,7 +174,7 @@ export function Scene5({ setCursorPos, setIsClicking }: { setCursorPos: (pos: {x
                     <span>Correct!</span>
                   </div>
                   <div className="text-sm text-emerald-900 leading-relaxed">
-                    <StreamingText text="Right — this is the bandwagon fallacy (ad populum). How many people do something is not evidence that it is correct or best." delay={0} />
+                    <StreamingText text="Right — $40 × 1.50 = $60, then $60 × 0.50 = $30. A 50% increase followed by a 50% decrease lands below the original, because the decrease acts on a larger base." delay={0} />
                   </div>
                 </motion.div>
               )}
@@ -182,13 +182,13 @@ export function Scene5({ setCursorPos, setIsClicking }: { setCursorPos: (pos: {x
 
             <div className="mt-4">
               <div className="flex space-x-2 border-b border-border pb-2 mb-3 overflow-x-auto text-xs font-medium">
-                <div className="px-3 py-1 border-b-2 border-primary text-primary">Fallacies</div>
-                {['Logic', 'Arguments', 'Bias', 'Evidence', 'Rhetoric', 'Sources', 'Probability'].map(t => (
+                <div className="px-3 py-1 border-b-2 border-primary text-primary">Percentages</div>
+                {['Ratios', 'Estimation', 'Probability', 'Statistics', 'Growth', 'Causation', 'Graphs'].map(t => (
                   <div key={t} className="px-3 py-1 text-muted-foreground">{t}</div>
                 ))}
               </div>
               <div className="flex flex-wrap gap-2">
-                {['¬', '∧', '∨', '→', '↔', '∴', '∀', '∃', '⊤', '⊥', '≡'].map(sym => (
+                {['%', '×', '÷', '±', '≈', '≤', '≥', '≠', '√', 'π', '∑'].map(sym => (
                   <div key={sym} className="w-10 h-10 bg-white border border-border rounded flex items-center justify-center font-mono text-sm shadow-sm text-foreground/80 hover:bg-muted/50 cursor-pointer">
                     {sym}
                   </div>

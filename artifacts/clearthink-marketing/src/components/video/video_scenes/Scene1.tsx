@@ -57,7 +57,7 @@ export function Scene1() {
           animate={phase >= 3 ? { opacity: 1, filter: 'blur(0px)', y: 0 } : { opacity: 0, filter: 'blur(10px)', y: 20 }}
           transition={{ duration: 0.8, ease: 'circOut' }}
         >
-          The Critical Thinking Studio
+          The Quantitative Reasoning Studio
         </motion.div>
       </div>
     </motion.div>

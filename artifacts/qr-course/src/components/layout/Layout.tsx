@@ -46,7 +46,7 @@ export function Sidebar() {
       </div>
 
       <div className="p-4 border-t border-border text-xs text-muted-foreground text-center">
-        Critical Thinking MVP
+        Quantitative Reasoning MVP
       </div>
     </div>
   );
