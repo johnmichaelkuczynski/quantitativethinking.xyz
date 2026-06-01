@@ -1,0 +1,31 @@
+kind = "video"
+previewPath = "/marketing/"
+title = "ClearThink Marketing Video"
+version = "1.0.0"
+id = "artifacts/clearthink-marketing"
+router = "path"
+
+[[integratedSkills]]
+name = "video-js"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/marketing/" ]
+localPort = 19089
+
+[services.development]
+run = "pnpm --filter @workspace/clearthink-marketing run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/clearthink-marketing", "run", "build" ]
+publicDir = "artifacts/clearthink-marketing/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "19089"
+BASE_PATH = "/marketing/"

@@ -1,5 +1,22 @@
 uploads = []
-generated = []
+
+[[generated]]
+id = "F2xAAtoqLnZqwtRgutRfk"
+uri = "file://artifacts/clearthink-marketing/public/images/bg-library.png"
+type = "image"
+title = "Abstract academic library with glowing books"
+
+[[generated]]
+id = "WBzDA1CvvJMxA0vr54Mts"
+uri = "file://artifacts/clearthink-marketing/public/images/bg-brain.png"
+type = "image"
+title = "Abstract geometric brain with glowing nodes"
+
+[[generated]]
+id = "O1FkgKVGy083gws8NVqyD"
+uri = "file://artifacts/clearthink-marketing/public/images/bg-keystroke.png"
+type = "image"
+title = "Abstract digital keystroke pattern"
 
 [[outputs]]
 id = "k9ub7M-_NtEMTP4gQFmL8"
@@ -12,3 +29,9 @@ id = "zpoa4kJaFwLQ67_UaLoks"
 uri = "file://BLUEPRINT.md"
 type = "text"
 title = "QuantReason — App Blueprint"
+
+[[outputs]]
+id = "xUk-BnqPbHUbTbs3SBxAQ"
+uri = "file://artifacts/clearthink-marketing/public/audio/bg_music.mp3"
+type = "audio"
+title = "background music"
