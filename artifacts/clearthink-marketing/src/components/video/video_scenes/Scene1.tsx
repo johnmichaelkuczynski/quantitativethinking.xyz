@@ -38,7 +38,7 @@ export function Scene1() {
         />
         
         <h1 className="text-[7vw] font-serif font-bold text-text-inverse leading-none tracking-tight">
-          {'Quantitative Think'.split('').map((char, i) => (
+          {'Quantitative Critical Reasoning'.split('').map((char, i) => (
             <motion.span
               key={i}
               className="inline-block"

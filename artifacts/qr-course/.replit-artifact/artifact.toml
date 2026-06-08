@@ -1,6 +1,6 @@
 kind = "web"
 previewPath = "/"
-title = "Quantitative Think"
+title = "Quantitative Critical Reasoning"
 version = "1.0.0"
 id = "artifacts/qr-course"
 router = "path"

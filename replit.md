@@ -1,4 +1,4 @@
-# 🎓 Quantitative Think
+# 🎓 Quantitative Critical Reasoning
 
 **The Quantitative Reasoning Studio — A Four-Week College Course That Teaches, Tutors, and Proofs Itself**
 
@@ -6,11 +6,11 @@
 
 ## 🧩 Overview
 
-Quantitative Think is a self-paced, single-user web course that delivers a full month of college-freshman Quantitative Reasoning — taught, tutored, drilled, and graded entirely by AI, with built-in academic-integrity enforcement.
+Quantitative Critical Reasoning is a self-paced, single-user web course that delivers a full month of college-freshman Quantitative Reasoning — taught, tutored, drilled, and graded entirely by AI, with built-in academic-integrity enforcement.
 
 It compresses the experience of a semester-style quantitative-reasoning class into one focused product: read the lecture at the depth you want, ask a tutor scoped to the exact section you're on, drill problems whose difficulty adapts to you in real time, and submit homework, tests, a midterm, and a final that are AI-graded with feedback and screened for AI-generated answers.
 
-Designed for **students, instructors evaluating AI-taught coursework, and researchers studying AI academic integrity**, Quantitative Think pairs a real curriculum with two layers of AI-authorship detection — surfacing not just *whether* the writing looks AI-generated, but whether the *act of producing it* did.
+Designed for **students, instructors evaluating AI-taught coursework, and researchers studying AI academic integrity**, Quantitative Critical Reasoning pairs a real curriculum with two layers of AI-authorship detection — surfacing not just *whether* the writing looks AI-generated, but whether the *act of producing it* did.
 
 ---
 
@@ -56,8 +56,8 @@ Designed for **students, instructors evaluating AI-taught coursework, and resear
 
 ## 💡 Core Idea
 
-Quantitative Think reframes an AI-taught course as a *closed accountability loop*.
+Quantitative Critical Reasoning reframes an AI-taught course as a *closed accountability loop*.
 
 It doesn't just teach the material and grade the homework — it **teaches**, **tutors**, **drills**, **grades**, **detects misuse**, and **proves the whole pipeline still works** with a single click. The result is a self-paced course that students can actually trust to be fair, and that instructors can actually trust to be honest.
 
-**Quantitative Think — where the curriculum, the tutor, the grader, and the integrity check all live in one room.**
+**Quantitative Critical Reasoning — where the curriculum, the tutor, the grader, and the integrity check all live in one room.**

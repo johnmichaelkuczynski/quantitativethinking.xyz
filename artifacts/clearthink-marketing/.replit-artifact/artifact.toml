@@ -1,6 +1,6 @@
 kind = "video"
 previewPath = "/marketing/"
-title = "Quantitative Think Marketing Video"
+title = "Quantitative Critical Reasoning Marketing Video"
 version = "1.0.0"
 id = "artifacts/clearthink-marketing"
 router = "path"
