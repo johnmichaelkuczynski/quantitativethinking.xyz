@@ -15,5 +15,7 @@ export interface TutorAskInput {
   /** @nullable */
   lectureId?: number | null;
   /** @nullable */
+  topicId?: number | null;
+  /** @nullable */
   problemId?: number | null;
 }

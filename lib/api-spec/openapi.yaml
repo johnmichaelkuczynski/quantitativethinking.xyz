@@ -278,6 +278,132 @@ paths:
               schema:
                 $ref: "#/components/schemas/PracticeGrade"
 
+  /assignments/{assignmentId}/practice-attempts:
+    get:
+      operationId: listPracticeAttempts
+      tags: [practice]
+      summary: List a user's practice runs for a given graded assignment
+      parameters:
+        - name: assignmentId
+          in: path
+          required: true
+          schema: { type: integer }
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/PracticeAttemptSummary"
+    post:
+      operationId: createPracticeAttempt
+      tags: [practice]
+      summary: Generate a fresh, unique practice version of a graded assignment
+      parameters:
+        - name: assignmentId
+          in: path
+          required: true
+          schema: { type: integer }
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreatePracticeAttemptInput"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PracticeAttempt"
+
+  /practice-attempts/{practiceAttemptId}:
+    get:
+      operationId: getPracticeAttempt
+      tags: [practice]
+      summary: Get a practice attempt with problems, saved answers, result, and dialogue
+      parameters:
+        - name: practiceAttemptId
+          in: path
+          required: true
+          schema: { type: integer }
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PracticeAttempt"
+
+  /practice-attempts/{practiceAttemptId}/answer:
+    put:
+      operationId: savePracticeAttemptAnswer
+      tags: [practice]
+      summary: Save (or update) a single answer on a practice attempt
+      parameters:
+        - name: practiceAttemptId
+          in: path
+          required: true
+          schema: { type: integer }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SavePracticeAttemptAnswerInput"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AnswerSaved"
+
+  /practice-attempts/{practiceAttemptId}/submit:
+    post:
+      operationId: submitPracticeAttempt
+      tags: [practice]
+      summary: Submit a practice attempt for heavy feedback + analytics focus pointers
+      parameters:
+        - name: practiceAttemptId
+          in: path
+          required: true
+          schema: { type: integer }
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PracticeAttemptResult"
+
+  /practice-attempts/{practiceAttemptId}/messages:
+    post:
+      operationId: sendPracticeAttemptMessage
+      tags: [practice]
+      summary: Dialogue with the app about a practice attempt's feedback
+      parameters:
+        - name: practiceAttemptId
+          in: path
+          required: true
+          schema: { type: integer }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SendPracticeMessageInput"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PracticeMessageReply"
+
   /tutor/ask:
     post:
       operationId: askTutor
@@ -620,6 +746,150 @@ components:
         newDifficulty: { type: number }
         tutorTip: { type: ["string", "null"] }
 
+    CreatePracticeAttemptInput:
+      type: object
+      properties:
+        focus:
+          type: ["string", "null"]
+          description: Optional free-form request, e.g. "make the percentages harder"
+
+    PracticeAttemptSummary:
+      type: object
+      required: [id, sourceAssignmentId, status, startedAt, problemCount]
+      properties:
+        id: { type: integer }
+        sourceAssignmentId: { type: integer }
+        status:
+          type: string
+          enum: [in_progress, submitted]
+        startedAt: { type: string, format: date-time }
+        submittedAt: { type: ["string", "null"], format: date-time }
+        scorePercent: { type: ["number", "null"] }
+        problemCount: { type: integer }
+
+    PracticeAttemptProblem:
+      type: object
+      required: [id, position, prompt, topicId]
+      properties:
+        id: { type: integer }
+        position: { type: integer }
+        prompt: { type: string }
+        topicId: { type: integer }
+        topicTitle: { type: ["string", "null"] }
+
+    PracticeAttemptSavedAnswer:
+      type: object
+      required: [problemId, answer]
+      properties:
+        problemId: { type: integer }
+        answer: { type: string }
+
+    PracticeMessage:
+      type: object
+      required: [id, role, content, at]
+      properties:
+        id: { type: integer }
+        role:
+          type: string
+          enum: [user, assistant]
+        content: { type: string }
+        at: { type: string, format: date-time }
+
+    PracticeAttempt:
+      type: object
+      required: [id, sourceAssignmentId, sourceTitle, kind, weekNumber, status, startedAt, problems, savedAnswers, messages]
+      properties:
+        id: { type: integer }
+        sourceAssignmentId: { type: integer }
+        sourceTitle: { type: string }
+        kind:
+          type: string
+          enum: [homework, test, midterm, final]
+        weekNumber: { type: integer }
+        status:
+          type: string
+          enum: [in_progress, submitted]
+        startedAt: { type: string, format: date-time }
+        submittedAt: { type: ["string", "null"], format: date-time }
+        difficulty: { type: number }
+        problems:
+          type: array
+          items:
+            $ref: "#/components/schemas/PracticeAttemptProblem"
+        savedAnswers:
+          type: array
+          items:
+            $ref: "#/components/schemas/PracticeAttemptSavedAnswer"
+        messages:
+          type: array
+          items:
+            $ref: "#/components/schemas/PracticeMessage"
+        result:
+          oneOf:
+            - $ref: "#/components/schemas/PracticeAttemptResult"
+            - type: "null"
+
+    SavePracticeAttemptAnswerInput:
+      type: object
+      required: [problemId, answer]
+      properties:
+        problemId: { type: integer }
+        answer: { type: string }
+        trace:
+          oneOf:
+            - $ref: "#/components/schemas/KeystrokeTrace"
+            - type: "null"
+
+    PracticePerProblemResult:
+      type: object
+      required: [problemId, position, prompt, correct, userAnswer, correctAnswer, explanation, feedback]
+      properties:
+        problemId: { type: integer }
+        position: { type: integer }
+        prompt: { type: string }
+        correct: { type: boolean }
+        userAnswer: { type: string }
+        correctAnswer: { type: string }
+        explanation: { type: string }
+        feedback: { type: string }
+        topicTitle: { type: ["string", "null"] }
+
+    PracticeAttemptResult:
+      type: object
+      required: [practiceAttemptId, score, total, percent, perProblem, focusPointers, readinessLabel, readinessSummary]
+      properties:
+        practiceAttemptId: { type: integer }
+        score: { type: number }
+        total: { type: number }
+        percent: { type: number }
+        perProblem:
+          type: array
+          items:
+            $ref: "#/components/schemas/PracticePerProblemResult"
+        focusPointers:
+          type: array
+          items: { type: string }
+        readinessLabel:
+          type: string
+          enum: [ready, almost, not_ready]
+        readinessSummary: { type: string }
+
+    SendPracticeMessageInput:
+      type: object
+      required: [message]
+      properties:
+        message: { type: string }
+
+    PracticeMessageReply:
+      type: object
+      required: [text, messages]
+      properties:
+        text: { type: string }
+        messages:
+          type: array
+          items:
+            $ref: "#/components/schemas/PracticeMessage"
+
     TutorAskInput:
       type: object
       required: [message]
@@ -628,6 +898,7 @@ components:
         message: { type: string }
         selectedLectureText: { type: ["string", "null"] }
         lectureId: { type: ["integer", "null"] }
+        topicId: { type: ["integer", "null"] }
         problemId: { type: ["integer", "null"] }
 
     TutorReply:

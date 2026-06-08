@@ -345,6 +345,223 @@ export const GradePracticeAnswerResponse = zod.object({
 
 
 /**
+ * @summary List a user's practice runs for a given graded assignment
+ */
+export const ListPracticeAttemptsParams = zod.object({
+  "assignmentId": zod.coerce.number()
+})
+
+export const ListPracticeAttemptsResponseItem = zod.object({
+  "id": zod.number(),
+  "sourceAssignmentId": zod.number(),
+  "status": zod.enum(['in_progress', 'submitted']),
+  "startedAt": zod.coerce.date(),
+  "submittedAt": zod.coerce.date().nullish(),
+  "scorePercent": zod.number().nullish(),
+  "problemCount": zod.number()
+})
+export const ListPracticeAttemptsResponse = zod.array(ListPracticeAttemptsResponseItem)
+
+
+/**
+ * @summary Generate a fresh, unique practice version of a graded assignment
+ */
+export const CreatePracticeAttemptParams = zod.object({
+  "assignmentId": zod.coerce.number()
+})
+
+export const CreatePracticeAttemptBody = zod.object({
+  "focus": zod.string().nullish().describe('Optional free-form request, e.g. \"make the percentages harder\"')
+})
+
+export const CreatePracticeAttemptResponse = zod.object({
+  "id": zod.number(),
+  "sourceAssignmentId": zod.number(),
+  "sourceTitle": zod.string(),
+  "kind": zod.enum(['homework', 'test', 'midterm', 'final']),
+  "weekNumber": zod.number(),
+  "status": zod.enum(['in_progress', 'submitted']),
+  "startedAt": zod.coerce.date(),
+  "submittedAt": zod.coerce.date().nullish(),
+  "difficulty": zod.number().optional(),
+  "problems": zod.array(zod.object({
+  "id": zod.number(),
+  "position": zod.number(),
+  "prompt": zod.string(),
+  "topicId": zod.number(),
+  "topicTitle": zod.string().nullish()
+})),
+  "savedAnswers": zod.array(zod.object({
+  "problemId": zod.number(),
+  "answer": zod.string()
+})),
+  "messages": zod.array(zod.object({
+  "id": zod.number(),
+  "role": zod.enum(['user', 'assistant']),
+  "content": zod.string(),
+  "at": zod.coerce.date()
+})),
+  "result": zod.union([zod.object({
+  "practiceAttemptId": zod.number(),
+  "score": zod.number(),
+  "total": zod.number(),
+  "percent": zod.number(),
+  "perProblem": zod.array(zod.object({
+  "problemId": zod.number(),
+  "position": zod.number(),
+  "prompt": zod.string(),
+  "correct": zod.boolean(),
+  "userAnswer": zod.string(),
+  "correctAnswer": zod.string(),
+  "explanation": zod.string(),
+  "feedback": zod.string(),
+  "topicTitle": zod.string().nullish()
+})),
+  "focusPointers": zod.array(zod.string()),
+  "readinessLabel": zod.enum(['ready', 'almost', 'not_ready']),
+  "readinessSummary": zod.string()
+}),zod.null()]).optional()
+})
+
+
+/**
+ * @summary Get a practice attempt with problems, saved answers, result, and dialogue
+ */
+export const GetPracticeAttemptParams = zod.object({
+  "practiceAttemptId": zod.coerce.number()
+})
+
+export const GetPracticeAttemptResponse = zod.object({
+  "id": zod.number(),
+  "sourceAssignmentId": zod.number(),
+  "sourceTitle": zod.string(),
+  "kind": zod.enum(['homework', 'test', 'midterm', 'final']),
+  "weekNumber": zod.number(),
+  "status": zod.enum(['in_progress', 'submitted']),
+  "startedAt": zod.coerce.date(),
+  "submittedAt": zod.coerce.date().nullish(),
+  "difficulty": zod.number().optional(),
+  "problems": zod.array(zod.object({
+  "id": zod.number(),
+  "position": zod.number(),
+  "prompt": zod.string(),
+  "topicId": zod.number(),
+  "topicTitle": zod.string().nullish()
+})),
+  "savedAnswers": zod.array(zod.object({
+  "problemId": zod.number(),
+  "answer": zod.string()
+})),
+  "messages": zod.array(zod.object({
+  "id": zod.number(),
+  "role": zod.enum(['user', 'assistant']),
+  "content": zod.string(),
+  "at": zod.coerce.date()
+})),
+  "result": zod.union([zod.object({
+  "practiceAttemptId": zod.number(),
+  "score": zod.number(),
+  "total": zod.number(),
+  "percent": zod.number(),
+  "perProblem": zod.array(zod.object({
+  "problemId": zod.number(),
+  "position": zod.number(),
+  "prompt": zod.string(),
+  "correct": zod.boolean(),
+  "userAnswer": zod.string(),
+  "correctAnswer": zod.string(),
+  "explanation": zod.string(),
+  "feedback": zod.string(),
+  "topicTitle": zod.string().nullish()
+})),
+  "focusPointers": zod.array(zod.string()),
+  "readinessLabel": zod.enum(['ready', 'almost', 'not_ready']),
+  "readinessSummary": zod.string()
+}),zod.null()]).optional()
+})
+
+
+/**
+ * @summary Save (or update) a single answer on a practice attempt
+ */
+export const SavePracticeAttemptAnswerParams = zod.object({
+  "practiceAttemptId": zod.coerce.number()
+})
+
+export const savePracticeAttemptAnswerBodyTraceOneBulkInsertCountDefault = 0;
+export const savePracticeAttemptAnswerBodyTraceOneLongestBulkInsertCharsDefault = 0;
+export const savePracticeAttemptAnswerBodyTraceOneRewriteSegmentsDefault = 0;
+
+export const SavePracticeAttemptAnswerBody = zod.object({
+  "problemId": zod.number(),
+  "answer": zod.string(),
+  "trace": zod.union([zod.object({
+  "keystrokeCount": zod.number(),
+  "eraseCount": zod.number(),
+  "bulkInsertCount": zod.number().default(savePracticeAttemptAnswerBodyTraceOneBulkInsertCountDefault),
+  "longestBulkInsertChars": zod.number().default(savePracticeAttemptAnswerBodyTraceOneLongestBulkInsertCharsDefault),
+  "rewriteSegments": zod.number().default(savePracticeAttemptAnswerBodyTraceOneRewriteSegmentsDefault),
+  "durationMs": zod.number()
+}),zod.null()]).optional()
+})
+
+export const SavePracticeAttemptAnswerResponse = zod.object({
+  "ok": zod.boolean()
+})
+
+
+/**
+ * @summary Submit a practice attempt for heavy feedback + analytics focus pointers
+ */
+export const SubmitPracticeAttemptParams = zod.object({
+  "practiceAttemptId": zod.coerce.number()
+})
+
+export const SubmitPracticeAttemptResponse = zod.object({
+  "practiceAttemptId": zod.number(),
+  "score": zod.number(),
+  "total": zod.number(),
+  "percent": zod.number(),
+  "perProblem": zod.array(zod.object({
+  "problemId": zod.number(),
+  "position": zod.number(),
+  "prompt": zod.string(),
+  "correct": zod.boolean(),
+  "userAnswer": zod.string(),
+  "correctAnswer": zod.string(),
+  "explanation": zod.string(),
+  "feedback": zod.string(),
+  "topicTitle": zod.string().nullish()
+})),
+  "focusPointers": zod.array(zod.string()),
+  "readinessLabel": zod.enum(['ready', 'almost', 'not_ready']),
+  "readinessSummary": zod.string()
+})
+
+
+/**
+ * @summary Dialogue with the app about a practice attempt's feedback
+ */
+export const SendPracticeAttemptMessageParams = zod.object({
+  "practiceAttemptId": zod.coerce.number()
+})
+
+export const SendPracticeAttemptMessageBody = zod.object({
+  "message": zod.string()
+})
+
+export const SendPracticeAttemptMessageResponse = zod.object({
+  "text": zod.string(),
+  "messages": zod.array(zod.object({
+  "id": zod.number(),
+  "role": zod.enum(['user', 'assistant']),
+  "content": zod.string(),
+  "at": zod.coerce.date()
+}))
+})
+
+
+/**
  * @summary Ask the AI tutor a question (text reply with optional spoken audio URL)
  */
 export const AskTutorBody = zod.object({
@@ -352,6 +569,7 @@ export const AskTutorBody = zod.object({
   "message": zod.string(),
   "selectedLectureText": zod.string().nullish(),
   "lectureId": zod.number().nullish(),
+  "topicId": zod.number().nullish(),
   "problemId": zod.number().nullish()
 })
 

@@ -1,2 +1,3 @@
 - [Course subject migration](course-subject-migration.md) — rebranding/subject-swapping this AI-course app touches far more than seed.ts; checklist of the non-obvious surfaces.
 - [video-js scene import quirk](video-js-scene-imports.md) — DESIGN subagent's generated scene files import animations with an off-by-one relative path; fix with the `@/lib/video` alias.
+- [Practice assignment guarantees](practice-assignment-guarantees.md) — qr-course practice: never-reuse is enforced server-side (dedup + randomized fallback), submit flushes answers before grading, tutor visible at all breakpoints.

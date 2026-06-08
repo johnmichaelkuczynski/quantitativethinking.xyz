@@ -1,6 +1,6 @@
 import { Router, type IRouter } from "express";
 import { eq } from "drizzle-orm";
-import { db, lecturesTable } from "@workspace/db";
+import { db, lecturesTable, topicsTable } from "@workspace/db";
 import { AskTutorBody, AskTutorResponse } from "@workspace/api-zod";
 import { chatText, chatJson, FAST_MODEL } from "../lib/ai";
 
@@ -42,12 +42,38 @@ router.post("/tutor/ask", async (req, res): Promise<void> => {
     res.status(400).json({ error: parsed.error.message });
     return;
   }
-  const { message, selectedLectureText } = parsed.data;
+  const { message, selectedLectureText, topicId } = parsed.data;
+
+  // Optional topic scoping: ground the tutor in the topic the student is
+  // currently practicing so practice-time questions stay on-target.
+  let topicContext = "";
+  if (topicId != null) {
+    const [topic] = await db
+      .select()
+      .from(topicsTable)
+      .where(eq(topicsTable.id, topicId));
+    if (topic) {
+      const [lecture] = await db
+        .select()
+        .from(lecturesTable)
+        .where(eq(lecturesTable.topicId, topic.id));
+      topicContext =
+        `The student is practicing the topic "${topic.title}".` +
+        (lecture?.body
+          ? `\n\nRelevant lecture material for this topic:\n"""\n${lecture.body.slice(0, 2500)}\n"""`
+          : "");
+    }
+  }
 
   const sys =
-    "You are an encouraging college quantitative-reasoning tutor. Explain step by step, use concrete numbers and worked examples, and name the relevant concepts (units, ratios, percentages, base rates, probability, correlation vs. causation) where helpful. Keep replies short (3-6 sentences) unless the student asks for more detail. Never just give the answer — guide them.";
-  const user = selectedLectureText
-    ? `Context from the lecture the student is reading:\n"""\n${selectedLectureText}\n"""\n\nStudent question: ${message}`
+    "You are an encouraging, substantive college quantitative-reasoning tutor having a real back-and-forth conversation with one student. Explain step by step, use concrete numbers and fully worked examples, name the relevant concepts (units, ratios, percentages, base rates, probability, correlation vs. causation), and check the student's understanding with a follow-up nudge. Be thorough and genuinely helpful — give as much depth as the question warrants rather than a canned one-liner. When the student is mid-practice, help them reason through the method without simply handing over the final numeric answer.";
+  const contextBlocks = [topicContext, selectedLectureText
+    ? `Context from the lecture the student is reading:\n"""\n${selectedLectureText}\n"""`
+    : ""]
+    .filter(Boolean)
+    .join("\n\n");
+  const user = contextBlocks
+    ? `${contextBlocks}\n\nStudent question: ${message}`
     : message;
 
   let text = "";

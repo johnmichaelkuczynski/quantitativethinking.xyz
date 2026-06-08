@@ -14,7 +14,8 @@ import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 import { AnswerInput } from "@/components/AnswerInput";
-import { ArrowLeft, CheckCircle2, XCircle, RefreshCw } from "lucide-react";
+import { LiveTutorPanel } from "@/components/TutorPanel";
+import { ArrowLeft, CheckCircle2, XCircle, RefreshCw, MessageSquare } from "lucide-react";
 
 function difficultyFromAccuracy(attempts: number, accuracy: number): {
   value: number;
@@ -151,7 +152,10 @@ export default function TopicPractice() {
 
   return (
     <Layout>
-      <div className="p-6 md:p-8 max-w-3xl mx-auto w-full flex flex-col gap-5">
+      <div className="flex-1 grid grid-cols-1 lg:grid-cols-[1fr_420px] gap-0 min-h-0">
+        {/* LEFT: practice */}
+        <div className="overflow-y-auto px-6 md:px-8 py-6 lg:border-r border-border">
+          <div className="max-w-3xl mx-auto w-full flex flex-col gap-5">
         <div>
           <Link
             href="/analytics"
@@ -280,6 +284,23 @@ export default function TopicPractice() {
             </Button>
           </div>
         )}
+          </div>
+        </div>
+
+        {/* RIGHT: persistent live tutor — stays on screen at every breakpoint */}
+        <div className="flex flex-col min-h-[460px] lg:min-h-0 bg-secondary/20 border-t lg:border-t-0">
+          <div className="flex items-center gap-2 border-b border-border bg-background px-4 py-2.5 text-sm font-semibold">
+            <MessageSquare className="w-4 h-4 text-primary" />
+            Live tutor
+            <span className="ml-auto text-xs font-normal text-muted-foreground">
+              always on during practice
+            </span>
+          </div>
+          <LiveTutorPanel
+            topicId={Number.isNaN(topicId) ? null : topicId}
+            emptyHint="Stuck on a problem? Ask the tutor for a hint or a worked example — it knows the topic you're drilling. The tutor stays with you the whole practice session."
+          />
+        </div>
       </div>
     </Layout>
   );

@@ -257,6 +257,146 @@ export interface PracticeGrade {
   tutorTip?: string | null;
 }
 
+export interface CreatePracticeAttemptInput {
+  /**
+     * Optional free-form request, e.g. "make the percentages harder"
+     * @nullable
+     */
+  focus?: string | null;
+}
+
+export type PracticeAttemptSummaryStatus = typeof PracticeAttemptSummaryStatus[keyof typeof PracticeAttemptSummaryStatus];
+
+
+export const PracticeAttemptSummaryStatus = {
+  in_progress: 'in_progress',
+  submitted: 'submitted',
+} as const;
+
+export interface PracticeAttemptSummary {
+  id: number;
+  sourceAssignmentId: number;
+  status: PracticeAttemptSummaryStatus;
+  startedAt: string;
+  /** @nullable */
+  submittedAt?: string | null;
+  /** @nullable */
+  scorePercent?: number | null;
+  problemCount: number;
+}
+
+export interface PracticeAttemptProblem {
+  id: number;
+  position: number;
+  prompt: string;
+  topicId: number;
+  /** @nullable */
+  topicTitle?: string | null;
+}
+
+export interface PracticeAttemptSavedAnswer {
+  problemId: number;
+  answer: string;
+}
+
+export type PracticeMessageRole = typeof PracticeMessageRole[keyof typeof PracticeMessageRole];
+
+
+export const PracticeMessageRole = {
+  user: 'user',
+  assistant: 'assistant',
+} as const;
+
+export interface PracticeMessage {
+  id: number;
+  role: PracticeMessageRole;
+  content: string;
+  at: string;
+}
+
+export type PracticeAttemptKind = typeof PracticeAttemptKind[keyof typeof PracticeAttemptKind];
+
+
+export const PracticeAttemptKind = {
+  homework: 'homework',
+  test: 'test',
+  midterm: 'midterm',
+  final: 'final',
+} as const;
+
+export type PracticeAttemptStatus = typeof PracticeAttemptStatus[keyof typeof PracticeAttemptStatus];
+
+
+export const PracticeAttemptStatus = {
+  in_progress: 'in_progress',
+  submitted: 'submitted',
+} as const;
+
+export interface PracticePerProblemResult {
+  problemId: number;
+  position: number;
+  prompt: string;
+  correct: boolean;
+  userAnswer: string;
+  correctAnswer: string;
+  explanation: string;
+  feedback: string;
+  /** @nullable */
+  topicTitle?: string | null;
+}
+
+export type PracticeAttemptResultReadinessLabel = typeof PracticeAttemptResultReadinessLabel[keyof typeof PracticeAttemptResultReadinessLabel];
+
+
+export const PracticeAttemptResultReadinessLabel = {
+  ready: 'ready',
+  almost: 'almost',
+  not_ready: 'not_ready',
+} as const;
+
+export interface PracticeAttemptResult {
+  practiceAttemptId: number;
+  score: number;
+  total: number;
+  percent: number;
+  perProblem: PracticePerProblemResult[];
+  focusPointers: string[];
+  readinessLabel: PracticeAttemptResultReadinessLabel;
+  readinessSummary: string;
+}
+
+export interface PracticeAttempt {
+  id: number;
+  sourceAssignmentId: number;
+  sourceTitle: string;
+  kind: PracticeAttemptKind;
+  weekNumber: number;
+  status: PracticeAttemptStatus;
+  startedAt: string;
+  /** @nullable */
+  submittedAt?: string | null;
+  difficulty?: number;
+  problems: PracticeAttemptProblem[];
+  savedAnswers: PracticeAttemptSavedAnswer[];
+  messages: PracticeMessage[];
+  result?: PracticeAttemptResult | null;
+}
+
+export interface SavePracticeAttemptAnswerInput {
+  problemId: number;
+  answer: string;
+  trace?: KeystrokeTrace | null;
+}
+
+export interface SendPracticeMessageInput {
+  message: string;
+}
+
+export interface PracticeMessageReply {
+  text: string;
+  messages: PracticeMessage[];
+}
+
 export interface TutorAskInput {
   /** @nullable */
   sessionId?: number | null;
@@ -265,6 +405,8 @@ export interface TutorAskInput {
   selectedLectureText?: string | null;
   /** @nullable */
   lectureId?: number | null;
+  /** @nullable */
+  topicId?: number | null;
   /** @nullable */
   problemId?: number | null;
 }

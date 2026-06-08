@@ -10,6 +10,7 @@ import Analytics from "@/pages/Analytics";
 import WeekView from "@/pages/WeekView";
 import LectureView from "@/pages/LectureView";
 import AssignmentRunner from "@/pages/AssignmentRunner";
+import PracticeAssignmentRunner from "@/pages/PracticeAssignmentRunner";
 import Diagnostics from "@/pages/Diagnostics";
 import TopicPractice from "@/pages/TopicPractice";
 
@@ -20,6 +21,7 @@ function Router() {
     <Switch>
       <Route path="/" component={Dashboard} />
       <Route path="/assignments" component={Assignments} />
+      <Route path="/assignments/:id/practice" component={PracticeAssignmentRunner} />
       <Route path="/assignments/:id" component={AssignmentRunner} />
       <Route path="/analytics" component={Analytics} />
       <Route path="/diagnostics" component={Diagnostics} />
