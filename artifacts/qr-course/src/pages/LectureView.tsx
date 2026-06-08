@@ -20,7 +20,7 @@ import { ArrowLeft, MessageSquare, Sparkles, X, RefreshCw, CheckCircle2, XCircle
 export default function LectureView() {
   const params = useParams();
   const lectureId = Number(params.lectureId);
-  const { data: lecture, isLoading } = useGetLecture(lectureId);
+  const { data: lecture, isLoading, refetch } = useGetLecture(lectureId);
 
   // shared selected-text state (used by both Tutor and Practice)
   const [selectedText, setSelectedText] = useState("");
@@ -64,6 +64,31 @@ export default function LectureView() {
         ? lecture.bodyMedium
         : (lecture?.body ?? "");
 
+  const [generating, setGenerating] = useState<null | "medium" | "long">(null);
+  const [genError, setGenError] = useState<string | null>(null);
+
+  async function generateLevel(lvl: "medium" | "long") {
+    if (!lecture || generating) return;
+    setGenError(null);
+    setGenerating(lvl);
+    try {
+      const res = await fetch(
+        `/api/diagnostics/expand-lectures?level=${lvl}&id=${lecture.id}`,
+        { method: "POST" },
+      );
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const data = (await res.json()) as { updated?: number };
+      if ((data.updated ?? 0) < 1)
+        throw new Error("Couldn't generate a longer version — please try again.");
+      await refetch();
+      setLevel(lvl);
+    } catch (e) {
+      setGenError((e as Error).message);
+    } finally {
+      setGenerating(null);
+    }
+  }
+
   return (
     <Layout>
       <div className="px-6 pt-4 pb-2">
@@ -92,37 +117,58 @@ export default function LectureView() {
                 <h1 className="text-3xl font-serif font-bold text-primary mb-3 leading-tight">
                   {lecture.title}
                 </h1>
-                <div className="flex items-center justify-between flex-wrap gap-2">
-                  <div className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
+                <div className="flex flex-col items-end gap-1.5 sm:flex-row sm:items-start sm:justify-between">
+                  <div className="text-xs font-medium text-muted-foreground uppercase tracking-wider sm:pt-1.5">
                     Week {lecture.weekNumber}
                   </div>
-                  <div className="inline-flex rounded-md border border-border overflow-hidden text-xs">
-                    {(["short", "medium", "long"] as const).map((lvl) => {
-                      const enabled = availableLevels.includes(lvl);
-                      const active = level === lvl;
-                      return (
-                        <button
-                          key={lvl}
-                          onClick={() => enabled && setLevel(lvl)}
-                          disabled={!enabled}
-                          title={
-                            enabled
-                              ? `${lvl[0].toUpperCase() + lvl.slice(1)} version`
-                              : `${lvl[0].toUpperCase() + lvl.slice(1)} version not generated yet — click "Generate medium + long lectures" in the top bar`
-                          }
-                          className={`px-3 py-1.5 font-medium uppercase tracking-wider transition-colors ${
-                            active
-                              ? "bg-primary text-primary-foreground"
-                              : enabled
-                                ? "bg-background hover:bg-secondary text-foreground"
-                                : "bg-background/50 text-muted-foreground/50 cursor-not-allowed"
-                          }`}
-                          data-testid={`button-level-${lvl}`}
-                        >
-                          {lvl}
-                        </button>
-                      );
-                    })}
+                  <div className="flex flex-col items-end gap-1">
+                    <div className="inline-flex rounded-md border border-border overflow-hidden text-xs">
+                      {(["short", "medium", "long"] as const).map((lvl) => {
+                        const isReady = availableLevels.includes(lvl);
+                        const active = level === lvl;
+                        const isGenerating = generating === lvl;
+                        const canGenerate = !isReady && lvl !== "short";
+                        return (
+                          <button
+                            key={lvl}
+                            onClick={() => {
+                              if (isReady) setLevel(lvl);
+                              else if (canGenerate) generateLevel(lvl);
+                            }}
+                            disabled={generating !== null}
+                            title={
+                              isReady
+                                ? `${lvl[0].toUpperCase() + lvl.slice(1)} version`
+                                : `Generate the ${lvl} version of this lecture now`
+                            }
+                            className={`inline-flex items-center gap-1 px-3 py-1.5 font-medium uppercase tracking-wider transition-colors ${
+                              active
+                                ? "bg-primary text-primary-foreground"
+                                : isReady
+                                  ? "bg-background hover:bg-secondary text-foreground"
+                                  : "bg-background text-primary hover:bg-secondary"
+                            } ${generating !== null ? "cursor-wait opacity-70" : ""}`}
+                            data-testid={`button-level-${lvl}`}
+                          >
+                            {isGenerating ? (
+                              <RefreshCw className="w-3 h-3 animate-spin" />
+                            ) : canGenerate ? (
+                              <Sparkles className="w-3 h-3" />
+                            ) : null}
+                            {lvl}
+                          </button>
+                        );
+                      })}
+                    </div>
+                    <div className="text-[10px] leading-snug text-muted-foreground max-w-[220px] text-right">
+                      {generating ? (
+                        `Generating the ${generating} version of this lecture…`
+                      ) : genError ? (
+                        <span className="text-red-600">{genError}</span>
+                      ) : (
+                        "Medium & long are generated on demand for this lecture only."
+                      )}
+                    </div>
                   </div>
                 </div>
               </header>
