@@ -5,10 +5,13 @@ import {
   useSaveAssessmentAnswer,
   useSubmitAssessment,
   useStartAssessment,
+  getGetAssessmentAttemptQueryKey,
+  getGetAssessmentProgressQueryKey,
   type AssessmentAttempt,
   type AssessmentQuestion,
   type KeystrokeTrace,
 } from "@workspace/api-client-react";
+import { useQueryClient } from "@tanstack/react-query";
 import { Layout } from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -37,6 +40,7 @@ export default function AssessmentRunner() {
   const attemptId = Number(params.id);
   const [, setLocation] = useLocation();
 
+  const queryClient = useQueryClient();
   const { data: attempt, isLoading } = useGetAssessmentAttempt(attemptId);
   const saveAnswer = useSaveAssessmentAnswer();
   const submit = useSubmitAssessment();
@@ -96,6 +100,12 @@ export default function AssessmentRunner() {
     }
     try {
       await submit.mutateAsync({ attemptId });
+      await queryClient.invalidateQueries({
+        queryKey: getGetAssessmentAttemptQueryKey(attemptId),
+      });
+      await queryClient.invalidateQueries({
+        queryKey: getGetAssessmentProgressQueryKey(),
+      });
     } catch {
       /* error surfaced via submit.isError */
     }
@@ -183,20 +193,27 @@ export default function AssessmentRunner() {
           </div>
 
           {!submitted && (
-            <div className="flex items-center justify-between border-t pt-4 sticky bottom-0 bg-background">
-              <div className="text-sm text-muted-foreground">
-                {answeredCount}/{attempt.questions.length} answered
+            <div className="flex flex-col gap-2 border-t pt-4 sticky bottom-0 bg-background">
+              {submit.isError && (
+                <div className="text-sm text-red-600">
+                  Something went wrong submitting your assessment. Please try again.
+                </div>
+              )}
+              <div className="flex items-center justify-between">
+                <div className="text-sm text-muted-foreground">
+                  {answeredCount}/{attempt.questions.length} answered
+                </div>
+                <Button onClick={handleSubmit} disabled={submit.isPending || answeredCount === 0}>
+                  {submit.isPending ? (
+                    <>
+                      <Loader2 className="w-4 h-4 mr-1.5 animate-spin" />
+                      Grading…
+                    </>
+                  ) : (
+                    "Submit assessment"
+                  )}
+                </Button>
               </div>
-              <Button onClick={handleSubmit} disabled={submit.isPending || answeredCount === 0}>
-                {submit.isPending ? (
-                  <>
-                    <Loader2 className="w-4 h-4 mr-1.5 animate-spin" />
-                    Grading…
-                  </>
-                ) : (
-                  "Submit assessment"
-                )}
-              </Button>
             </div>
           )}
         </div>
