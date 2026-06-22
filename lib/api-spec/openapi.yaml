@@ -533,6 +533,12 @@ components:
         bodyLong:
           type: ["string", "null"]
           description: Long version with the most explanation and the most examples. Null if not yet generated.
+        prevLectureId:
+          type: ["integer", "null"]
+          description: Id of the previous lecture in course order, or null if this is the first lecture.
+        nextLectureId:
+          type: ["integer", "null"]
+          description: Id of the next lecture in course order, or null if this is the last lecture.
 
     Week:
       type: object

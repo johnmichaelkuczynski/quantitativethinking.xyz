@@ -100,7 +100,9 @@ export const GetLectureResponse = zod.object({
   "weekNumber": zod.number(),
   "body": zod.string().describe('Short Markdown lecture text (the baseline \/ minimum-detail version). The frontend lets users select passages and send them to the tutor.'),
   "bodyMedium": zod.string().nullish().describe('Medium-length version with more explanation and more examples. Null if not yet generated.'),
-  "bodyLong": zod.string().nullish().describe('Long version with the most explanation and the most examples. Null if not yet generated.')
+  "bodyLong": zod.string().nullish().describe('Long version with the most explanation and the most examples. Null if not yet generated.'),
+  "prevLectureId": zod.number().nullish().describe('Id of the previous lecture in course order, or null if this is the first lecture.'),
+  "nextLectureId": zod.number().nullish().describe('Id of the next lecture in course order, or null if this is the last lecture.')
 })
 
 

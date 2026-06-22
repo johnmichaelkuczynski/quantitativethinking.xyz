@@ -35,6 +35,16 @@ export interface Lecture {
      * @nullable
      */
   bodyLong?: string | null;
+  /**
+     * Id of the previous lecture in course order, or null if this is the first lecture.
+     * @nullable
+     */
+  prevLectureId?: number | null;
+  /**
+     * Id of the next lecture in course order, or null if this is the last lecture.
+     * @nullable
+     */
+  nextLectureId?: number | null;
 }
 
 export interface LectureRef {

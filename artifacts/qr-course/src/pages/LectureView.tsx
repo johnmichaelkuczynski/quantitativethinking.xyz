@@ -15,7 +15,43 @@ import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 import { AnswerInput } from "@/components/AnswerInput";
 import { LiveTutorPanel } from "@/components/TutorPanel";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, MessageSquare, Sparkles, X, RefreshCw, CheckCircle2, XCircle } from "lucide-react";
+import { ArrowLeft, MessageSquare, Sparkles, X, RefreshCw, CheckCircle2, XCircle, ChevronLeft, ChevronRight } from "lucide-react";
+
+function LectureNav({ id, dir }: { id: number | null | undefined; dir: "prev" | "next" }) {
+  const label = dir === "prev" ? "Previous lecture" : "Next lecture";
+  const inner =
+    dir === "prev" ? (
+      <>
+        <ChevronLeft className="w-4 h-4" />
+        <span className="hidden sm:inline">Previous</span>
+      </>
+    ) : (
+      <>
+        <span className="hidden sm:inline">Next</span>
+        <ChevronRight className="w-4 h-4" />
+      </>
+    );
+  if (id == null) {
+    return (
+      <Button
+        variant="outline"
+        size="sm"
+        disabled
+        aria-label={`${label} (none)`}
+        className="opacity-40"
+      >
+        {inner}
+      </Button>
+    );
+  }
+  return (
+    <Link href={`/lectures/${id}`}>
+      <Button variant="outline" size="sm" aria-label={label} title={label} data-testid={`button-lecture-${dir}`}>
+        {inner}
+      </Button>
+    </Link>
+  );
+}
 
 export default function LectureView() {
   const params = useParams();
@@ -66,6 +102,15 @@ export default function LectureView() {
 
   const [generating, setGenerating] = useState<null | "medium" | "long">(null);
   const [genError, setGenError] = useState<string | null>(null);
+  const leftScrollRef = useRef<HTMLDivElement | null>(null);
+
+  // When navigating to a different lecture, reset depth + errors and scroll to top.
+  useEffect(() => {
+    setLevel("short");
+    setGenError(null);
+    setSelectedText("");
+    leftScrollRef.current?.scrollTo({ top: 0 });
+  }, [lectureId]);
 
   async function generateLevel(lvl: "medium" | "long") {
     if (!lecture || generating) return;
@@ -91,18 +136,24 @@ export default function LectureView() {
 
   return (
     <Layout>
-      <div className="px-6 pt-4 pb-2">
+      <div className="px-6 pt-4 pb-2 flex items-center justify-between gap-2">
         <Link href={lecture ? `/weeks/${lecture.weekNumber}` : "/"}>
           <Button variant="ghost" className="-ml-2 text-muted-foreground hover:text-foreground">
             <ArrowLeft className="w-4 h-4 mr-2" />
             Back to Week {lecture?.weekNumber ?? ""}
           </Button>
         </Link>
+        {lecture && (lecture.prevLectureId != null || lecture.nextLectureId != null) && (
+          <div className="flex items-center gap-2">
+            <LectureNav id={lecture.prevLectureId} dir="prev" />
+            <LectureNav id={lecture.nextLectureId} dir="next" />
+          </div>
+        )}
       </div>
 
       <div className="flex-1 grid grid-cols-1 lg:grid-cols-2 gap-0 min-h-0">
         {/* LEFT: lecture */}
-        <div className="overflow-y-auto px-8 pb-16 border-r border-border">
+        <div ref={leftScrollRef} className="overflow-y-auto px-8 pb-16 border-r border-border">
           {isLoading ? (
             <div className="flex flex-col gap-6 mt-4">
               <Skeleton className="h-12 w-3/4" />
@@ -178,6 +229,12 @@ export default function LectureView() {
                   Tip: highlight any passage above to ask the tutor about it, or to generate practice problems specifically on what you selected.
                 </div>
               </div>
+              {(lecture.prevLectureId != null || lecture.nextLectureId != null) && (
+                <div className="mt-6 flex items-center justify-between gap-2">
+                  <LectureNav id={lecture.prevLectureId} dir="prev" />
+                  <LectureNav id={lecture.nextLectureId} dir="next" />
+                </div>
+              )}
             </article>
           ) : (
             <div className="mt-8">Lecture not found.</div>

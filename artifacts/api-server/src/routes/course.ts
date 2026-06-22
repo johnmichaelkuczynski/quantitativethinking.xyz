@@ -161,7 +161,16 @@ router.get("/course/lectures/:lectureId", async (req, res): Promise<void> => {
     res.status(404).json({ error: "lecture not found" });
     return;
   }
-  res.json(GetLectureResponse.parse(lecture));
+  // Compute previous/next neighbors in global course order (ordered by id, like getWeek).
+  const allIds = await db
+    .select({ id: lecturesTable.id })
+    .from(lecturesTable)
+    .orderBy(asc(lecturesTable.id));
+  const idx = allIds.findIndex((r) => r.id === lectureId);
+  const prevLectureId = idx > 0 ? allIds[idx - 1]!.id : null;
+  const nextLectureId =
+    idx >= 0 && idx < allIds.length - 1 ? allIds[idx + 1]!.id : null;
+  res.json(GetLectureResponse.parse({ ...lecture, prevLectureId, nextLectureId }));
 });
 
 router.get("/course/topics", async (_req, res) => {
