@@ -189,3 +189,57 @@ export const practiceAssignmentMessagesTable = pgTable("practice_assignment_mess
   content: text("content").notNull(),
   createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
 });
+
+// ---------------------------------------------------------------------------
+// Diagnostic Assessments: mandatory-for-credit but ungraded-for-score tests.
+// There are seven "slots" (pre-course aptitude, after each week, plus two
+// cumulative checkpoints) and four formats each (multiple_choice, written,
+// hybrid, official). Only the OFFICIAL format of each slot is required; simply
+// completing it earns full credit (diagnostics = 20% of the course grade) no
+// matter the score. They are also instructive: every attempt is freshly
+// AI-generated with no repeated questions, so the student can retake forever.
+// "Custom" attempts (slug = "custom") let the student target a free-text scope.
+// ---------------------------------------------------------------------------
+export const assessmentAttemptsTable = pgTable("assessment_attempts", {
+  id: serial("id").primaryKey(),
+  slug: text("slug").notNull(), // pre_course | week1 | week2_only | week1_2 | week3 | week4_only | week1_4 | custom
+  format: text("format").notNull(), // multiple_choice | written | hybrid | official
+  isCustom: boolean("is_custom").notNull().default(false),
+  title: text("title").notNull(),
+  scope: text("scope"), // free-text scope (custom assessments only)
+  weeks: jsonb("weeks").notNull().default([]), // number[]
+  status: text("status").notNull().default("in_progress"), // in_progress | submitted
+  startedAt: timestamp("started_at", { withTimezone: true }).notNull().defaultNow(),
+  submittedAt: timestamp("submitted_at", { withTimezone: true }),
+  scorePercent: doublePrecision("score_percent"), // informational only; never affects credit
+  completed: boolean("completed").notNull().default(false),
+  summary: text("summary"),
+  focusPointers: jsonb("focus_pointers"), // string[]
+});
+
+export const assessmentQuestionsTable = pgTable("assessment_questions", {
+  id: serial("id").primaryKey(),
+  attemptId: integer("attempt_id")
+    .notNull()
+    .references(() => assessmentAttemptsTable.id, { onDelete: "cascade" }),
+  position: integer("position").notNull(),
+  type: text("type").notNull(), // multiple_choice | written
+  topicId: integer("topic_id").references(() => topicsTable.id),
+  weekNumber: integer("week_number"),
+  prompt: text("prompt").notNull(),
+  choices: jsonb("choices"), // string[] for multiple_choice; null for written
+  correctAnswer: text("correct_answer").notNull(),
+  explanation: text("explanation").notNull(),
+});
+
+export const assessmentAnswersTable = pgTable("assessment_answers", {
+  id: serial("id").primaryKey(),
+  questionId: integer("question_id")
+    .notNull()
+    .references(() => assessmentQuestionsTable.id, { onDelete: "cascade" }),
+  answer: text("answer").notNull().default(""),
+  correct: boolean("correct"),
+  feedback: text("feedback"),
+  trace: jsonb("trace"),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+});

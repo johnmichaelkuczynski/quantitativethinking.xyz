@@ -9,6 +9,218 @@ export interface HealthStatus {
   status: string;
 }
 
+export interface OkResponse {
+  ok: boolean;
+}
+
+export type AssessmentFormatStatusFormat = typeof AssessmentFormatStatusFormat[keyof typeof AssessmentFormatStatusFormat];
+
+
+export const AssessmentFormatStatusFormat = {
+  multiple_choice: 'multiple_choice',
+  written: 'written',
+  hybrid: 'hybrid',
+  official: 'official',
+} as const;
+
+export interface AssessmentFormatStatus {
+  format: AssessmentFormatStatusFormat;
+  label: string;
+  questionCount: number;
+  attemptCount: number;
+  completed: boolean;
+  /** True only for the "official" format — the one the student must complete. */
+  required: boolean;
+  /** @nullable */
+  lastScorePercent?: number | null;
+}
+
+export interface AssessmentSlot {
+  slug: string;
+  title: string;
+  phase: string;
+  phaseLabel: string;
+  order: number;
+  weeks: number[];
+  aptitude: boolean;
+  description: string;
+  /** Whether the required (official) format has been completed at least once. */
+  officialCompleted: boolean;
+  formats: AssessmentFormatStatus[];
+}
+
+export type AssessmentRecentAttemptFormat = typeof AssessmentRecentAttemptFormat[keyof typeof AssessmentRecentAttemptFormat];
+
+
+export const AssessmentRecentAttemptFormat = {
+  multiple_choice: 'multiple_choice',
+  written: 'written',
+  hybrid: 'hybrid',
+  official: 'official',
+} as const;
+
+export type AssessmentRecentAttemptStatus = typeof AssessmentRecentAttemptStatus[keyof typeof AssessmentRecentAttemptStatus];
+
+
+export const AssessmentRecentAttemptStatus = {
+  in_progress: 'in_progress',
+  submitted: 'submitted',
+} as const;
+
+export interface AssessmentRecentAttempt {
+  id: number;
+  slug: string;
+  title: string;
+  format: AssessmentRecentAttemptFormat;
+  isCustom: boolean;
+  status: AssessmentRecentAttemptStatus;
+  completed: boolean;
+  /** @nullable */
+  scorePercent?: number | null;
+  at: string;
+}
+
+export interface AssessmentProgress {
+  /** How many of the seven required (official) diagnostics have been completed. */
+  officialCompleted: number;
+  officialTotal: number;
+  /** Diagnostic credit earned (0–100). Completion-based, not score-based. */
+  creditPercent: number;
+  /** Fraction of the final course grade these diagnostics are worth (e.g. 0.2). */
+  gradeWeight: number;
+  completedSlugs: string[];
+  /** Total assessment attempts taken (all formats, including custom). */
+  totalAttempts: number;
+  /**
+     * Average score across all submitted attempts (informational only).
+     * @nullable
+     */
+  averageScorePercent: number | null;
+  recentAttempts: AssessmentRecentAttempt[];
+}
+
+export type AssessmentQuestionType = typeof AssessmentQuestionType[keyof typeof AssessmentQuestionType];
+
+
+export const AssessmentQuestionType = {
+  multiple_choice: 'multiple_choice',
+  written: 'written',
+} as const;
+
+export interface AssessmentQuestion {
+  id: number;
+  position: number;
+  type: AssessmentQuestionType;
+  /** @nullable */
+  topicId?: number | null;
+  /** @nullable */
+  weekNumber?: number | null;
+  /** @nullable */
+  topicTitle?: string | null;
+  prompt: string;
+  /**
+     * Options for multiple_choice questions; null for written.
+     * @nullable
+     */
+  choices?: string[] | null;
+  /**
+     * The student's saved answer, if any.
+     * @nullable
+     */
+  yourAnswer?: string | null;
+  /**
+     * Revealed only after the attempt is submitted.
+     * @nullable
+     */
+  correct?: boolean | null;
+  /**
+     * Per-question feedback, revealed only after submit.
+     * @nullable
+     */
+  feedback?: string | null;
+  /**
+     * Revealed only after the attempt is submitted.
+     * @nullable
+     */
+  correctAnswer?: string | null;
+  /**
+     * Revealed only after the attempt is submitted.
+     * @nullable
+     */
+  explanation?: string | null;
+}
+
+export type AssessmentAttemptFormat = typeof AssessmentAttemptFormat[keyof typeof AssessmentAttemptFormat];
+
+
+export const AssessmentAttemptFormat = {
+  multiple_choice: 'multiple_choice',
+  written: 'written',
+  hybrid: 'hybrid',
+  official: 'official',
+} as const;
+
+export type AssessmentAttemptStatus = typeof AssessmentAttemptStatus[keyof typeof AssessmentAttemptStatus];
+
+
+export const AssessmentAttemptStatus = {
+  in_progress: 'in_progress',
+  submitted: 'submitted',
+} as const;
+
+export interface AssessmentAttempt {
+  id: number;
+  slug: string;
+  title: string;
+  format: AssessmentAttemptFormat;
+  isCustom: boolean;
+  /** @nullable */
+  scope?: string | null;
+  weeks: number[];
+  aptitude?: boolean;
+  status: AssessmentAttemptStatus;
+  completed: boolean;
+  /** @nullable */
+  startedAt?: string | null;
+  /** @nullable */
+  submittedAt?: string | null;
+  /** @nullable */
+  scorePercent?: number | null;
+  /** @nullable */
+  summary?: string | null;
+  focusPointers?: string[];
+  questions: AssessmentQuestion[];
+}
+
+export type StartAssessmentInputFormat = typeof StartAssessmentInputFormat[keyof typeof StartAssessmentInputFormat];
+
+
+export const StartAssessmentInputFormat = {
+  multiple_choice: 'multiple_choice',
+  written: 'written',
+  hybrid: 'hybrid',
+  official: 'official',
+} as const;
+
+export interface StartAssessmentInput {
+  /** One of the seven slot slugs. Omit (or use "custom") for a custom assessment. */
+  slug?: string;
+  format: StartAssessmentInputFormat;
+  isCustom?: boolean;
+  /** Free-text scope for a custom assessment (e.g. "only Week 3 as it relates to probability"). */
+  scope?: string;
+  /** Weeks to cover for a custom assessment. */
+  weeks?: number[];
+}
+
+export type SaveAssessmentAnswerInputTrace = { [key: string]: unknown } | null;
+
+export interface SaveAssessmentAnswerInput {
+  questionId: number;
+  answer: string;
+  trace?: SaveAssessmentAnswerInputTrace;
+}
+
 export interface Topic {
   id: number;
   slug: string;

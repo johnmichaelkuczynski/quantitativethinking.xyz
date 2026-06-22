@@ -664,3 +664,199 @@ export const GenerateReportResponse = zod.object({
 })
 
 
+/**
+ * @summary List the seven diagnostic slots and the student's per-format status
+ */
+export const ListAssessmentSlotsResponseItem = zod.object({
+  "slug": zod.string(),
+  "title": zod.string(),
+  "phase": zod.string(),
+  "phaseLabel": zod.string(),
+  "order": zod.number(),
+  "weeks": zod.array(zod.number()),
+  "aptitude": zod.boolean(),
+  "description": zod.string(),
+  "officialCompleted": zod.boolean().describe('Whether the required (official) format has been completed at least once.'),
+  "formats": zod.array(zod.object({
+  "format": zod.enum(['multiple_choice', 'written', 'hybrid', 'official']),
+  "label": zod.string(),
+  "questionCount": zod.number(),
+  "attemptCount": zod.number(),
+  "completed": zod.boolean(),
+  "required": zod.boolean().describe('True only for the \"official\" format — the one the student must complete.'),
+  "lastScorePercent": zod.number().nullish()
+}))
+})
+export const ListAssessmentSlotsResponse = zod.array(ListAssessmentSlotsResponseItem)
+
+
+/**
+ * @summary Diagnostic credit + performance tracking across all attempts
+ */
+export const GetAssessmentProgressResponse = zod.object({
+  "officialCompleted": zod.number().describe('How many of the seven required (official) diagnostics have been completed.'),
+  "officialTotal": zod.number(),
+  "creditPercent": zod.number().describe('Diagnostic credit earned (0–100). Completion-based, not score-based.'),
+  "gradeWeight": zod.number().describe('Fraction of the final course grade these diagnostics are worth (e.g. 0.2).'),
+  "completedSlugs": zod.array(zod.string()),
+  "totalAttempts": zod.number().describe('Total assessment attempts taken (all formats, including custom).'),
+  "averageScorePercent": zod.number().nullable().describe('Average score across all submitted attempts (informational only).'),
+  "recentAttempts": zod.array(zod.object({
+  "id": zod.number(),
+  "slug": zod.string(),
+  "title": zod.string(),
+  "format": zod.enum(['multiple_choice', 'written', 'hybrid', 'official']),
+  "isCustom": zod.boolean(),
+  "status": zod.enum(['in_progress', 'submitted']),
+  "completed": zod.boolean(),
+  "scorePercent": zod.number().nullish(),
+  "at": zod.string()
+}))
+})
+
+
+/**
+ * @summary Generate and start a fresh assessment attempt (new questions every time)
+ */
+export const StartAssessmentBody = zod.object({
+  "slug": zod.string().optional().describe('One of the seven slot slugs. Omit (or use \"custom\") for a custom assessment.'),
+  "format": zod.enum(['multiple_choice', 'written', 'hybrid', 'official']),
+  "isCustom": zod.boolean().optional(),
+  "scope": zod.string().optional().describe('Free-text scope for a custom assessment (e.g. \"only Week 3 as it relates to probability\").'),
+  "weeks": zod.array(zod.number()).optional().describe('Weeks to cover for a custom assessment.')
+})
+
+export const StartAssessmentResponse = zod.object({
+  "id": zod.number(),
+  "slug": zod.string(),
+  "title": zod.string(),
+  "format": zod.enum(['multiple_choice', 'written', 'hybrid', 'official']),
+  "isCustom": zod.boolean(),
+  "scope": zod.string().nullish(),
+  "weeks": zod.array(zod.number()),
+  "aptitude": zod.boolean().optional(),
+  "status": zod.enum(['in_progress', 'submitted']),
+  "completed": zod.boolean(),
+  "startedAt": zod.string().nullish(),
+  "submittedAt": zod.string().nullish(),
+  "scorePercent": zod.number().nullish(),
+  "summary": zod.string().nullish(),
+  "focusPointers": zod.array(zod.string()).optional(),
+  "questions": zod.array(zod.object({
+  "id": zod.number(),
+  "position": zod.number(),
+  "type": zod.enum(['multiple_choice', 'written']),
+  "topicId": zod.number().nullish(),
+  "weekNumber": zod.number().nullish(),
+  "topicTitle": zod.string().nullish(),
+  "prompt": zod.string(),
+  "choices": zod.array(zod.string()).nullish().describe('Options for multiple_choice questions; null for written.'),
+  "yourAnswer": zod.string().nullish().describe('The student\'s saved answer, if any.'),
+  "correct": zod.boolean().nullish().describe('Revealed only after the attempt is submitted.'),
+  "feedback": zod.string().nullish().describe('Per-question feedback, revealed only after submit.'),
+  "correctAnswer": zod.string().nullish().describe('Revealed only after the attempt is submitted.'),
+  "explanation": zod.string().nullish().describe('Revealed only after the attempt is submitted.')
+}))
+})
+
+
+/**
+ * @summary Get an assessment attempt (answers revealed only after submit)
+ */
+export const GetAssessmentAttemptParams = zod.object({
+  "attemptId": zod.coerce.number()
+})
+
+export const GetAssessmentAttemptResponse = zod.object({
+  "id": zod.number(),
+  "slug": zod.string(),
+  "title": zod.string(),
+  "format": zod.enum(['multiple_choice', 'written', 'hybrid', 'official']),
+  "isCustom": zod.boolean(),
+  "scope": zod.string().nullish(),
+  "weeks": zod.array(zod.number()),
+  "aptitude": zod.boolean().optional(),
+  "status": zod.enum(['in_progress', 'submitted']),
+  "completed": zod.boolean(),
+  "startedAt": zod.string().nullish(),
+  "submittedAt": zod.string().nullish(),
+  "scorePercent": zod.number().nullish(),
+  "summary": zod.string().nullish(),
+  "focusPointers": zod.array(zod.string()).optional(),
+  "questions": zod.array(zod.object({
+  "id": zod.number(),
+  "position": zod.number(),
+  "type": zod.enum(['multiple_choice', 'written']),
+  "topicId": zod.number().nullish(),
+  "weekNumber": zod.number().nullish(),
+  "topicTitle": zod.string().nullish(),
+  "prompt": zod.string(),
+  "choices": zod.array(zod.string()).nullish().describe('Options for multiple_choice questions; null for written.'),
+  "yourAnswer": zod.string().nullish().describe('The student\'s saved answer, if any.'),
+  "correct": zod.boolean().nullish().describe('Revealed only after the attempt is submitted.'),
+  "feedback": zod.string().nullish().describe('Per-question feedback, revealed only after submit.'),
+  "correctAnswer": zod.string().nullish().describe('Revealed only after the attempt is submitted.'),
+  "explanation": zod.string().nullish().describe('Revealed only after the attempt is submitted.')
+}))
+})
+
+
+/**
+ * @summary Save (or update) a single answer on an in-progress attempt
+ */
+export const SaveAssessmentAnswerParams = zod.object({
+  "attemptId": zod.coerce.number()
+})
+
+export const SaveAssessmentAnswerBody = zod.object({
+  "questionId": zod.number(),
+  "answer": zod.string(),
+  "trace": zod.record(zod.string(), zod.unknown()).nullish()
+})
+
+export const SaveAssessmentAnswerResponse = zod.object({
+  "ok": zod.boolean()
+})
+
+
+/**
+ * @summary Submit an attempt — grades, generates feedback, and awards completion credit
+ */
+export const SubmitAssessmentParams = zod.object({
+  "attemptId": zod.coerce.number()
+})
+
+export const SubmitAssessmentResponse = zod.object({
+  "id": zod.number(),
+  "slug": zod.string(),
+  "title": zod.string(),
+  "format": zod.enum(['multiple_choice', 'written', 'hybrid', 'official']),
+  "isCustom": zod.boolean(),
+  "scope": zod.string().nullish(),
+  "weeks": zod.array(zod.number()),
+  "aptitude": zod.boolean().optional(),
+  "status": zod.enum(['in_progress', 'submitted']),
+  "completed": zod.boolean(),
+  "startedAt": zod.string().nullish(),
+  "submittedAt": zod.string().nullish(),
+  "scorePercent": zod.number().nullish(),
+  "summary": zod.string().nullish(),
+  "focusPointers": zod.array(zod.string()).optional(),
+  "questions": zod.array(zod.object({
+  "id": zod.number(),
+  "position": zod.number(),
+  "type": zod.enum(['multiple_choice', 'written']),
+  "topicId": zod.number().nullish(),
+  "weekNumber": zod.number().nullish(),
+  "topicTitle": zod.string().nullish(),
+  "prompt": zod.string(),
+  "choices": zod.array(zod.string()).nullish().describe('Options for multiple_choice questions; null for written.'),
+  "yourAnswer": zod.string().nullish().describe('The student\'s saved answer, if any.'),
+  "correct": zod.boolean().nullish().describe('Revealed only after the attempt is submitted.'),
+  "feedback": zod.string().nullish().describe('Per-question feedback, revealed only after submit.'),
+  "correctAnswer": zod.string().nullish().describe('Revealed only after the attempt is submitted.'),
+  "explanation": zod.string().nullish().describe('Revealed only after the attempt is submitted.')
+}))
+})
+
+

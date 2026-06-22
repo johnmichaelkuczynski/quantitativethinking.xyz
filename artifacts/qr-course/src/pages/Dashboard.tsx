@@ -1,5 +1,9 @@
 import React from "react";
-import { useGetCourseOverview, useGetRecentActivity } from "@workspace/api-client-react";
+import {
+  useGetCourseOverview,
+  useGetRecentActivity,
+  useGetAssessmentProgress,
+} from "@workspace/api-client-react";
 import { Layout } from "@/components/layout/Layout";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Link } from "wouter";
@@ -9,6 +13,8 @@ import { Progress } from "@/components/ui/progress";
 export default function Dashboard() {
   const { data: overview, isLoading: isLoadingOverview } = useGetCourseOverview();
   const { data: activity, isLoading: isLoadingActivity } = useGetRecentActivity();
+  const { data: assessmentProgress, isLoading: isLoadingAssessments } =
+    useGetAssessmentProgress();
 
   return (
     <Layout>
@@ -20,7 +26,7 @@ export default function Dashboard() {
           <p className="text-muted-foreground">Welcome to your Quantitative Reasoning workspace.</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <Card>
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-medium text-muted-foreground uppercase tracking-wider">Assignments</CardTitle>
@@ -47,6 +53,32 @@ export default function Dashboard() {
               )}
             </CardContent>
           </Card>
+
+          <Link href="/assessments">
+            <Card className="hover:border-primary/50 transition-colors cursor-pointer hover:shadow-sm h-full">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-sm font-medium text-muted-foreground uppercase tracking-wider">
+                  Diagnostic Credit
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                {isLoadingAssessments ? (
+                  <Skeleton className="h-10 w-24" />
+                ) : (
+                  <>
+                    <div className="text-3xl font-serif font-bold mb-2">
+                      {Math.round(assessmentProgress?.creditPercent ?? 0)}%
+                    </div>
+                    <Progress value={assessmentProgress?.creditPercent ?? 0} className="h-2" />
+                    <div className="mt-2 text-xs text-muted-foreground">
+                      {assessmentProgress?.officialCompleted ?? 0} / {assessmentProgress?.officialTotal ?? 7}{" "}
+                      official · worth {Math.round((assessmentProgress?.gradeWeight ?? 0.2) * 100)}% of grade
+                    </div>
+                  </>
+                )}
+              </CardContent>
+            </Card>
+          </Link>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

@@ -498,6 +498,113 @@ paths:
               schema:
                 $ref: "#/components/schemas/AnalyticsReport"
 
+  /assessments/slots:
+    get:
+      operationId: listAssessmentSlots
+      tags: [assessments]
+      summary: List the seven diagnostic slots and the student's per-format status
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/AssessmentSlot"
+
+  /assessments/progress:
+    get:
+      operationId: getAssessmentProgress
+      tags: [assessments]
+      summary: Diagnostic credit + performance tracking across all attempts
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AssessmentProgress"
+
+  /assessments/start:
+    post:
+      operationId: startAssessment
+      tags: [assessments]
+      summary: Generate and start a fresh assessment attempt (new questions every time)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/StartAssessmentInput"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AssessmentAttempt"
+
+  /assessments/attempts/{attemptId}:
+    get:
+      operationId: getAssessmentAttempt
+      tags: [assessments]
+      summary: Get an assessment attempt (answers revealed only after submit)
+      parameters:
+        - name: attemptId
+          in: path
+          required: true
+          schema: { type: integer }
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AssessmentAttempt"
+
+  /assessments/attempts/{attemptId}/answer:
+    put:
+      operationId: saveAssessmentAnswer
+      tags: [assessments]
+      summary: Save (or update) a single answer on an in-progress attempt
+      parameters:
+        - name: attemptId
+          in: path
+          required: true
+          schema: { type: integer }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SaveAssessmentAnswerInput"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/OkResponse"
+
+  /assessments/attempts/{attemptId}/submit:
+    post:
+      operationId: submitAssessment
+      tags: [assessments]
+      summary: Submit an attempt — grades, generates feedback, and awards completion credit
+      parameters:
+        - name: attemptId
+          in: path
+          required: true
+          schema: { type: integer }
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AssessmentAttempt"
+
 components:
   schemas:
     HealthStatus:
@@ -505,6 +612,192 @@ components:
       properties:
         status: { type: string }
       required: [status]
+
+    OkResponse:
+      type: object
+      required: [ok]
+      properties:
+        ok: { type: boolean }
+
+    AssessmentFormatStatus:
+      type: object
+      required: [format, label, questionCount, attemptCount, completed, required]
+      properties:
+        format:
+          type: string
+          enum: [multiple_choice, written, hybrid, official]
+        label: { type: string }
+        questionCount: { type: integer }
+        attemptCount: { type: integer }
+        completed: { type: boolean }
+        required:
+          type: boolean
+          description: True only for the "official" format — the one the student must complete.
+        lastScorePercent: { type: ["number", "null"] }
+
+    AssessmentSlot:
+      type: object
+      required: [slug, title, phase, phaseLabel, order, weeks, aptitude, description, officialCompleted, formats]
+      properties:
+        slug: { type: string }
+        title: { type: string }
+        phase: { type: string }
+        phaseLabel: { type: string }
+        order: { type: integer }
+        weeks:
+          type: array
+          items: { type: integer }
+        aptitude: { type: boolean }
+        description: { type: string }
+        officialCompleted:
+          type: boolean
+          description: Whether the required (official) format has been completed at least once.
+        formats:
+          type: array
+          items:
+            $ref: "#/components/schemas/AssessmentFormatStatus"
+
+    AssessmentRecentAttempt:
+      type: object
+      required: [id, slug, title, format, isCustom, status, completed, at]
+      properties:
+        id: { type: integer }
+        slug: { type: string }
+        title: { type: string }
+        format:
+          type: string
+          enum: [multiple_choice, written, hybrid, official]
+        isCustom: { type: boolean }
+        status:
+          type: string
+          enum: [in_progress, submitted]
+        completed: { type: boolean }
+        scorePercent: { type: ["number", "null"] }
+        at: { type: string }
+
+    AssessmentProgress:
+      type: object
+      required:
+        [officialCompleted, officialTotal, creditPercent, gradeWeight, completedSlugs, totalAttempts, averageScorePercent, recentAttempts]
+      properties:
+        officialCompleted:
+          type: integer
+          description: How many of the seven required (official) diagnostics have been completed.
+        officialTotal: { type: integer }
+        creditPercent:
+          type: number
+          description: Diagnostic credit earned (0–100). Completion-based, not score-based.
+        gradeWeight:
+          type: number
+          description: Fraction of the final course grade these diagnostics are worth (e.g. 0.2).
+        completedSlugs:
+          type: array
+          items: { type: string }
+        totalAttempts:
+          type: integer
+          description: Total assessment attempts taken (all formats, including custom).
+        averageScorePercent:
+          type: ["number", "null"]
+          description: Average score across all submitted attempts (informational only).
+        recentAttempts:
+          type: array
+          items:
+            $ref: "#/components/schemas/AssessmentRecentAttempt"
+
+    AssessmentQuestion:
+      type: object
+      required: [id, position, type, prompt]
+      properties:
+        id: { type: integer }
+        position: { type: integer }
+        type:
+          type: string
+          enum: [multiple_choice, written]
+        topicId: { type: ["integer", "null"] }
+        weekNumber: { type: ["integer", "null"] }
+        topicTitle: { type: ["string", "null"] }
+        prompt: { type: string }
+        choices:
+          type: ["array", "null"]
+          items: { type: string }
+          description: Options for multiple_choice questions; null for written.
+        yourAnswer:
+          type: ["string", "null"]
+          description: The student's saved answer, if any.
+        correct:
+          type: ["boolean", "null"]
+          description: Revealed only after the attempt is submitted.
+        feedback:
+          type: ["string", "null"]
+          description: Per-question feedback, revealed only after submit.
+        correctAnswer:
+          type: ["string", "null"]
+          description: Revealed only after the attempt is submitted.
+        explanation:
+          type: ["string", "null"]
+          description: Revealed only after the attempt is submitted.
+
+    AssessmentAttempt:
+      type: object
+      required: [id, slug, title, format, isCustom, weeks, status, completed, questions]
+      properties:
+        id: { type: integer }
+        slug: { type: string }
+        title: { type: string }
+        format:
+          type: string
+          enum: [multiple_choice, written, hybrid, official]
+        isCustom: { type: boolean }
+        scope: { type: ["string", "null"] }
+        weeks:
+          type: array
+          items: { type: integer }
+        aptitude: { type: boolean }
+        status:
+          type: string
+          enum: [in_progress, submitted]
+        completed: { type: boolean }
+        startedAt: { type: ["string", "null"] }
+        submittedAt: { type: ["string", "null"] }
+        scorePercent: { type: ["number", "null"] }
+        summary: { type: ["string", "null"] }
+        focusPointers:
+          type: array
+          items: { type: string }
+        questions:
+          type: array
+          items:
+            $ref: "#/components/schemas/AssessmentQuestion"
+
+    StartAssessmentInput:
+      type: object
+      required: [format]
+      properties:
+        slug:
+          type: string
+          description: One of the seven slot slugs. Omit (or use "custom") for a custom assessment.
+        format:
+          type: string
+          enum: [multiple_choice, written, hybrid, official]
+        isCustom: { type: boolean }
+        scope:
+          type: string
+          description: Free-text scope for a custom assessment (e.g. "only Week 3 as it relates to probability").
+        weeks:
+          type: array
+          items: { type: integer }
+          description: Weeks to cover for a custom assessment.
+
+    SaveAssessmentAnswerInput:
+      type: object
+      required: [questionId, answer]
+      properties:
+        questionId: { type: integer }
+        answer: { type: string }
+        trace:
+          type: object
+          additionalProperties: true
+          nullable: true
 
     Topic:
       type: object

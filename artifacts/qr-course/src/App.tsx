@@ -13,6 +13,8 @@ import AssignmentRunner from "@/pages/AssignmentRunner";
 import PracticeAssignmentRunner from "@/pages/PracticeAssignmentRunner";
 import Diagnostics from "@/pages/Diagnostics";
 import TopicPractice from "@/pages/TopicPractice";
+import AssessmentsHub from "@/pages/AssessmentsHub";
+import AssessmentRunner from "@/pages/AssessmentRunner";
 
 const queryClient = new QueryClient();
 
@@ -24,6 +26,8 @@ function Router() {
       <Route path="/assignments/:id/practice" component={PracticeAssignmentRunner} />
       <Route path="/assignments/:id" component={AssignmentRunner} />
       <Route path="/analytics" component={Analytics} />
+      <Route path="/assessments" component={AssessmentsHub} />
+      <Route path="/assessments/attempts/:id" component={AssessmentRunner} />
       <Route path="/diagnostics" component={Diagnostics} />
       <Route path="/weeks/:weekNumber" component={WeekView} />
       <Route path="/lectures/:lectureId" component={LectureView} />
