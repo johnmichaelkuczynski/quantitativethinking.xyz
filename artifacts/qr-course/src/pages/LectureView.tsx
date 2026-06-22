@@ -9,7 +9,7 @@ import {
   type KeystrokeTrace,
 } from "@workspace/api-client-react";
 import { Layout } from "@/components/layout/Layout";
-import { useParams, Link } from "wouter";
+import { useParams, Link, useLocation } from "wouter";
 import { Skeleton } from "@/components/ui/skeleton";
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 import { AnswerInput } from "@/components/AnswerInput";
@@ -18,38 +18,35 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft, MessageSquare, Sparkles, X, RefreshCw, CheckCircle2, XCircle, ChevronLeft, ChevronRight } from "lucide-react";
 
 function LectureNav({ id, dir }: { id: number | null | undefined; dir: "prev" | "next" }) {
+  const [, navigate] = useLocation();
   const label = dir === "prev" ? "Previous lecture" : "Next lecture";
   const inner =
     dir === "prev" ? (
       <>
         <ChevronLeft className="w-4 h-4" />
-        <span className="hidden sm:inline">Previous</span>
+        <span className="hidden sm:inline">Previous lecture</span>
       </>
     ) : (
       <>
-        <span className="hidden sm:inline">Next</span>
+        <span className="hidden sm:inline">Next lecture</span>
         <ChevronRight className="w-4 h-4" />
       </>
     );
-  if (id == null) {
-    return (
-      <Button
-        variant="outline"
-        size="sm"
-        disabled
-        aria-label={`${label} (none)`}
-        className="opacity-40"
-      >
-        {inner}
-      </Button>
-    );
-  }
   return (
-    <Link href={`/lectures/${id}`}>
-      <Button variant="outline" size="sm" aria-label={label} title={label} data-testid={`button-lecture-${dir}`}>
-        {inner}
-      </Button>
-    </Link>
+    <Button
+      variant="outline"
+      size="sm"
+      disabled={id == null}
+      onClick={() => {
+        if (id != null) navigate(`/lectures/${id}`);
+      }}
+      aria-label={id == null ? `${label} (none)` : label}
+      title={label}
+      data-testid={`button-lecture-${dir}`}
+      className={id == null ? "opacity-40" : ""}
+    >
+      {inner}
+    </Button>
   );
 }
 
